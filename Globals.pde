@@ -1,4 +1,4 @@
 class Globals {
-  float gravity = 1;
+  float gravity = 0.5;
   float airFriction = 0.003;
 }

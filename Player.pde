@@ -7,15 +7,16 @@ class Player {
   int state;
 
   final int ST_FLYING = 1;
-  final int ST_ON_GROUND = 2;
+  final int ST_LANDED = 2;
 
   int squareSize = 20;
 
-  float parFlapSpeed = 10;
+  float parFlapSpeed = 13;
+  boolean flapPressUsed = false;
   float parFlySpeed = 5;
 
   Player(int x, int y) {
-    state = ST_ON_GROUND;
+    state = ST_LANDED;
     transform = new Transform(x, y, 0);
     speed = new Transform(0, 0, 0);
     acc = new Transform(0, 0, 0);
@@ -33,10 +34,13 @@ class Player {
   }
 
   void process(){
+
+    if (flapPressUsed && !input.pressed.flap) flapPressUsed = false;
+
     if (state == ST_FLYING) {
       speed.y += globals.gravity - (abs(speed.y * globals.airFriction));
       transform.y += int(speed.y);
-    } else if (state == ST_ON_GROUND) {
+    } else if (state == ST_LANDED) {
       speed.y = 0;
     }
 
@@ -47,15 +51,15 @@ class Player {
   }
 
   void control(Pressed pressed){
-    if (state == ST_ON_GROUND){
+    if (state == ST_LANDED){
       if (pressed.flap) {
         state = ST_FLYING;
-        speed.y -= parFlapSpeed;
+        flap();
       }
     }
     if (state == ST_FLYING) {
       if (pressed.flap) {
-        speed.y -= parFlapSpeed;
+        flap();
       }
       if (pressed.left) {
         transform.x -= int(parFlySpeed);
@@ -66,4 +70,12 @@ class Player {
     }
 
   }
+
+  void flap(){
+    if (!flapPressUsed) {
+      speed.y = -parFlapSpeed;
+      flapPressUsed = true;
+    }
+  }
+
 }
