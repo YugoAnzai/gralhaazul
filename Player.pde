@@ -23,7 +23,7 @@ class Player {
   }
 
   void draw() {
-    fill(0,0,0);
+    fill(0, 0, 0);
     rect(transform.x, transform.y, squareSize, squareSize);
   }
 
