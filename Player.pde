@@ -1,6 +1,6 @@
 class Player {
 
-  Transform transform;
+  Transform pos;
   Transform speed;
   Transform acc;
 
@@ -17,14 +17,14 @@ class Player {
 
   Player(int x, int y) {
     state = ST_LANDED;
-    transform = new Transform(x, y, 0);
+    pos = new Transform(x, y, 0);
     speed = new Transform(0, 0, 0);
     acc = new Transform(0, 0, 0);
   }
 
   void draw() {
     fill(0, 0, 0);
-    ellipse(int(transform.x), int(transform.y), playerDiameter, playerDiameter);
+    ellipse(int(pos.x), int(pos.y), playerDiameter, playerDiameter);
   }
 
   void debugDraw(int x, int y){
@@ -40,14 +40,14 @@ class Player {
 
     if (state == ST_FLYING) {
       speed.y += globals.gravity - (abs(speed.y * globals.airFriction));
-      transform.y += speed.y;
+      pos.y += speed.y;
     } else if (state == ST_LANDED) {
       speed.y = 0;
     }
 
     // clamp to screen
-    transform.x = constrain(transform.x, 0 + playerDiameter/2, width - playerDiameter/2);
-    transform.y = constrain(transform.y, 0, height - playerDiameter/2);
+    pos.x = constrain(pos.x, 0 + playerDiameter/2, width - playerDiameter/2);
+    pos.y = constrain(pos.y, 0, height - playerDiameter/2);
 
   }
 
@@ -63,10 +63,10 @@ class Player {
         flap();
       }
       if (pressed.left) {
-        transform.x -= parFlySpeed;
+        pos.x -= parFlySpeed;
       }
       if (pressed.right) {
-        transform.x += parFlySpeed;
+        pos.x += parFlySpeed;
       }
     }
 
