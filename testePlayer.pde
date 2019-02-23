@@ -1,21 +1,40 @@
 Player player;
 Input input;
+Globals globals;
 
 void setup() {
+
   size(1000, 700);
   player = new Player(100, 100);
   input = new Input();
+  globals = new Globals();
+
 }
 
 void draw() {
 
-  background(#2B9D52);
+  control();
+  process();
+  _draw();
+  debugDraw();
 
-  player.draw();
+}
+
+void control(){
   player.control(input.pressed);
+}
 
-  // Testes ________________
-  // input.debugDraw();
+void process(){
+  player.process();
+}
+
+void _draw(){
+  background(#2B9D52);
+  player.draw();
+}
+
+void debugDraw(){
+  input.debugDraw();
   player.debugDraw();
 }
 
