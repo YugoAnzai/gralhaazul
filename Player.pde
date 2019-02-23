@@ -27,10 +27,11 @@ class Player {
     rect(transform.x, transform.y, squareSize, squareSize);
   }
 
-  void debugDraw(){
-    fill(255, 0, 0);
-    textSize(10);
-    text("state:" + state, 0, 10);
+  void debugDraw(int x, int y){
+    String[] lines = {
+      "state:" + state
+    };
+    debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
   }
 
   void process(){

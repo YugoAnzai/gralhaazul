@@ -36,15 +36,14 @@ class Input{
     if(key == 'j') pressed.grab = false;
   }
 
- void debugDraw() {
-    fill(0);
-    rect(0, 0, 80, 90);
-    fill(0, 255, 255);
-    textSize(12);
-    text("left: " + pressed.left, 5, 20);
-    text("right: " + pressed.right, 5, 40);
-    text("flap: " + pressed.flap, 5, 60);
-    text("grab: " + pressed.grab, 5, 80);
+ void debugDraw(int x, int y) {
+    String[] lines = {
+      "left: " + pressed.left,
+      "right: " + pressed.right,
+      "flap: " + pressed.flap,
+      "grab: " + pressed.grab,
+    };
+    debug.draw(lines, x, y);
   }
 
 }

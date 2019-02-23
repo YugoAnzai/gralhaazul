@@ -1,6 +1,7 @@
 Player player;
 Input input;
 Globals globals;
+Debug debug;
 
 void setup() {
 
@@ -8,6 +9,7 @@ void setup() {
   player = new Player(100, 100);
   input = new Input();
   globals = new Globals();
+  debug = new Debug();
 
 }
 
@@ -34,8 +36,8 @@ void _draw(){
 }
 
 void debugDraw(){
-  input.debugDraw();
-  player.debugDraw();
+  input.debugDraw(0, 0);
+  player.debugDraw(80, 0);
 }
 
 void keyPressed(){
