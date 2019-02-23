@@ -11,8 +11,8 @@ class Debug {
 
   void draw(String[] lines, int x, int y, color boardColor, color textColor) {
 
-    int lineHeight = 9;
-    int charWidth = 5;
+    int lineHeight = 10;
+    int charWidth = 6;
     int textSize = 16;
 
     int longest = 0;

@@ -1,8 +1,4 @@
-class Player {
-
-  Transform pos;
-  Transform speed;
-  Transform acc;
+class Player extends GameObject{
 
   int state;
 
@@ -11,15 +7,13 @@ class Player {
 
   int playerDiameter = 20;
 
-  float parFlapSpeed = 13;
+  float parFlapSpeed = 10;
   boolean flapPressUsed = false;
   float parFlySpeed = 5;
 
   Player(int x, int y) {
+    super(x, y, 0);
     state = ST_LANDED;
-    pos = new Transform(x, y, 0);
-    speed = new Transform(0, 0, 0);
-    acc = new Transform(0, 0, 0);
   }
 
   void draw() {
@@ -29,7 +23,10 @@ class Player {
 
   void debugDraw(int x, int y){
     String[] lines = {
-      "state:" + state
+      "state:" + state,
+      "pos.x:" + nfc(pos.x, 1) + " pos.y:" + nfc(pos.y, 1),
+      "speed.x:" + nfc(speed.x, 1) + " speed.y:" + nfc(speed.y, 1),
+      "acc.x:" + nfc(acc.x, 1) + " acc.y:" + nfc(acc.y, 1),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
   }
@@ -47,7 +44,7 @@ class Player {
 
     // clamp to screen
     pos.x = constrain(pos.x, 0 + playerDiameter/2, width - playerDiameter/2);
-    pos.y = constrain(pos.y, 0, height - playerDiameter/2);
+    pos.y = constrain(pos.y, 0 + playerDiameter/2, height - playerDiameter/2);
 
   }
 
