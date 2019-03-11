@@ -1,4 +1,5 @@
 Player player;
+World world;
 Input input;
 Globals globals;
 Debug debug;
@@ -6,7 +7,8 @@ Debug debug;
 void setup() {
 
   size(1000, 700);
-  player = new Player(100, 100);
+  player = new Player(width/2, height/2);
+  world = new World(player);
   input = new Input();
   globals = new Globals();
   debug = new Debug();
@@ -31,13 +33,14 @@ void process(){
 }
 
 void _draw(){
-  background(#2B9D52);
+  world.draw();
   player.draw();
 }
 
 void debugDraw(){
   input.debugDraw(0, 0);
   player.debugDraw(80, 0);
+  world.debugDraw(0, 150);
 }
 
 void keyPressed(){
