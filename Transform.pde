@@ -8,4 +8,10 @@ class Transform {
     y = tempY;
     r = tempR;
   }
+
+  void copyFromTransform(Transform t){
+    x = t.x;
+    y = t.y;
+    r = t.r;
+  }
 }

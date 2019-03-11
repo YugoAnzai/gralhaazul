@@ -8,7 +8,7 @@ class Wall extends GameObject{
 		super(x, y, 0);
 		width = _width;
 		height = _height;
-		rectCollider = new RectCollider(this, pos, _width, _height);
+		rectCollider = new RectCollider(this, colliderManager.walls, _width, _height);
 	}
 
 	void draw() {

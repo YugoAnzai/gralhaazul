@@ -2,13 +2,9 @@ class CircleCollider extends Collider{
 
 	int radius;
 
-	CircleCollider(GameObject _gameObject, Transform _pos, int _radius){
-		super(_gameObject, _pos);
+	CircleCollider(GameObject _gameObject, ColliderMask _colliderMask, int _radius){
+		super(_gameObject, _colliderMask);
 		radius = _radius;
-	}
-
-	void process(GameObject gameObject) {
-		pos = gameObject.pos;
 	}
 
 	void debugDraw() {

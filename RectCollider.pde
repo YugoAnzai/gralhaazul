@@ -3,14 +3,10 @@ class RectCollider extends Collider{
 	int width;
 	int height;
 
-	RectCollider(GameObject _gameObject, Transform _pos, int _width, int _height){
-		super(_gameObject, _pos);
+	RectCollider(GameObject _gameObject, ColliderMask _colliderMask, int _width, int _height){
+		super(_gameObject, _colliderMask);
 		width = _width;
 		height = _height;
-	}
-
-	void process(GameObject gameObject) {
-		pos = gameObject.pos;
 	}
 
 	void debugDraw() {

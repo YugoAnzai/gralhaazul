@@ -16,7 +16,7 @@ class Player extends GameObject{
   Player(int x, int y) {
     super(x, y, 0);
     state = ST_LANDED;
-    rectCollider = new RectCollider(this, pos, playerSize, playerSize);
+    rectCollider = new RectCollider(this, colliderManager.player, playerSize, playerSize);
   }
 
   void draw() {
@@ -54,7 +54,7 @@ class Player extends GameObject{
     pos.y = constrain(pos.y, 0 + playerSize/2, height - playerSize/2);
 
     // Update collider position
-    rectCollider.process(this);
+    rectCollider.process();
 
   }
 

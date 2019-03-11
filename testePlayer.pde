@@ -3,12 +3,14 @@ World world;
 Input input;
 Globals globals;
 Debug debug;
+ColliderManager colliderManager;
 
 void setup() {
 
   size(1000, 700);
   rectMode(CENTER);
-  
+
+  colliderManager = new ColliderManager();
   player = new Player(width/2, height/2);
   world = new World(player);
   input = new Input();
