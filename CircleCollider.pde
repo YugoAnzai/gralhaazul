@@ -12,9 +12,11 @@ class CircleCollider extends Collider{
 	}
 
 	void debugDraw() {
-		stroke(255, 30, 0);
-		fill(0, 255, 30, 80);
-    ellipse(int(pos.x), int(pos.y), radius * 2, radius * 2);
+		if (globals.drawColliders){
+			stroke(255, 30, 0);
+			fill(0, 255, 30, 80);
+			ellipse(int(pos.x), int(pos.y), radius * 2, radius * 2);
+		}
 	}
 
 }

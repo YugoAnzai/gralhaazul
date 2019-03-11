@@ -14,9 +14,11 @@ class RectCollider extends Collider{
 	}
 
 	void debugDraw() {
-		stroke(255, 30, 0);
-		fill(0, 255, 30, 80);
-    	rect(int(pos.x), int(pos.y), width, height);
+		if (globals.drawColliders){
+			stroke(255, 30, 0);
+			fill(0, 255, 30, 80);
+	    rect(int(pos.x), int(pos.y), width, height);
+		}
 	}
 
 }

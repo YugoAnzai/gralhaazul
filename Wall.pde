@@ -12,7 +12,7 @@ class Wall extends GameObject{
 	}
 
 	void draw() {
-		fill(0);
+		fill(60, 30, 30);
 		rect(pos.x, pos.y, width, height);
 	}
 
