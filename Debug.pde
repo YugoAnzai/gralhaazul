@@ -22,6 +22,7 @@ class Debug {
       }
     }
 
+    noStroke();
     fill(boardColor);
     rect(x, y, longest * charWidth, lines.length * lineHeight);
     fill(textColor);
