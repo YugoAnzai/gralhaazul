@@ -5,7 +5,7 @@ class Player extends GameObject{
   final int ST_FLYING = 1;
   final int ST_LANDED = 2;
 
-  int playerDiameter = 50;
+  int playerRadius = 25;
 
   float parFlapSpeed = 10;
   boolean flapPressUsed = false;
@@ -16,12 +16,12 @@ class Player extends GameObject{
   Player(int x, int y) {
     super(x, y, 0);
     state = ST_LANDED;
-    circleCollider = new CircleCollider(this, pos, playerDiameter);
+    circleCollider = new CircleCollider(this, pos, playerRadius);
   }
 
   void draw() {
     fill(0, 0, 0);
-    ellipse(int(pos.x), int(pos.y), playerDiameter, playerDiameter);
+    ellipse(int(pos.x), int(pos.y), playerRadius * 2, playerRadius * 2);
   }
 
   void debugDraw(int x, int y){
@@ -33,7 +33,7 @@ class Player extends GameObject{
       "acc.x:" + nfc(acc.x, 1) + " acc.y:" + nfc(acc.y, 1),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
-    
+
     circleCollider.debugDraw();
 
   }
@@ -50,8 +50,8 @@ class Player extends GameObject{
     }
 
     // clamp to screen
-    pos.x = constrain(pos.x, 0 + playerDiameter/2, width - playerDiameter/2);
-    pos.y = constrain(pos.y, 0 + playerDiameter/2, height - playerDiameter/2);
+    pos.x = constrain(pos.x, 0 + playerRadius, width - playerRadius);
+    pos.y = constrain(pos.y, 0 + playerRadius, height - playerRadius);
 
     // Update collider position
     circleCollider.process(this);
