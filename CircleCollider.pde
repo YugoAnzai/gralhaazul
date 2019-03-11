@@ -7,6 +7,11 @@ class CircleCollider extends Collider{
 		radius = _radius;
 	}
 
+	Collider process(){
+		// returning own collider for testing
+		return this;
+	}
+
 	void debugDraw() {
 		if (globals.drawColliders){
 			stroke(255, 30, 0);

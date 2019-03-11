@@ -11,9 +11,7 @@ abstract class Collider {
 		_colliderMask.addCollider(this);
 	}
 
-	void process() {
-		pos.copyFromTransform(gameObject.pos);
-	}
+	abstract Collider process();
 
 	abstract void debugDraw();
 

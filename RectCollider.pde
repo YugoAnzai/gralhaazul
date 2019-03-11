@@ -9,6 +9,21 @@ class RectCollider extends Collider{
 		height = _height;
 	}
 
+	Collider process(){
+		// update collider position
+		pos.copyFromTransform(gameObject.pos);
+
+		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
+			for (Collider collider : otherCollidingMask.colliders){
+				print(collider.gameObject.pos);
+			}
+		}
+
+		// returning own collider for testing
+		return this;
+
+	}
+
 	void debugDraw() {
 		if (globals.drawColliders){
 			stroke(255, 30, 0);
