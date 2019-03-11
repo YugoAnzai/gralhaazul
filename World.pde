@@ -28,5 +28,19 @@ class World{
 		for (Wall wall : walls){
 			wall.debugDraw();
 		}
+
+		debugDrawGrid();
+
+	}
+
+	void debugDrawGrid(){
+		int interval = 50;
+		stroke(0, 0, 255, 80);
+		for (int x = 0; x < width; x += interval) {
+			line(x, 0, x, height);
+		}
+		for (int y = 0; y < height; y += interval ){
+			line(0, y, width, y);
+		}
 	}
 }
