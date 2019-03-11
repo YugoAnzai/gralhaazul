@@ -7,6 +7,8 @@ Debug debug;
 void setup() {
 
   size(1000, 700);
+  rectMode(CENTER);
+  
   player = new Player(width/2, height/2);
   world = new World(player);
   input = new Input();

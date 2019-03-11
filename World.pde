@@ -9,10 +9,12 @@ class World{
 
 		// Walls
 		walls.add(new Wall(300, 100, 100, 50));
-		walls.add(new Wall(0, 0, 20, height));
-		walls.add(new Wall(0, 0, width, 20));
-		walls.add(new Wall(0, height - 20, width, 20));
-		walls.add(new Wall(width - 20, 0, 20, height));
+
+		// screen walls
+		walls.add(new Wall(width/2, 0, width, 20));
+		walls.add(new Wall(width/2, height, width, 20));
+		walls.add(new Wall(0, height/2, 20, height));
+		walls.add(new Wall(width, height/2, 20, height));
 
 	}
 
