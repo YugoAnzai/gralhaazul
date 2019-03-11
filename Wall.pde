@@ -5,7 +5,7 @@ class Wall extends GameObject{
 	RectCollider rectCollider;
 
 	Wall(int x, int y, int _width, int _height) {
-		super(x, y, 0);
+		super(x, y, 0, "Wall");
 		width = _width;
 		height = _height;
 		rectCollider = new RectCollider(this, colliderManager.walls, _width, _height);

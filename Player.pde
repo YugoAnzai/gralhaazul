@@ -14,7 +14,7 @@ class Player extends GameObject{
   RectCollider rectCollider;
 
   Player(int x, int y) {
-    super(x, y, 0);
+    super(x, y, 0, "Player");
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerSize, playerSize);
   }
