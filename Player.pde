@@ -5,15 +5,18 @@ class Player extends GameObject{
   final int ST_FLYING = 1;
   final int ST_LANDED = 2;
 
-  int playerDiameter = 20;
+  int playerDiameter = 50;
 
   float parFlapSpeed = 10;
   boolean flapPressUsed = false;
   float parFlySpeed = 5;
 
+  CircleCollider circleCollider;
+
   Player(int x, int y) {
     super(x, y, 0);
     state = ST_LANDED;
+    circleCollider = new CircleCollider(this, pos, playerDiameter);
   }
 
   void draw() {
@@ -22,6 +25,7 @@ class Player extends GameObject{
   }
 
   void debugDraw(int x, int y){
+
     String[] lines = {
       "state:" + state,
       "pos.x:" + nfc(pos.x, 1) + " pos.y:" + nfc(pos.y, 1),
@@ -29,6 +33,9 @@ class Player extends GameObject{
       "acc.x:" + nfc(acc.x, 1) + " acc.y:" + nfc(acc.y, 1),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
+    
+    circleCollider.debugDraw();
+
   }
 
   void process(){
@@ -45,6 +52,9 @@ class Player extends GameObject{
     // clamp to screen
     pos.x = constrain(pos.x, 0 + playerDiameter/2, width - playerDiameter/2);
     pos.y = constrain(pos.y, 0 + playerDiameter/2, height - playerDiameter/2);
+
+    // Update collider position
+    circleCollider.process(this);
 
   }
 
