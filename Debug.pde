@@ -24,7 +24,9 @@ class Debug {
 
     noStroke();
     fill(boardColor);
-    rect(x, y, longest * charWidth, lines.length * lineHeight);
+    int boardWidth = longest * charWidth;
+    int boardHeight = lines.length * lineHeight;
+    rect(x + boardWidth/2, y + boardHeight/2, boardWidth, boardHeight);
     fill(textColor);
     for (int i = 0; i < lines.length; i++){
       text(lines[i], x, y + (i + 1) * lineHeight);
