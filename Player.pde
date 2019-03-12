@@ -58,6 +58,10 @@ class Player extends GameObject{
 
   }
 
+  void hit(){
+    println("Player hit");
+  }
+
   void control(Pressed pressed){
     if (state == ST_LANDED){
       if (pressed.flap) {

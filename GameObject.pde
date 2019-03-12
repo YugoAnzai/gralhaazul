@@ -19,4 +19,12 @@ class GameObject {
     acc = new Transform(0, 0, 0);
   }
 
+  void hit() {
+
+  }
+
+  void process() {
+    
+  }
+
 }

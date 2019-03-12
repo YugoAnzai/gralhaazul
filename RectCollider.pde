@@ -27,12 +27,10 @@ class RectCollider extends Collider{
 		pos.copyFromTransform(gameObject.pos);
 		posStartEndProcess();
 
-		println("-----------------------------------------");
-
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
 			for (RectCollider collider : otherCollidingMask.colliders){
 				if (checkCollisionRect(collider)) {
-					println("Collision with " + collider.gameObject.name);
+					collider.hit();
 				}
 			}
 		}
@@ -43,10 +41,10 @@ class RectCollider extends Collider{
 	}
 
 	boolean checkCollisionRect(RectCollider collider) {
-		println("xStart: " + xStart + "| xEnd: " + xEnd);
-		println("yStart: " + yStart + "| yEnd: " + yEnd);
-		println("collider.xStart: " + collider.xStart + "| collider.xEnd: " + collider.xEnd);
-		println("collider.yStart: " + collider.yStart + "| collider.yEnd: " + collider.yEnd);
+		// println("xStart: " + xStart + "| xEnd: " + xEnd);
+		// println("yStart: " + yStart + "| yEnd: " + yEnd);
+		// println("collider.xStart: " + collider.xStart + "| collider.xEnd: " + collider.xEnd);
+		// println("collider.yStart: " + collider.yStart + "| collider.yEnd: " + collider.yEnd);
 
 		boolean xCollide = false;
 		boolean yCollide = false;
@@ -65,15 +63,16 @@ class RectCollider extends Collider{
 			)
 			yCollide = true;
 
-		if (xCollide) println("X COLLIDE");
-		if (yCollide) println("Y COLLIDE");
-
 		if (xCollide && yCollide) {
 			return true;
 		}
 
 		return false;
 
+	}
+
+	void hit(){
+		gameObject.hit();
 	}
 
 	void debugDraw() {
