@@ -2,25 +2,77 @@ class RectCollider extends Collider{
 
 	int width;
 	int height;
+	int xStart;
+	int xEnd;
+	int yStart;
+	int yEnd;
 
 	RectCollider(GameObject _gameObject, ColliderMask _colliderMask, int _width, int _height){
 		super(_gameObject, _colliderMask);
 		width = _width;
 		height = _height;
+		colliderMask.addCollider(this);
+		posStartEndProcess();
 	}
 
-	Collider process(){
-		// update collider position
+	void posStartEndProcess(){
+		xStart = int(pos.x - width/2);
+		xEnd = int(pos.x + width/2);
+		yStart = int(pos.y - height/2);
+		yEnd = int(pos.y + height/2);
+	}
+
+	RectCollider process(){
+
 		pos.copyFromTransform(gameObject.pos);
+		posStartEndProcess();
+
+		println("-----------------------------------------");
 
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
-			for (Collider collider : otherCollidingMask.colliders){
-				print(collider.gameObject.pos);
+			for (RectCollider collider : otherCollidingMask.colliders){
+				if (checkCollisionRect(collider)) {
+					println("Collision with " + collider.gameObject.name);
+				}
 			}
 		}
 
 		// returning own collider for testing
 		return this;
+
+	}
+
+	boolean checkCollisionRect(RectCollider collider) {
+		println("xStart: " + xStart + "| xEnd: " + xEnd);
+		println("yStart: " + yStart + "| yEnd: " + yEnd);
+		println("collider.xStart: " + collider.xStart + "| collider.xEnd: " + collider.xEnd);
+		println("collider.yStart: " + collider.yStart + "| collider.yEnd: " + collider.yEnd);
+
+		boolean xCollide = false;
+		boolean yCollide = false;
+		if (
+				(xStart <= collider.xStart && collider.xStart <= xEnd) ||
+				(xStart <= collider.xEnd && collider.xEnd <= xEnd) ||
+				(collider.xStart <= xStart && xStart <= collider.xEnd) ||
+				(collider.xStart <= xEnd && xEnd <= collider.xEnd)
+			)
+			xCollide = true;
+		if (
+				(yStart <= collider.yStart && collider.yStart <= yEnd) ||
+				(yStart <= collider.yEnd && collider.yEnd <= yEnd) ||
+				(collider.yStart <= yStart && yStart <= collider.yEnd) ||
+				(collider.yStart <= yEnd && yEnd <= collider.yEnd)
+			)
+			yCollide = true;
+
+		if (xCollide) println("X COLLIDE");
+		if (yCollide) println("Y COLLIDE");
+
+		if (xCollide && yCollide) {
+			return true;
+		}
+
+		return false;
 
 	}
 

@@ -1,4 +1,4 @@
-abstract class Collider {
+class Collider {
 
 	Transform pos;
 	GameObject gameObject;
@@ -8,11 +8,6 @@ abstract class Collider {
 		gameObject = _gameObject;
 		pos = new Transform(gameObject.pos.x, gameObject.pos.y, gameObject.pos.r);
 		colliderMask = _colliderMask;
-		_colliderMask.addCollider(this);
 	}
-
-	abstract Collider process();
-
-	abstract void debugDraw();
 
 }

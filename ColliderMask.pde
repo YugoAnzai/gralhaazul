@@ -1,13 +1,13 @@
 class ColliderMask{
 
-	ArrayList<Collider> colliders = new ArrayList();
+	ArrayList<RectCollider> colliders = new ArrayList();
 	ArrayList<ColliderMask> collidingMasks = new ArrayList();
 
 	ColliderMask(){
 
 	}
 
-	void addCollider(Collider collider) {
+	void addCollider(RectCollider collider) {
 		colliders.add(collider);
 	}
 
