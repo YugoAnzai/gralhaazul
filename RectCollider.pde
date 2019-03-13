@@ -2,30 +2,42 @@ class RectCollider extends Collider{
 
 	int width;
 	int height;
+	int xOffset;
+	int yOffset;
 	int xStart;
 	int xEnd;
 	int yStart;
 	int yEnd;
 
-	RectCollider(GameObject _gameObject, ColliderMask _colliderMask, int _width, int _height){
+	RectCollider(GameObject _gameObject, ColliderMask _colliderMask, int _width, int _height) {
 		super(_gameObject, _colliderMask);
 		width = _width;
 		height = _height;
 		colliderMask.addCollider(this);
-		posStartEndProcess();
+		posStartEndCalculation();
 	}
 
-	void posStartEndProcess(){
-		xStart = int(pos.x - width/2);
-		xEnd = int(pos.x + width/2);
-		yStart = int(pos.y - height/2);
-		yEnd = int(pos.y + height/2);
+	RectCollider(GameObject _gameObject, ColliderMask _colliderMask, int _width, int _height, int _xOffset, int _yOffset) {
+		super(_gameObject, _colliderMask);
+		width = _width;
+		height = _height;
+		xOffset = _xOffset;
+		yOffset = _yOffset;
+		colliderMask.addCollider(this);
+		posStartEndCalculation();
+	}
+
+	void posStartEndCalculation(){
+		xStart = int(pos.x - width/2) + xOffset;
+		xEnd = int(pos.x + width/2) + xOffset;
+		yStart = int(pos.y - height/2) + yOffset;
+		yEnd = int(pos.y + height/2) + yOffset;
 	}
 
 	RectCollider process(){
 
 		pos.copyFromTransform(gameObject.pos);
-		posStartEndProcess();
+		posStartEndCalculation();
 
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
 			for (RectCollider collider : otherCollidingMask.colliders){
@@ -79,7 +91,7 @@ class RectCollider extends Collider{
 		if (globals.drawColliders){
 			stroke(255, 30, 0);
 			fill(0, 255, 30, 80);
-	    rect(int(pos.x), int(pos.y), width, height);
+	    rect(int(pos.x) + xOffset, int(pos.y) + yOffset, width, height);
 		}
 	}
 
