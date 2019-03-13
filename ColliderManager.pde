@@ -1,19 +1,18 @@
 class ColliderManager{
 
-	ColliderMask walls;
 	ColliderMask player;
+	ColliderMask walls;
+	ColliderMask trees;
 
 	ColliderManager(){
-		
-		walls = new ColliderMask();
+
 		player = new ColliderMask();
+		walls = new ColliderMask();
+		trees = new ColliderMask();
 
 		player.addCollidingMask(walls);
+		player.addCollidingMask(trees);
 
 	}
-
-	// mask1.addCollidingMask(mask2)
-	// collider na máscara 1 enxerga colliders na máscara 2 para colisão
-
 
 }

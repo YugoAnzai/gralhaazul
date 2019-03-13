@@ -1,6 +1,7 @@
 class World{
 
 	ArrayList<Wall> walls = new ArrayList();
+	ArrayList<Tree> trees = new ArrayList();
 	Player player;
 
 	World(Player _player){
@@ -10,11 +11,8 @@ class World{
 		// Walls
 		walls.add(new Wall(300, 100, 100, 50));
 
-		// screen walls
-		walls.add(new Wall(width/2, 0, width, 20));
-		walls.add(new Wall(width/2, height, width, 20));
-		walls.add(new Wall(0, height/2, 20, height));
-		walls.add(new Wall(width, height/2, 20, height));
+		// Trees
+		trees.add(new Tree(500, 525, 3));
 
 	}
 
@@ -24,11 +22,17 @@ class World{
 		for (Wall wall : walls){
 			wall.draw();
 		}
+		for (Tree tree : trees){
+			tree.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
 		for (Wall wall : walls){
 			wall.debugDraw();
+		}
+		for (Tree tree : trees){
+			tree.debugDraw();
 		}
 
 		debugDrawGrid();
