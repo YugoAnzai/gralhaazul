@@ -3,10 +3,10 @@ class Transform {
   float y;
   float r;
 
-  Transform(float tempX, float tempY, float tempR){
-    x = tempX;
-    y = tempY;
-    r = tempR;
+  Transform(float _x, float _y, float _r){
+    x = _x;
+    y = _y;
+    r = _r;
   }
 
   void copyFromTransform(Transform t){
