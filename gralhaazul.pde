@@ -11,7 +11,7 @@ void setup() {
   rectMode(CENTER);
 
   colliderManager = new ColliderManager();
-  player = new Player(width/2, height/2, 700, 3);
+  player = new Player(width/2, height/2, 200, 5, 3);
   world = new World(player);
   input = new Input();
   globals = new Globals();

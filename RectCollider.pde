@@ -42,13 +42,12 @@ class RectCollider extends Collider{
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
 			for (RectCollider collider : otherCollidingMask.colliders){
 				if (checkCollisionRect(collider)) {
-					collider.hit();
+					return(collider);
 				}
 			}
 		}
 
-		// returning own collider for testing
-		return this;
+		return null;
 
 	}
 
@@ -81,10 +80,6 @@ class RectCollider extends Collider{
 
 		return false;
 
-	}
-
-	void hit(){
-		gameObject.hit();
 	}
 
 	void debugDraw() {

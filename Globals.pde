@@ -1,8 +1,7 @@
 class Globals {
 
-  boolean drawColliders = true;
+  boolean drawColliders = false;
 
-  float gravity = 0.5;
-  float airFriction = 0.003;
+  float fallSpeed = 4;
 
 }

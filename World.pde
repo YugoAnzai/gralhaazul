@@ -9,10 +9,14 @@ class World{
 		player = _player;
 
 		// Walls
-		walls.add(new Wall(300, 100, 100, 50));
 
 		// Trees
 		trees.add(new Tree(500, 525, 3));
+		trees.add(new Tree(300, 525, 3));
+		trees.add(new Tree(300, 400, 2));
+		trees.add(new Tree(300, 300, 2));
+		trees.add(new Tree(700, 525, 3));
+		trees.add(new Tree(700, 400, 2));
 
 	}
 

@@ -4,21 +4,24 @@ class Player extends GameObject{
 
   final int ST_FLYING = 1;
   final int ST_LANDED = 2;
+  final int ST_FALLING = 3;
 
   RectCollider rectCollider;
 
   int playerSize = 50;
-  float flySpeed = 5;
+  float flySpeed = 2;
 
   int maxStamina;
   int stamina;
+  int staminaRecoverySpeed;
   int maxHearts;
   int hearts;
 
-  Player(int x, int y, int _maxStamina, int _maxHearts) {
+  Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
     super(x, y, 0, "Player");
     maxStamina = _maxStamina;
     stamina = maxStamina;
+    staminaRecoverySpeed = _staminaRecoverySpeed;
     maxHearts = _maxHearts;
     hearts = maxHearts;
     state = ST_LANDED;
@@ -40,7 +43,10 @@ class Player extends GameObject{
     fill(0);
     rect(stX, stY, stW, stH);
     fill(0, 200, 150);
-    rect(stX, stY, int(stW * (float(stamina)/maxStamina)), stH);
+    int w;
+    if (stamina == 0) w = 0;
+    else w = int(stW * (float(stamina)/maxStamina));
+    rect(stX, stY, w, stH);
     rectMode(CENTER);
 
   }
@@ -62,18 +68,37 @@ class Player extends GameObject{
 
   void process(){
     // Collider process
-    rectCollider.process();
+    RectCollider collided = rectCollider.process();
 
     Pressed pressed = input.pressed;
 
     if (state == ST_LANDED){
+
+      stamina += staminaRecoverySpeed;
+
       if (pressed.left || pressed.right || pressed.up || pressed.down) {
         state = ST_FLYING;
+        return;
       }
-    }
-    if (state == ST_FLYING) {
+
+    } else if (state == ST_FLYING) {
+
+      if (collided != null && collided.gameObject.name == "Tree") {
+        Tree tree = (Tree)collided.gameObject;
+        if (pressed.grab) {
+          pos.x = tree.pos.x;
+          pos.y = tree.pos.y + tree.yBranchesOffset;
+          state = ST_LANDED;
+          return;
+        }
+      }
 
       stamina --;
+
+      if (stamina == 0) {
+        state = ST_FALLING;
+        return;
+      }
 
       if (pressed.left) {
         pos.x -= flySpeed;
@@ -87,11 +112,41 @@ class Player extends GameObject{
       if (pressed.down) {
         pos.y += flySpeed;
       }
+
+      if (pos.y >= (600) - playerSize/2) {
+        pos.y = 600 - playerSize/2;
+        state = ST_LANDED;
+        return;
+      }
+
+    } else if (state == ST_FALLING) {
+
+      pos.y = pos.y + globals.fallSpeed;
+
+      if (collided != null && collided.gameObject.name == "Tree") {
+        Tree tree = (Tree)collided.gameObject;
+        if (pressed.grab) {
+          pos.x = tree.pos.x;
+          pos.y = tree.pos.y + tree.yBranchesOffset;
+          state = ST_LANDED;
+          return;
+        }
+      }
+
+      if (pos.y >= (600) - playerSize/2) {
+        pos.y = 600 - playerSize/2;
+        state = ST_LANDED;
+        return;
+      }
+
     }
 
     // clamp to game screen
     pos.x = constrain(pos.x, 0 + playerSize/2, width - playerSize/2);
     pos.y = constrain(pos.y, 0 + playerSize/2, height - playerSize/2 - 100);
+
+    // constrain stamina
+    stamina = constrain(stamina, 0, maxStamina);
 
   }
 
