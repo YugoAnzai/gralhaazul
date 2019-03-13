@@ -17,7 +17,7 @@ class World{
 	}
 
 	void draw(){
-		background(20, 200, 180);
+		background(20, 100, 80);
 
 		for (Wall wall : walls){
 			wall.draw();
