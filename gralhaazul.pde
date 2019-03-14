@@ -12,7 +12,7 @@ void setup() {
 
   globals = new Globals();
   colliderManager = new ColliderManager();
-  player = new Player(width/2, height/2, 200, 3, 3);
+  player = new Player(width/2, height/2, 300, 2, 3);
   world = new World(player);
   input = new Input();
   debug = new Debug();

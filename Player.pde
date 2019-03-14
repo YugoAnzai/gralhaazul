@@ -11,7 +11,7 @@ class Player extends GameObject{
   int playerSize = 50;
   int playerColliderW = 30;
   int playerColliderH = 30;
-  float flySpeed = 2;
+  float flySpeed = 4;
 
   int maxStamina;
   int stamina;
@@ -88,7 +88,6 @@ class Player extends GameObject{
       if (collided != null && collided.gameObject.name == "TreePart") {
         TreePart treePart = (TreePart)collided.gameObject;
         if (pressed.grab) {
-          pos.x = treePart.pos.x;
           pos.y = treePart.pos.y;
           state = ST_LANDED;
           return;
@@ -128,7 +127,6 @@ class Player extends GameObject{
       if (collided != null && collided.gameObject.name == "TreePart") {
         TreePart treePart = (TreePart)collided.gameObject;
         if (pressed.grab) {
-          pos.x = treePart.pos.x;
           pos.y = treePart.pos.y;
           state = ST_LANDED;
           return;
