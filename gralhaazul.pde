@@ -1,7 +1,7 @@
+Globals globals;
 Player player;
 World world;
 Input input;
-Globals globals;
 Debug debug;
 ColliderManager colliderManager;
 
@@ -10,11 +10,11 @@ void setup() {
   size(1000, 700);
   rectMode(CENTER);
 
+  globals = new Globals();
   colliderManager = new ColliderManager();
-  player = new Player(width/2, height/2, 200, 5, 3);
+  player = new Player(width/2, height/2, 200, 3, 3);
   world = new World(player);
   input = new Input();
-  globals = new Globals();
   debug = new Debug();
 
 }

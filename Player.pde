@@ -115,8 +115,8 @@ class Player extends GameObject{
         pos.y += flySpeed;
       }
 
-      if (pos.y >= (600) - playerSize/2) {
-        pos.y = 600 - playerSize/2;
+      if (pos.y > (globals.floorY) - playerSize/2) {
+        pos.y = globals.floorY - playerSize/2;
         state = ST_LANDED;
         return;
       }

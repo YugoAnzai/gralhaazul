@@ -28,9 +28,9 @@ class TreePart extends GameObject{
 		} else {
 			heightRef = heightOffset;
 		}
-		
+
 		fill(200, 30, 30);
-		rect(pos.x, pos.y + heightRef/2 + 25, 25, heightRef);
+		rect(pos.x, pos.y + heightRef/2 - 25, 25, heightRef);
 
 	}
 

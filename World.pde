@@ -12,9 +12,9 @@ class World{
 		// Walls
 
 		// Trees
-		trees.add(new Tree(300, 600, 3));
-		trees.add(new Tree(500, 600, 1));
-		trees.add(new Tree(700, 600, 2));
+		trees.add(new Tree(300, globals.floorY, 3));
+		trees.add(new Tree(500, globals.floorY, 1));
+		trees.add(new Tree(700, globals.floorY, 2));
 
 	}
 
