@@ -7,8 +7,6 @@ class TreePart extends GameObject{
 	int branchColliderH = 20;
 	RectCollider rectCollider;
 
-	boolean playerHit;
-
 	// x, y in the center of branch
 	TreePart(int treeX, int treeY, int _partHeight) {
 		super(treeX, treeY, 0, "TreePart");
@@ -18,9 +16,6 @@ class TreePart extends GameObject{
 	}
 
 	void draw() {
-		// branch
-		fill(30, 200, 30);
-		rect(pos.x, pos.y, 150, 50);
 		// wood
 		int heightRef;
 		if (partHeight == 1) {
@@ -32,6 +27,10 @@ class TreePart extends GameObject{
 		fill(200, 30, 30);
 		rect(pos.x, pos.y + heightRef/2 - 25, 25, heightRef);
 
+		// branch
+		fill(30, 200, 30);
+		rect(pos.x, pos.y, 150, 50);
+		
 	}
 
 	void debugDraw(){

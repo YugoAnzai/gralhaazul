@@ -14,8 +14,8 @@ class Tree extends GameObject{
 	}
 
 	void draw() {
-		for (TreePart treePart : treeParts){
-			treePart.draw();
+		for (int i = treeParts.size() -1 ; i >= 0; i--) {
+			treeParts.get(i).draw();
 		}
 	}
 
