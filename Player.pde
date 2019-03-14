@@ -9,6 +9,8 @@ class Player extends GameObject{
   RectCollider rectCollider;
 
   int playerSize = 50;
+  int playerColliderW = 30;
+  int playerColliderH = 30;
   float flySpeed = 2;
 
   int maxStamina;
@@ -25,7 +27,7 @@ class Player extends GameObject{
     maxHearts = _maxHearts;
     hearts = maxHearts;
     state = ST_LANDED;
-    rectCollider = new RectCollider(this, colliderManager.player, playerSize, playerSize);
+    rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
   }
 
   void draw() {
@@ -83,11 +85,11 @@ class Player extends GameObject{
 
     } else if (state == ST_FLYING) {
 
-      if (collided != null && collided.gameObject.name == "Tree") {
-        Tree tree = (Tree)collided.gameObject;
+      if (collided != null && collided.gameObject.name == "TreePart") {
+        TreePart treePart = (TreePart)collided.gameObject;
         if (pressed.grab) {
-          pos.x = tree.pos.x;
-          pos.y = tree.pos.y + tree.yBranchesOffset;
+          pos.x = treePart.pos.x;
+          pos.y = treePart.pos.y;
           state = ST_LANDED;
           return;
         }
@@ -123,11 +125,11 @@ class Player extends GameObject{
 
       pos.y = pos.y + globals.fallSpeed;
 
-      if (collided != null && collided.gameObject.name == "Tree") {
-        Tree tree = (Tree)collided.gameObject;
+      if (collided != null && collided.gameObject.name == "TreePart") {
+        TreePart treePart = (TreePart)collided.gameObject;
         if (pressed.grab) {
-          pos.x = tree.pos.x;
-          pos.y = tree.pos.y + tree.yBranchesOffset;
+          pos.x = treePart.pos.x;
+          pos.y = treePart.pos.y;
           state = ST_LANDED;
           return;
         }

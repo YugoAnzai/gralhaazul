@@ -2,6 +2,7 @@ class World{
 
 	ArrayList<Wall> walls = new ArrayList();
 	ArrayList<Tree> trees = new ArrayList();
+	ArrayList<Pine> pines = new ArrayList();
 	Player player;
 
 	World(Player _player){
@@ -11,12 +12,9 @@ class World{
 		// Walls
 
 		// Trees
-		trees.add(new Tree(500, 525, 3));
-		trees.add(new Tree(300, 525, 3));
-		trees.add(new Tree(300, 400, 2));
-		trees.add(new Tree(300, 300, 2));
-		trees.add(new Tree(700, 525, 3));
-		trees.add(new Tree(700, 400, 2));
+		trees.add(new Tree(300, 600, 3));
+		trees.add(new Tree(500, 600, 1));
+		trees.add(new Tree(700, 600, 2));
 
 	}
 
@@ -29,6 +27,9 @@ class World{
 		for (Tree tree : trees){
 			tree.draw();
 		}
+		for (Pine pine : pines){
+			pine.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
@@ -37,6 +38,9 @@ class World{
 		}
 		for (Tree tree : trees){
 			tree.debugDraw();
+		}
+		for (Pine pine : pines){
+			pine.debugDraw();
 		}
 
 		debugDrawGrid();
