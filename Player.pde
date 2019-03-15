@@ -1,23 +1,30 @@
 class Player extends GameObject{
-
-  int state;
-
+  // States
   final int ST_FLYING = 1;
   final int ST_LANDED = 2;
   final int ST_FALLING = 3;
+  int state;
 
-  RectCollider rectCollider;
-
+  // collision, size
   int playerSize = 50;
+  RectCollider rectCollider;
   int playerColliderW = 30;
   int playerColliderH = 30;
-  float flySpeed = 4;
 
+  // stamina
+  int staminaFlyingConsumeSpeed = 1;
+  int staminaCarryingConsumeSpeed = 2;
   int maxStamina;
-  int stamina;
   int staminaRecoverySpeed;
+  int stamina;
+  // hearts
   int maxHearts;
   int hearts;
+
+  float flySpeed = 4;
+  int carriedYOffset = 30;
+  GameObject carried = null;
+
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
     super(x, y, 0, "Player");
@@ -60,7 +67,8 @@ class Player extends GameObject{
       "pos.x:" + nfc(pos.x, 1) + " pos.y:" + nfc(pos.y, 1),
       "speed.x:" + nfc(speed.x, 1) + " speed.y:" + nfc(speed.y, 1),
       "acc.x:" + nfc(acc.x, 1) + " acc.y:" + nfc(acc.y, 1),
-      "stamina" + stamina,
+      "stamina: " + stamina,
+      "carrying: " + (carried == null ? "null" : carried.name),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
 
@@ -71,7 +79,6 @@ class Player extends GameObject{
   void process(){
     // Collider process
     RectCollider collided = rectCollider.process();
-
     Pressed pressed = input.pressed;
 
     if (state == ST_LANDED){
@@ -85,16 +92,14 @@ class Player extends GameObject{
 
     } else if (state == ST_FLYING) {
 
-      if (collided != null && collided.gameObject.name == "TreePart") {
-        TreePart treePart = (TreePart)collided.gameObject;
-        if (pressed.grab) {
-          pos.y = treePart.pos.y;
-          state = ST_LANDED;
-          return;
-        }
-      }
+      boolean landed = checkTreeAndLand(collided, pressed);
+      if (landed) return;
 
-      stamina --;
+      if (carried == null) {
+        stamina -= staminaFlyingConsumeSpeed;
+      } else {
+        stamina -= staminaCarryingConsumeSpeed;
+      }
 
       if (stamina == 0) {
         state = ST_FALLING;
@@ -122,16 +127,10 @@ class Player extends GameObject{
 
     } else if (state == ST_FALLING) {
 
-      pos.y = pos.y + globals.fallSpeed;
+      boolean landed = checkTreeAndLand(collided, pressed);
+      if (landed) return;
 
-      if (collided != null && collided.gameObject.name == "TreePart") {
-        TreePart treePart = (TreePart)collided.gameObject;
-        if (pressed.grab) {
-          pos.y = treePart.pos.y;
-          state = ST_LANDED;
-          return;
-        }
-      }
+      pos.y = pos.y + globals.fallSpeed;
 
       if (pos.y >= (600) - playerSize/2) {
         pos.y = 600 - playerSize/2;
@@ -148,6 +147,16 @@ class Player extends GameObject{
     // constrain stamina
     stamina = constrain(stamina, 0, maxStamina);
 
+  }
+
+  boolean checkTreeAndLand(RectCollider collided, Pressed pressed){
+    if (collided != null && collided.gameObject.name == "TreePart" && pressed.land) {
+      TreePart treePart = (TreePart)collided.gameObject;
+      pos.y = treePart.pos.y;
+      state = ST_LANDED;
+      return true;
+    }
+    return false;
   }
 
   void hit(){

@@ -4,7 +4,7 @@ class Pressed {
   boolean left;
   boolean up;
   boolean down;
-  boolean flap;
+  boolean land;
   boolean grab;
 
   Pressed() {
@@ -12,7 +12,7 @@ class Pressed {
     left = false;
     up = false;
     down = false;
-    flap = false;
+    land = false;
     grab = false;
   }
 
@@ -31,7 +31,7 @@ class Input{
     if(key == 'd') pressed.right = true;
     if(key == 'w') pressed.up = true;
     if(key == 's') pressed.down = true;
-    if(key == ' ') pressed.flap = true;
+    if(key == ' ') pressed.land = true;
     if(key == 'j') pressed.grab = true;
   }
 
@@ -40,7 +40,7 @@ class Input{
     if(key == 'd') pressed.right = false;
     if(key == 'w') pressed.up = false;
     if(key == 's') pressed.down = false;
-    if(key == ' ') pressed.flap = false;
+    if(key == ' ') pressed.land = false;
     if(key == 'j') pressed.grab = false;
   }
 
@@ -50,7 +50,7 @@ class Input{
       "right: " + pressed.right,
       "up: " + pressed.up,
       "down: " + pressed.down,
-      "flap: " + pressed.flap,
+      "land: " + pressed.land,
       "grab: " + pressed.grab,
     };
     debug.draw(lines, x, y);
