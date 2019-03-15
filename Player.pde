@@ -83,12 +83,26 @@ class Player extends GameObject{
 
     if (state == ST_LANDED){
 
-      stamina += staminaRecoverySpeed;
-
-      if (pressed.left || pressed.right || pressed.up || pressed.down) {
-        state = ST_FLYING;
-        return;
+      if (checkAndPutOnFloor()){
+        if (pressed.left || pressed.right) {
+          if (pressed.left) {
+            pos.x -= flySpeed;
+          }
+          if (pressed.right) {
+            pos.x += flySpeed;
+          }
+        } else if (pressed.up) {
+          state = ST_FLYING;
+          return;
+        }
+      } else {
+        if (pressed.left || pressed.right || pressed.up || pressed.down) {
+          state = ST_FLYING;
+          return;
+        }
       }
+
+      stamina += staminaRecoverySpeed;
 
     } else if (state == ST_FLYING) {
 
@@ -119,8 +133,7 @@ class Player extends GameObject{
         pos.y += flySpeed;
       }
 
-      if (pos.y > (globals.floorY) - playerSize/2) {
-        pos.y = globals.floorY - playerSize/2;
+      if (checkAndPutOnFloor()) {
         state = ST_LANDED;
         return;
       }
@@ -154,6 +167,14 @@ class Player extends GameObject{
       TreePart treePart = (TreePart)collided.gameObject;
       pos.y = treePart.pos.y;
       state = ST_LANDED;
+      return true;
+    }
+    return false;
+  }
+
+  boolean checkAndPutOnFloor(){
+    if (pos.y >= (globals.floorY) - playerSize/2) {
+      pos.y = globals.floorY - playerSize/2;
       return true;
     }
     return false;
