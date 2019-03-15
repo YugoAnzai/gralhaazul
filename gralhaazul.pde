@@ -29,6 +29,7 @@ void draw() {
 
 void process(){
   player.process();
+  world.process();
 }
 
 void _draw(){

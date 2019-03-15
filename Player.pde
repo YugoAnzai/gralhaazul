@@ -17,13 +17,17 @@ class Player extends GameObject{
   int maxStamina;
   int staminaRecoverySpeed;
   int stamina;
+
   // hearts
   int maxHearts;
   int hearts;
 
-  float flySpeed = 4;
+  // carry
   int carriedYOffset = 30;
   GameObject carried = null;
+  boolean grabPressUsed = false;
+
+  float flySpeed = 4;
 
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
@@ -68,7 +72,7 @@ class Player extends GameObject{
       "speed.x:" + nfc(speed.x, 1) + " speed.y:" + nfc(speed.y, 1),
       "acc.x:" + nfc(acc.x, 1) + " acc.y:" + nfc(acc.y, 1),
       "stamina: " + stamina,
-      "carrying: " + (carried == null ? "null" : carried.name),
+      "carried: " + (carried == null ? "null" : carried.name),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
 
@@ -78,7 +82,7 @@ class Player extends GameObject{
 
   void process(){
     // Collider process
-    RectCollider collided = rectCollider.process();
+    RectCollider[] collided = rectCollider.process();
     Pressed pressed = input.pressed;
 
     if (state == ST_LANDED){
@@ -143,6 +147,11 @@ class Player extends GameObject{
 
     }
 
+    // carrying
+    checkPineAndCarry(collided, pressed);
+    updateCarried();
+    checkPineRelease(pressed);
+
     // clamp to game screen
     pos.x = constrain(pos.x, 0 + playerSize/2, width - playerSize/2);
     pos.y = constrain(pos.y, 0 + playerSize/2, height - playerSize/2 - 100);
@@ -167,13 +176,62 @@ class Player extends GameObject{
     }
   }
 
-  boolean checkTreeAndLand(RectCollider collided, Pressed pressed){
-    if (collided != null && collided.gameObject.name == "TreePart" && pressed.land) {
-      TreePart treePart = (TreePart)collided.gameObject;
+  boolean grabPressEnter(Pressed pressed) {
+    if(pressed.grab) {
+      if (!grabPressUsed) {
+        grabPressUsed = true;
+        return true;
+      }
+    } else {
+      grabPressUsed = false;
+    }
+    return false;
+  }
+
+  void updateCarried(){
+    if (carried == null) return;
+    carried.pos.x = pos.x;
+    carried.pos.y = pos.y + carriedYOffset;
+  }
+
+  boolean checkPineRelease(Pressed pressed){
+    if (carried != null && grabPressEnter(pressed)) {
+      if (carried.name == "Pine"){
+        Pine pine = (Pine)carried;
+        pine.falling = true;
+      }
+      carried = null;
+      return true;
+    }
+    return false;
+  }
+
+  boolean checkPineAndCarry(RectCollider[] collided, Pressed pressed){
+    Pine pine = (Pine)getGameObjectFromCollided(collided, "Pine");
+    if (pine != null && grabPressEnter(pressed)) {
+      carried = pine;
+      updateCarried();
+      return true;
+    }
+    return false;
+  }
+
+  boolean checkTreeAndLand(RectCollider[] collided, Pressed pressed){
+    TreePart treePart = (TreePart)getGameObjectFromCollided(collided, "TreePart");
+    if (treePart != null && pressed.land) {
       pos.y = treePart.pos.y;
       return true;
     }
     return false;
+  }
+
+  GameObject getGameObjectFromCollided(RectCollider[] collided, String name) {
+    for (int i = 0; i < collided.length; i++){
+      if (collided[i].gameObject.name == name){
+        return collided[i].gameObject;
+      }
+    }
+    return null;
   }
 
   boolean checkAndPutOnFloor(){

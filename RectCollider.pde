@@ -34,29 +34,26 @@ class RectCollider extends Collider{
 		yEnd = int(pos.y + height/2) + yOffset;
 	}
 
-	RectCollider process(){
+	RectCollider[] process(){
 
 		pos.copyFromTransform(gameObject.pos);
 		posStartEndCalculation();
 
+		RectCollider[] rectColliders = {};
+
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
 			for (RectCollider collider : otherCollidingMask.colliders){
 				if (checkCollisionRect(collider)) {
-					return(collider);
+					rectColliders = (RectCollider[])append(rectColliders, collider);
 				}
 			}
 		}
 
-		return null;
+		return rectColliders;
 
 	}
 
 	boolean checkCollisionRect(RectCollider collider) {
-		// println("xStart: " + xStart + "| xEnd: " + xEnd);
-		// println("yStart: " + yStart + "| yEnd: " + yEnd);
-		// println("collider.xStart: " + collider.xStart + "| collider.xEnd: " + collider.xEnd);
-		// println("collider.yStart: " + collider.yStart + "| collider.yEnd: " + collider.yEnd);
-
 		boolean xCollide = false;
 		boolean yCollide = false;
 		if (
@@ -74,11 +71,7 @@ class RectCollider extends Collider{
 			)
 			yCollide = true;
 
-		if (xCollide && yCollide) {
-			return true;
-		}
-
-		return false;
+		return (xCollide && yCollide);
 
 	}
 

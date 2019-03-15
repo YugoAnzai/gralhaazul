@@ -16,6 +16,21 @@ class World{
 		trees.add(new Tree(500, globals.floorY, 1));
 		trees.add(new Tree(700, globals.floorY, 2));
 
+		// Pines
+		pines.add(new Pine(500, globals.floorY - 125));
+
+	}
+
+	void process() {
+		for (Wall wall : walls){
+			wall.process();
+		}
+		for (Tree tree : trees){
+			tree.process();
+		}
+		for (Pine pine : pines){
+			pine.process();
+		}
 	}
 
 	void draw(){
