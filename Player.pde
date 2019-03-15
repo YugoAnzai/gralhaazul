@@ -85,13 +85,9 @@ class Player extends GameObject{
 
       if (checkAndPutOnFloor()){
         if (pressed.left || pressed.right) {
-          if (pressed.left) {
-            pos.x -= flySpeed;
-          }
-          if (pressed.right) {
-            pos.x += flySpeed;
-          }
-        } else if (pressed.up) {
+          movePlayerWithPressed(pressed);
+        }
+        if (pressed.up) {
           state = ST_FLYING;
           return;
         }
@@ -107,7 +103,10 @@ class Player extends GameObject{
     } else if (state == ST_FLYING) {
 
       boolean landed = checkTreeAndLand(collided, pressed);
-      if (landed) return;
+      if (landed) {
+        state = ST_LANDED;
+        return;
+      }
 
       if (carried == null) {
         stamina -= staminaFlyingConsumeSpeed;
@@ -120,18 +119,7 @@ class Player extends GameObject{
         return;
       }
 
-      if (pressed.left) {
-        pos.x -= flySpeed;
-      }
-      if (pressed.right) {
-        pos.x += flySpeed;
-      }
-      if (pressed.up) {
-        pos.y -= flySpeed;
-      }
-      if (pressed.down) {
-        pos.y += flySpeed;
-      }
+      movePlayerWithPressed(pressed);
 
       if (checkAndPutOnFloor()) {
         state = ST_LANDED;
@@ -141,12 +129,14 @@ class Player extends GameObject{
     } else if (state == ST_FALLING) {
 
       boolean landed = checkTreeAndLand(collided, pressed);
-      if (landed) return;
+      if (landed) {
+        state = ST_LANDED;
+        return;
+      }
 
       pos.y = pos.y + globals.fallSpeed;
 
-      if (pos.y >= (600) - playerSize/2) {
-        pos.y = 600 - playerSize/2;
+      if (checkAndPutOnFloor()) {
         state = ST_LANDED;
         return;
       }
@@ -162,11 +152,25 @@ class Player extends GameObject{
 
   }
 
+  void movePlayerWithPressed(Pressed pressed) {
+    if (pressed.left) {
+      pos.x -= flySpeed;
+    }
+    if (pressed.right) {
+      pos.x += flySpeed;
+    }
+    if (pressed.up) {
+      pos.y -= flySpeed;
+    }
+    if (pressed.down) {
+      pos.y += flySpeed;
+    }
+  }
+
   boolean checkTreeAndLand(RectCollider collided, Pressed pressed){
     if (collided != null && collided.gameObject.name == "TreePart" && pressed.land) {
       TreePart treePart = (TreePart)collided.gameObject;
       pos.y = treePart.pos.y;
-      state = ST_LANDED;
       return true;
     }
     return false;
