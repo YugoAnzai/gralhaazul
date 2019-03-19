@@ -28,8 +28,9 @@ void draw() {
 }
 
 void process(){
-  player.process();
+  input.process();
   world.process();
+  player.process();
 }
 
 void _draw(){
@@ -39,8 +40,8 @@ void _draw(){
 
 void debugDraw(){
   input.debugDraw(0, 0);
-  player.debugDraw(80, 0);
   world.debugDraw(0, 150);
+  player.debugDraw(80, 0);
 }
 
 void keyPressed(){

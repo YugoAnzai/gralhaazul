@@ -25,7 +25,6 @@ class Player extends GameObject{
   // carry
   int carriedYOffset = 30;
   GameObject carried = null;
-  boolean grabPressUsed = false;
 
   float flySpeed = 4;
 
@@ -83,20 +82,38 @@ class Player extends GameObject{
   void process(){
     // Collider process
     RectCollider[] collided = rectCollider.process();
-    Pressed pressed = input.pressed;
 
+    stateProcess(collided);
+
+    // carrying
+    if (!checkPineAndCarry(collided)){
+      checkPineRelease();
+    }
+    
+    updateCarried();
+
+    // clamp to game screen
+    pos.x = constrain(pos.x, 0 + playerSize/2, width - playerSize/2);
+    pos.y = constrain(pos.y, 0 + playerSize/2, height - playerSize/2 - 100);
+
+    // constrain stamina
+    stamina = constrain(stamina, 0, maxStamina);
+
+  }
+
+  void stateProcess(RectCollider[] collided) {
     if (state == ST_LANDED){
 
       if (checkAndPutOnFloor()){
-        if (pressed.left || pressed.right) {
-          movePlayerWithPressed(pressed);
+        if (input.pressed.left || input.pressed.right) {
+          movePlayerWithPressed();
         }
-        if (pressed.up) {
+        if (input.pressed.up) {
           state = ST_FLYING;
           return;
         }
       } else {
-        if (pressed.left || pressed.right || pressed.up || pressed.down) {
+        if (input.pressed.left || input.pressed.right || input.pressed.up || input.pressed.down) {
           state = ST_FLYING;
           return;
         }
@@ -106,7 +123,7 @@ class Player extends GameObject{
 
     } else if (state == ST_FLYING) {
 
-      boolean landed = checkTreeAndLand(collided, pressed);
+      boolean landed = checkTreeAndLand(collided);
       if (landed) {
         state = ST_LANDED;
         return;
@@ -123,7 +140,7 @@ class Player extends GameObject{
         return;
       }
 
-      movePlayerWithPressed(pressed);
+      movePlayerWithPressed();
 
       if (checkAndPutOnFloor()) {
         state = ST_LANDED;
@@ -132,7 +149,7 @@ class Player extends GameObject{
 
     } else if (state == ST_FALLING) {
 
-      boolean landed = checkTreeAndLand(collided, pressed);
+      boolean landed = checkTreeAndLand(collided);
       if (landed) {
         state = ST_LANDED;
         return;
@@ -146,46 +163,21 @@ class Player extends GameObject{
       }
 
     }
-
-    // carrying
-    checkPineAndCarry(collided, pressed);
-    updateCarried();
-    checkPineRelease(pressed);
-
-    // clamp to game screen
-    pos.x = constrain(pos.x, 0 + playerSize/2, width - playerSize/2);
-    pos.y = constrain(pos.y, 0 + playerSize/2, height - playerSize/2 - 100);
-
-    // constrain stamina
-    stamina = constrain(stamina, 0, maxStamina);
-
   }
 
-  void movePlayerWithPressed(Pressed pressed) {
-    if (pressed.left) {
+  void movePlayerWithPressed() {
+    if (input.pressed.left) {
       pos.x -= flySpeed;
     }
-    if (pressed.right) {
+    if (input.pressed.right) {
       pos.x += flySpeed;
     }
-    if (pressed.up) {
+    if (input.pressed.up) {
       pos.y -= flySpeed;
     }
-    if (pressed.down) {
+    if (input.pressed.down) {
       pos.y += flySpeed;
     }
-  }
-
-  boolean grabPressEnter(Pressed pressed) {
-    if(pressed.grab) {
-      if (!grabPressUsed) {
-        grabPressUsed = true;
-        return true;
-      }
-    } else {
-      grabPressUsed = false;
-    }
-    return false;
   }
 
   void updateCarried(){
@@ -194,8 +186,8 @@ class Player extends GameObject{
     carried.pos.y = pos.y + carriedYOffset;
   }
 
-  boolean checkPineRelease(Pressed pressed){
-    if (carried != null && grabPressEnter(pressed)) {
+  boolean checkPineRelease(){
+    if (carried != null && input.keyEnter.grab) {
       if (carried.name == "Pine"){
         Pine pine = (Pine)carried;
         pine.falling = true;
@@ -206,9 +198,9 @@ class Player extends GameObject{
     return false;
   }
 
-  boolean checkPineAndCarry(RectCollider[] collided, Pressed pressed){
+  boolean checkPineAndCarry(RectCollider[] collided){
     Pine pine = (Pine)getGameObjectFromCollided(collided, "Pine");
-    if (pine != null && grabPressEnter(pressed)) {
+    if (pine != null && input.keyEnter.grab) {
       carried = pine;
       updateCarried();
       return true;
@@ -216,9 +208,9 @@ class Player extends GameObject{
     return false;
   }
 
-  boolean checkTreeAndLand(RectCollider[] collided, Pressed pressed){
+  boolean checkTreeAndLand(RectCollider[] collided){
     TreePart treePart = (TreePart)getGameObjectFromCollided(collided, "TreePart");
-    if (treePart != null && pressed.land) {
+    if (treePart != null && input.keyEnter.land) {
       pos.y = treePart.pos.y;
       return true;
     }
