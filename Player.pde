@@ -89,7 +89,7 @@ class Player extends GameObject{
     if (!checkPineAndCarry(collided)){
       checkPineRelease();
     }
-    
+
     updateCarried();
 
     // clamp to game screen

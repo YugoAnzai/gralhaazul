@@ -1,9 +1,8 @@
 Globals globals;
-Player player;
-World world;
 Input input;
 Debug debug;
 ColliderManager colliderManager;
+SceneManager sceneManager;
 
 void setup() {
 
@@ -12,10 +11,10 @@ void setup() {
 
   globals = new Globals();
   colliderManager = new ColliderManager();
-  player = new Player(width/2, height/2, 300, 2, 3);
-  world = new World(player);
   input = new Input();
   debug = new Debug();
+
+  sceneManager = new SceneManager("GameScene");
 
 }
 
@@ -29,19 +28,16 @@ void draw() {
 
 void process(){
   input.process();
-  world.process();
-  player.process();
+  sceneManager.currentScene.process();
 }
 
 void _draw(){
-  world.draw();
-  player.draw();
+  sceneManager.currentScene.draw();
 }
 
 void debugDraw(){
   input.debugDraw(0, 0);
-  world.debugDraw(0, 150);
-  player.debugDraw(80, 0);
+  sceneManager.currentScene.debugDraw();
 }
 
 void keyPressed(){
