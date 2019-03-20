@@ -7,7 +7,7 @@ class SplashScene extends Scene{
 		super.process();
 
 		if (input.keyEnter.enter) {
-			sceneManager.changeScene("GameScene");
+			sceneManager.changeScene("MenuScene");
 		}
 
 	}
@@ -17,7 +17,7 @@ class SplashScene extends Scene{
 
 		textSize(70);
 		fill(0, 200, 150);
-		text("GGGralha Azul", 100, height/2);
+		text("GGGralha Team", 100, height/2);
 
 	}
 
