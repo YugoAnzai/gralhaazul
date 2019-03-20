@@ -7,6 +7,7 @@ class Pressed {
   boolean land = false;
   boolean grab = false;
   boolean debug = false;
+  boolean enter = false;
 
   Pressed() {
 
@@ -21,6 +22,7 @@ class Pressed {
     land = pressed.land;
     grab = pressed.grab;
     debug = pressed.debug;
+    enter = pressed.enter;
 
   }
 
@@ -52,6 +54,7 @@ class Input{
     keyEnter.land = (pressed.land && !pressedLastFrame.land);
     keyEnter.grab = (pressed.grab && !pressedLastFrame.grab);
     keyEnter.debug = (pressed.debug && !pressedLastFrame.debug);
+    keyEnter.enter = (pressed.enter && !pressedLastFrame.enter);
 
     keyExit.left = (!pressed.left && pressedLastFrame.left);
     keyExit.right = (!pressed.right && pressedLastFrame.right);
@@ -60,6 +63,7 @@ class Input{
     keyExit.land = (!pressed.land && pressedLastFrame.land);
     keyExit.grab = (!pressed.grab && pressedLastFrame.grab);
     keyExit.debug = (!pressed.debug && pressedLastFrame.debug);
+    keyExit.enter = (!pressed.enter && pressedLastFrame.enter);
 
     pressedLastFrame.copyPressed(pressed);
   }
@@ -72,6 +76,7 @@ class Input{
     if(key == ' ') rawInputPressed.land = true;
     if(key == 'j') rawInputPressed.grab = true;
     if(key == 'p') rawInputPressed.debug = true;
+    if(key == ENTER || key == RETURN) rawInputPressed.enter = true;
   }
 
   void keyReleased() {
@@ -82,6 +87,7 @@ class Input{
     if(key == ' ') rawInputPressed.land = false;
     if(key == 'j') rawInputPressed.grab = false;
     if(key == 'p') rawInputPressed.debug = false;
+    if(key == ENTER || key == RETURN) rawInputPressed.enter = false;
   }
 
  void debugDraw(int x, int y) {
@@ -93,6 +99,7 @@ class Input{
       "land: " + pressed.land,
       "grab: " + pressed.grab,
       "debug: " + pressed.debug,
+      "enter: " + pressed.enter,
     };
     debug.draw(lines, x, y);
   }
