@@ -1,6 +1,6 @@
 class Globals {
 
-  boolean drawColliders = true;
+  boolean debug = false;
 
   float fallSpeed = 4;
   int floorY = 600;

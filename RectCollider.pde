@@ -76,7 +76,7 @@ class RectCollider extends Collider{
 	}
 
 	void debugDraw() {
-		if (globals.drawColliders){
+		if (globals.debug){
 			stroke(255, 30, 0);
 			fill(0, 255, 30, 80);
 	    rect(int(pos.x) + xOffset, int(pos.y) + yOffset, width, height);

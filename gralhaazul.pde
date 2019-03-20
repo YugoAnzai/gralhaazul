@@ -29,6 +29,9 @@ void draw() {
 void process(){
   input.process();
   sceneManager.process();
+
+  if (input.keyEnter.debug) globals.debug = !globals.debug;
+
 }
 
 void _draw(){
@@ -36,8 +39,12 @@ void _draw(){
 }
 
 void debugDraw(){
-  input.debugDraw(0, 0);
-  sceneManager.debugDraw();
+
+  if (globals.debug) {
+    input.debugDraw(0, 0);
+    sceneManager.debugDraw();
+  }
+  
 }
 
 void keyPressed(){
