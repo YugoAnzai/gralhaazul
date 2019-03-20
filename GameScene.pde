@@ -3,10 +3,6 @@ class GameScene extends Scene{
 	Player player;
 	World world;
 
-	GameScene(){
-
-	}
-
 	void setup() {
 
 	  player = new Player(width/2, height/2, 300, 2, 3);

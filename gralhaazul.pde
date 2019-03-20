@@ -14,7 +14,7 @@ void setup() {
   input = new Input();
   debug = new Debug();
 
-  sceneManager = new SceneManager("GameScene");
+  sceneManager = new SceneManager("SplashScene");
 
 }
 
@@ -28,16 +28,16 @@ void draw() {
 
 void process(){
   input.process();
-  sceneManager.currentScene.process();
+  sceneManager.process();
 }
 
 void _draw(){
-  sceneManager.currentScene.draw();
+  sceneManager.draw();
 }
 
 void debugDraw(){
   input.debugDraw(0, 0);
-  sceneManager.currentScene.debugDraw();
+  sceneManager.debugDraw();
 }
 
 void keyPressed(){
