@@ -8,6 +8,7 @@ void setup() {
 
   size(1000, 700);
   rectMode(CENTER);
+  imageMode(CENTER);
 
   globals = new Globals();
   colliderManager = new ColliderManager();
