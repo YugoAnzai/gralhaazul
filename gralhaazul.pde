@@ -44,7 +44,7 @@ void debugDraw(){
     input.debugDraw(0, 0);
     sceneManager.debugDraw();
   }
-  
+
 }
 
 void keyPressed(){
