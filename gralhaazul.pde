@@ -3,6 +3,7 @@ Input input;
 Debug debug;
 ColliderManager colliderManager;
 SceneManager sceneManager;
+SoundManager soundManager;
 
 void setup() {
 
@@ -14,9 +15,10 @@ void setup() {
   colliderManager = new ColliderManager();
   input = new Input();
   debug = new Debug();
+  soundManager = new SoundManager(this);
 
-  sceneManager = new SceneManager("SplashScene");
-  // sceneManager = new SceneManager("TestScene");
+  // sceneManager = new SceneManager("SplashScene");
+  sceneManager = new SceneManager("TestScene");
 
 }
 

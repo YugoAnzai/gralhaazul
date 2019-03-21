@@ -3,21 +3,23 @@ class TestScene extends Scene{
 	Animator anim;
 
 	void setup() {
-		anim = new Animator(100, 200, "cat.png", 10, 10);
+		anim = new Animator(100, 200, "img/cat.png", 10, 10);
 
 		int[] animSprites = new int[]{0, 21};
 		int[] animDuration = new int[]{15, 15};
 		anim.createAnimation("idle", animSprites, animDuration);
 
 		animSprites = new int[]{0, 3, 4};
-		animDuration = new int[]{8, 8, 8};	
+		animDuration = new int[]{8, 8, 8};
 		anim.createAnimation("walk", animSprites, animDuration);
 
 		animSprites = new int[]{7, 8, 9, 10};
-		animDuration = new int[]{3, 3, 3, 3};	
+		animDuration = new int[]{3, 3, 3, 3};
 		anim.createAnimation("kick", animSprites, animDuration);
 
 		anim.setAnimation("idle");
+
+		soundManager.playLoop("meet-the-princess.wav");
 
 	}
 
@@ -32,6 +34,7 @@ class TestScene extends Scene{
 		}
 
 		if (input.keyEnter.land) {
+			soundManager.playSound("bomb.wav");
 			anim.setAnimation("kick");
 			anim.setNextAnimation("idle");
 		}
