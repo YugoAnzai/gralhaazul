@@ -16,6 +16,7 @@ void setup() {
   debug = new Debug();
 
   sceneManager = new SceneManager("SplashScene");
+  // sceneManager = new SceneManager("TestScene");
 
 }
 
