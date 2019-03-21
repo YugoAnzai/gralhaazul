@@ -11,7 +11,7 @@ class Animator{
 	String[] animNames = null;
 	int[][] animSprites = null;
 	int[][] animDuration = null;
-	
+
 	protected int curAnimIndex;
 	protected int spriteIndex = 0;
 	protected int frameCount = 0;
@@ -37,11 +37,11 @@ class Animator{
 	}
 
 	void createAnimation(String _name, int[] _sprites, int[] _duration) {
-		
+
 		expandAnimSprites();
-		
+
 		int index = animNames.length - 1;
-		
+
 		animNames[index] = _name;
 		animSprites[index] = _sprites;
 		animDuration[index] = _duration;
@@ -68,7 +68,7 @@ class Animator{
 			for (int i = 0; i < newLength - 1; i ++) {
 				newAnimDuration[i] = animDuration[i];
 			}
-			
+
 			animNames = newAnimNames;
 			animSprites = newAnimSprites;
 			animDuration = newAnimDuration;
@@ -111,17 +111,17 @@ class Animator{
 		}
 
 		if (frameCount == animDuration[curAnimIndex][spriteIndex]) {
-			
+
 			spriteIndex++;
 
 			if (spriteIndex >= animSprites[curAnimIndex].length && nextAnimation != null) {
 				ended = true;
 			}
-			
+
 			spriteIndex = spriteIndex % animSprites[curAnimIndex].length;
 
 			frameCount = 0;
-		} 			
+		}
 
 	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], x, y);
 
