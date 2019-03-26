@@ -24,9 +24,10 @@ class Water extends GameObject{
 
 		for (int i = 0; i < collided.length; i++){
 			IWaterable waterable = (IWaterable)collided[i].gameObject;
-			waterable.water();
-			destroy();
-			return;
+			if (waterable.water()) {
+				destroy();
+				return;
+			}
 		}
 
 		pos.y += globals.fallSpeed;

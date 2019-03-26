@@ -30,8 +30,18 @@ class Pine extends GameObject implements IWaterable{
 
 	}
 
-	void water() {
-		println("water");
+	boolean water() {
+		if (!falling && pos.y == globals.floorY - pineSize/2) {
+			globals.world.trees.add(new Tree((int)pos.x, globals.floorY, 1));
+			destroy();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	void destroy() {
+		globals.world.pinesDestroy.add(this);
 	}
 
 	void debugDraw(){

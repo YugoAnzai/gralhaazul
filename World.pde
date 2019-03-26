@@ -7,6 +7,7 @@ class World{
 	ArrayList<Water> waters = new ArrayList();
 	Player player;
 
+	ArrayList<Pine> pinesDestroy = new ArrayList();
 	ArrayList<Water> watersDestroy = new ArrayList();
 
 	World(Player _player){
@@ -17,7 +18,6 @@ class World{
 		clouds.add(new Cloud(200, 150, 1, 100));
 
 		// Trees
-		trees.add(new Tree(300, globals.floorY, 3));
 		trees.add(new Tree(500, globals.floorY, 1));
 		trees.add(new Tree(700, globals.floorY, 2));
 
@@ -52,6 +52,10 @@ class World{
 			waters.remove(waterDestroy);
 		}
 		watersDestroy = new ArrayList();
+		for (Pine pineDestroy : pinesDestroy) {
+			pines.remove(pineDestroy);
+		}
+		pinesDestroy = new ArrayList();
 	}
 
 	void draw(){

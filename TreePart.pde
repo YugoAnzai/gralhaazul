@@ -33,8 +33,8 @@ class TreePart extends GameObject implements IWaterable{
 
 	}
 
-	void water() {
-		println("agua treepart");
+	boolean water() {
+		return true;
 	}
 
 	void debugDraw(){

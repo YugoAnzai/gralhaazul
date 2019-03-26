@@ -1,5 +1,5 @@
 interface IWaterable{
 
-	void water();
+	boolean water();
 
 }
