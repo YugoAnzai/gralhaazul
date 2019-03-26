@@ -6,12 +6,14 @@ class TreePart extends GameObject implements IWaterable{
 	int branchColliderW = 100;
 	int branchColliderH = 20;
 	RectCollider rectCollider;
+	Tree tree;
 
 	// x, y in the center of branch
-	TreePart(int treeX, int treeY, int _partHeight) {
+	TreePart(int treeX, int treeY, int _partHeight, Tree _tree) {
 		super(treeX, treeY, 0, "TreePart");
 		pos.y -= firstHeight - 25 + (_partHeight - 1) * heightOffset;
 		partHeight = _partHeight;
+		tree = _tree;
 		rectCollider = new RectCollider(this, colliderManager.trees, branchColliderW, branchColliderH);
 	}
 
@@ -34,7 +36,7 @@ class TreePart extends GameObject implements IWaterable{
 	}
 
 	boolean water() {
-		return true;
+		return(tree.grow());
 	}
 
 	void debugDraw(){

@@ -1,6 +1,7 @@
 class Tree extends GameObject{
 
 	int heightUnits;
+	int maxHeightUnits = 4;
 	RectCollider rectCollider;
 	ArrayList<TreePart> treeParts = new ArrayList();
 
@@ -9,7 +10,17 @@ class Tree extends GameObject{
 		super(x, y, 0, "Tree");
 		heightUnits = _heightUnits;
 		for (int i = 1; i < heightUnits + 1; i++) {
-			treeParts.add(new TreePart((int)pos.x, (int)pos.y, i));
+			treeParts.add(new TreePart((int)pos.x, (int)pos.y, i, this));
+		}
+	}
+
+	boolean grow() {
+		if (heightUnits < maxHeightUnits) {
+			heightUnits++;
+			treeParts.add(new TreePart((int)pos.x, (int)pos.y, heightUnits, this));
+			return true;
+		} else {
+			return false;
 		}
 	}
 
