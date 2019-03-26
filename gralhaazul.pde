@@ -35,7 +35,12 @@ void process(){
   input.process();
   sceneManager.process();
 
-  if (input.keyEnter.debug) globals.debug = !globals.debug;
+  if (input.keyEnter.debug) {
+    globals.debug = !globals.debug;
+    if (!globals.debug) {
+      stroke(0);
+    }
+  }
 
 }
 

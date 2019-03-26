@@ -7,6 +7,7 @@ class GameScene extends Scene{
 
 	  player = new Player(width/2, height/2, 300, 2, 3);
 	  world = new World(player);
+		globals.world = world;
 
 	}
 

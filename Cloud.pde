@@ -34,7 +34,7 @@ class Cloud extends GameObject{
 			c = color(counterToGreyScale(waterCounter, maxWaterCounter));
 			if (waterCounter < 0) {
 				hasWater = true;
-				c = color(0, 0, 255);
+				c = color(80, 100, 255);
 			}
 		}
 
@@ -59,6 +59,7 @@ class Cloud extends GameObject{
 		if (hasWater) {
 			hasWater = false;
 			waterCounter = maxWaterCounter;
+			globals.world.waters.add(new Water((int)pos.x, (int)pos.y));
 		}
 	}
 
@@ -68,7 +69,6 @@ class Cloud extends GameObject{
 		int maxColor = 100;
 
 		float rate = (float)(maxCount - count)/maxCount;
-		println("count" + count + " | maxCount" + maxCount + " | rate " + rate);
 		return (minColor - (int)((minColor - maxColor) * rate));
 
 	}

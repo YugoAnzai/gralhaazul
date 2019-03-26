@@ -4,14 +4,17 @@ class World{
 	ArrayList<Tree> trees = new ArrayList();
 	ArrayList<Pine> pines = new ArrayList();
 	ArrayList<Cloud> clouds = new ArrayList();
+	ArrayList<Water> waters = new ArrayList();
 	Player player;
+
+	ArrayList<Water> watersDestroy = new ArrayList();
 
 	World(Player _player){
 
 		player = _player;
 
 		// Clouds
-		clouds.add(new Cloud(200, 150, 1, 1000));
+		clouds.add(new Cloud(200, 150, 1, 100));
 
 		// Trees
 		trees.add(new Tree(300, globals.floorY, 3));
@@ -36,6 +39,19 @@ class World{
 		for (Cloud cloud : clouds){
 			cloud.process();
 		}
+		for (Water water : waters){
+			water.process();
+		}
+
+		destroyProcess();
+
+	}
+
+	void destroyProcess() {
+		for (Water waterDestroy : watersDestroy) {
+			waters.remove(waterDestroy);
+		}
+		watersDestroy = new ArrayList();
 	}
 
 	void draw(){
@@ -53,6 +69,9 @@ class World{
 		for (Cloud cloud : clouds){
 			cloud.draw();
 		}
+		for (Water water : waters){
+			water.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
@@ -67,6 +86,9 @@ class World{
 		}
 		for (Cloud cloud : clouds){
 			cloud.debugDraw();
+		}
+		for (Water water : waters){
+			water.debugDraw();
 		}
 
 		debugDrawGrid();
