@@ -6,7 +6,6 @@ class Pine extends GameObject{
 	boolean falling = false;
 	RectCollider rectCollider;
 
-	// x, y in the center of branch
 	Pine(int x, int y) {
 		super(x, y, 0, "Pine");
 		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
@@ -28,7 +27,7 @@ class Pine extends GameObject{
 		}
 
 		rectCollider.process();
-		
+
 	}
 
 	void debugDraw(){

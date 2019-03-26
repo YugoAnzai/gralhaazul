@@ -13,7 +13,6 @@ class Cloud extends GameObject{
 	int waterCounter;
 	int maxWaterCounter;
 
-	// x, y in the center of branch
 	Cloud(int x, int y, int _speed, int _maxWaterCounter) {
 		super(x, y, 0, "Cloud");
 		speed = _speed;
