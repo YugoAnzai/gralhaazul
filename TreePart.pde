@@ -1,4 +1,4 @@
-class TreePart extends GameObject{
+class TreePart extends GameObject implements IWaterable{
 
 	int partHeight;
 	int firstHeight = 150;
@@ -30,7 +30,11 @@ class TreePart extends GameObject{
 		// branch
 		fill(30, 200, 30);
 		rect(pos.x, pos.y, 150, 50);
-		
+
+	}
+
+	void water() {
+		println("agua treepart");
 	}
 
 	void debugDraw(){

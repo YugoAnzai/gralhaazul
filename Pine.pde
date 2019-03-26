@@ -1,4 +1,4 @@
-class Pine extends GameObject{
+class Pine extends GameObject implements IWaterable{
 
 	int pineSize = 30;
 	int colliderW = 20;
@@ -28,6 +28,10 @@ class Pine extends GameObject{
 
 		rectCollider.process();
 
+	}
+
+	void water() {
+		println("water");
 	}
 
 	void debugDraw(){
