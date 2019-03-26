@@ -8,6 +8,7 @@ class Player extends GameObject{
   // collision, size
   int playerSize = 50;
   RectCollider rectCollider;
+  RectCollider[] collided;
   int playerColliderW = 30;
   int playerColliderH = 30;
 
@@ -47,7 +48,7 @@ class Player extends GameObject{
 
     // HUD : stamina
     int stX = 300;
-    int stY = 25;
+    int stY = 675;
     int stW = 600;
     int stH = 15;
 
@@ -81,12 +82,17 @@ class Player extends GameObject{
 
   void process(){
     // Collider process
-    RectCollider[] collided = rectCollider.process();
+    collided = rectCollider.process();
 
-    stateProcess(collided);
+    stateProcess();
+
+    // clounds
+    if (carried == null) {
+      checkCloud();
+    }
 
     // carrying
-    if (!checkPineAndCarry(collided)){
+    if (!checkPineAndCarry()){
       checkPineRelease();
     }
 
@@ -101,7 +107,7 @@ class Player extends GameObject{
 
   }
 
-  void stateProcess(RectCollider[] collided) {
+  void stateProcess() {
     if (state == ST_LANDED){
 
       if (checkAndPutOnFloor()){
@@ -123,7 +129,7 @@ class Player extends GameObject{
 
     } else if (state == ST_FLYING) {
 
-      boolean landed = checkTreeAndLand(collided);
+      boolean landed = checkTreeAndLand();
       if (landed) {
         state = ST_LANDED;
         return;
@@ -149,7 +155,7 @@ class Player extends GameObject{
 
     } else if (state == ST_FALLING) {
 
-      boolean landed = checkTreeAndLand(collided);
+      boolean landed = checkTreeAndLand();
       if (landed) {
         state = ST_LANDED;
         return;
@@ -198,8 +204,8 @@ class Player extends GameObject{
     return false;
   }
 
-  boolean checkPineAndCarry(RectCollider[] collided){
-    Pine pine = (Pine)getGameObjectFromCollided(collided, "Pine");
+  boolean checkPineAndCarry(){
+    Pine pine = (Pine)getGameObjectFromCollided("Pine");
     if (pine != null && input.keyEnter.grab) {
       carried = pine;
       updateCarried();
@@ -208,8 +214,8 @@ class Player extends GameObject{
     return false;
   }
 
-  boolean checkTreeAndLand(RectCollider[] collided){
-    TreePart treePart = (TreePart)getGameObjectFromCollided(collided, "TreePart");
+  boolean checkTreeAndLand(){
+    TreePart treePart = (TreePart)getGameObjectFromCollided("TreePart");
     if (treePart != null && input.keyEnter.land) {
       pos.y = treePart.pos.y;
       return true;
@@ -217,7 +223,7 @@ class Player extends GameObject{
     return false;
   }
 
-  GameObject getGameObjectFromCollided(RectCollider[] collided, String name) {
+  GameObject getGameObjectFromCollided(String name) {
     for (int i = 0; i < collided.length; i++){
       if (collided[i].gameObject.name == name){
         return collided[i].gameObject;
@@ -229,6 +235,15 @@ class Player extends GameObject{
   boolean checkAndPutOnFloor(){
     if (pos.y >= (globals.floorY) - playerSize/2) {
       pos.y = globals.floorY - playerSize/2;
+      return true;
+    }
+    return false;
+  }
+
+  boolean checkCloud() {
+    Cloud cloud = (Cloud)getGameObjectFromCollided("Cloud");
+    if (cloud != null && input.keyEnter.grab) {
+      cloud.interact();
       return true;
     }
     return false;

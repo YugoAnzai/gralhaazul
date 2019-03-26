@@ -19,8 +19,6 @@ class Pine extends GameObject{
 
 	void process() {
 
-		rectCollider.process();
-
 		if (falling) {
 			pos.y += globals.fallSpeed;
 			if (pos.y > (globals.floorY) - pineSize/2) {
@@ -29,6 +27,8 @@ class Pine extends GameObject{
       }
 		}
 
+		rectCollider.process();
+		
 	}
 
 	void debugDraw(){

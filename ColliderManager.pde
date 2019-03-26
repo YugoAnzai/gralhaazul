@@ -4,6 +4,7 @@ class ColliderManager{
 	ColliderMask walls;
 	ColliderMask trees;
 	ColliderMask pines;
+	ColliderMask clouds;
 
 	ColliderManager(){
 
@@ -11,10 +12,12 @@ class ColliderManager{
 		walls = new ColliderMask();
 		trees = new ColliderMask();
 		pines = new ColliderMask();
+		clouds = new ColliderMask();
 
 		player.addCollidingMask(walls);
 		player.addCollidingMask(trees);
 		player.addCollidingMask(pines);
+		player.addCollidingMask(clouds);
 
 	}
 

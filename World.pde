@@ -3,13 +3,15 @@ class World{
 	ArrayList<Wall> walls = new ArrayList();
 	ArrayList<Tree> trees = new ArrayList();
 	ArrayList<Pine> pines = new ArrayList();
+	ArrayList<Cloud> clouds = new ArrayList();
 	Player player;
 
 	World(Player _player){
 
 		player = _player;
 
-		// Walls
+		// Clouds
+		clouds.add(new Cloud(200, 150, 1, 1000));
 
 		// Trees
 		trees.add(new Tree(300, globals.floorY, 3));
@@ -31,6 +33,9 @@ class World{
 		for (Pine pine : pines){
 			pine.process();
 		}
+		for (Cloud cloud : clouds){
+			cloud.process();
+		}
 	}
 
 	void draw(){
@@ -45,6 +50,9 @@ class World{
 		for (Pine pine : pines){
 			pine.draw();
 		}
+		for (Cloud cloud : clouds){
+			cloud.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
@@ -56,6 +64,9 @@ class World{
 		}
 		for (Pine pine : pines){
 			pine.debugDraw();
+		}
+		for (Cloud cloud : clouds){
+			cloud.debugDraw();
 		}
 
 		debugDrawGrid();
