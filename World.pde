@@ -105,4 +105,14 @@ class World{
 			line(0, y, width, y);
 		}
 	}
+
+	GameObject getGameObjectFromCollided(RectCollider[] collided, String name) {
+		for (int i = 0; i < collided.length; i++){
+			if (collided[i].gameObject.name == name){
+				return collided[i].gameObject;
+			}
+		}
+		return null;
+	}
+
 }

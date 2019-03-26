@@ -22,6 +22,8 @@ class Water extends GameObject{
 
 		collided = rectCollider.process();
 
+		
+
 		pos.y += globals.fallSpeed;
 		if (pos.y > (globals.floorY)) {
       destroy();

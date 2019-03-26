@@ -205,7 +205,7 @@ class Player extends GameObject{
   }
 
   boolean checkPineAndCarry(){
-    Pine pine = (Pine)getGameObjectFromCollided("Pine");
+    Pine pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
     if (pine != null && input.keyEnter.grab) {
       carried = pine;
       updateCarried();
@@ -215,21 +215,12 @@ class Player extends GameObject{
   }
 
   boolean checkTreeAndLand(){
-    TreePart treePart = (TreePart)getGameObjectFromCollided("TreePart");
+    TreePart treePart = (TreePart)globals.world.getGameObjectFromCollided(collided, "TreePart");
     if (treePart != null && input.keyEnter.land) {
       pos.y = treePart.pos.y;
       return true;
     }
     return false;
-  }
-
-  GameObject getGameObjectFromCollided(String name) {
-    for (int i = 0; i < collided.length; i++){
-      if (collided[i].gameObject.name == name){
-        return collided[i].gameObject;
-      }
-    }
-    return null;
   }
 
   boolean checkAndPutOnFloor(){
@@ -241,7 +232,7 @@ class Player extends GameObject{
   }
 
   boolean checkCloud() {
-    Cloud cloud = (Cloud)getGameObjectFromCollided("Cloud");
+    Cloud cloud = (Cloud)globals.world.getGameObjectFromCollided(collided, "Cloud");
     if (cloud != null && input.keyEnter.grab) {
       cloud.interact();
       return true;
