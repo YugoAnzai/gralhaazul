@@ -18,7 +18,7 @@ class Cloud extends GameObject{
 		speed = _speed;
 		maxWaterCounter = _maxWaterCounter;
 		waterCounter = maxWaterCounter;
-		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
+		rectCollider = new RectCollider(this, colliderManager.clouds, colliderW, colliderH);
 	}
 
 	void draw() {
