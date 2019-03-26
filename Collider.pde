@@ -3,6 +3,7 @@ class Collider {
 	Transform pos;
 	GameObject gameObject;
 	ColliderMask colliderMask;
+	boolean active = true;
 
 	Collider(GameObject _gameObject, ColliderMask _colliderMask){
 		gameObject = _gameObject;

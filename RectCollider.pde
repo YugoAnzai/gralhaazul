@@ -41,9 +41,11 @@ class RectCollider extends Collider{
 
 		RectCollider[] rectColliders = {};
 
+		if (!active) return rectColliders;
+
 		for (ColliderMask otherCollidingMask : colliderMask.collidingMasks) {
 			for (RectCollider collider : otherCollidingMask.colliders){
-				if (checkCollisionRect(collider)) {
+				if (active && checkCollisionRect(collider)) {
 					rectColliders = (RectCollider[])append(rectColliders, collider);
 				}
 			}
