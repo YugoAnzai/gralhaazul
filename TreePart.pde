@@ -38,8 +38,6 @@ class TreePart extends GameObject implements IWaterable{
 
 	void process() {
 
-		println(pineGenCount);
-
 		if(!hasPine) {
 			pineGenCount--;
 			if (pineGenCount <= 0) {
