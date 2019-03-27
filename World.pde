@@ -15,8 +15,8 @@ class World{
 		player = _player;
 
 		// Clouds
-		clouds.add(new Cloud(100, 50, 1, 3000));
-		clouds.add(new Cloud(500, 150, 2, 4000));
+		clouds.add(new Cloud(100, 50, 1, 800));
+		clouds.add(new Cloud(500, 150, 2, 1000));
 
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
