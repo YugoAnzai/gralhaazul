@@ -3,17 +3,28 @@ class Pine extends GameObject implements IWaterable{
 	int pineSize = 30;
 	int colliderW = 20;
 	int colliderH = 20;
-	boolean falling = false;
 	RectCollider rectCollider;
 
-	Pine(int x, int y) {
+	boolean falling = false;
+	boolean onTreePart = true;
+	TreePart fatherTreePart = null;
+
+	Pine(int x, int y, TreePart treePart) {
 		super(x, y, 0, "Pine");
+		fatherTreePart = treePart;
 		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
 	}
 
 	void draw() {
 		fill(204, 113, 44);
 		ellipse(pos.x, pos.y, pineSize, pineSize);
+	}
+
+	void pickup() {
+		if (onTreePart) {
+			onTreePart = false;
+			fatherTreePart.hasPine = false;
+		}
 	}
 
 	void process() {

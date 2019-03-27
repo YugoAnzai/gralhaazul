@@ -208,6 +208,7 @@ class Player extends GameObject{
     Pine pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
     if (pine != null && input.keyEnter.grab) {
       carried = pine;
+      pine.pickup();
       updateCarried();
       return true;
     }

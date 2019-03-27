@@ -14,14 +14,20 @@ class Tree extends GameObject{
 		}
 	}
 
+	void process() {
+
+		for (TreePart treePart : treeParts){
+			treePart.process();
+		}
+
+	}
+
 	boolean grow() {
 		if (heightUnits < maxHeightUnits) {
 			heightUnits++;
 			treeParts.add(new TreePart((int)pos.x, (int)pos.y, heightUnits, this));
-			return true;
-		} else {
-			return false;
 		}
+		return true;
 	}
 
 	void draw() {

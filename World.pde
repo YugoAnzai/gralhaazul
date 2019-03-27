@@ -15,13 +15,11 @@ class World{
 		player = _player;
 
 		// Clouds
-		clouds.add(new Cloud(200, 150, 1, 100));
+		clouds.add(new Cloud(100, 50, 1, 3000));
+		clouds.add(new Cloud(500, 150, 2, 4000));
 
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
-
-		// Pines
-		pines.add(new Pine(500, globals.floorY - 125));
 
 	}
 
