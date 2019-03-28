@@ -5,6 +5,7 @@ class SoundManager{
 	PApplet p;
 
 	ArrayList<String> loopNames = new ArrayList();
+	ArrayList<Boolean> loopPlaying = new ArrayList();
 	ArrayList<SoundFile> loopSounds = new ArrayList();
 
 	SoundManager(PApplet pApplet) {
@@ -16,27 +17,33 @@ class SoundManager{
 		soundEffect.play();
 	}
 
-	void startLoop(String loopName, String fileName) {
+	void loadLoop(String loopName, String fileName) {
 		loopNames.add(loopName);
-		SoundFile loop = new SoundFile(p, "sound/music/" + fileName);
-		loopSounds.add(loop);
-		loop.loop();
+		loopPlaying.add(false);
+		loopSounds.add(new SoundFile(p, "sound/" + fileName));
 	}
 
 	void stopLoop(String loopName) {
 		int index = loopIndex(loopName);
 		loopNames.remove(index);
+		loopPlaying.remove(index);
 		loopSounds.remove(index);
 	}
 
 	void pauseLoop(String loopName) {
-		SoundFile loop = loopSounds.get(loopIndex(loopName));
-		loop.pause();
+		int index = loopIndex(loopName);
+		if (loopPlaying.get(index)) {
+			loopSounds.get(index).pause();
+			loopPlaying.set(index, false);
+		}
 	}
 
 	void playLoop(String loopName) {
-		SoundFile loop = loopSounds.get(loopIndex(loopName));
-		loop.loop();
+		int index = loopIndex(loopName);
+		if (!loopPlaying.get(index)) {
+			loopSounds.get(index).loop();
+			loopPlaying.set(index, true);
+		}
 	}
 
 	int loopIndex(String loopName) {
