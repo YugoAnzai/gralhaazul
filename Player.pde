@@ -41,6 +41,12 @@ class Player extends GameObject{
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
   }
 
+  void setup() {
+
+    soundManager.loadLoop("crow_wing", "sfx/crow_wing.wav");
+
+  }
+
   void draw() {
 
     fill(130, 110, 250);
@@ -88,12 +94,14 @@ class Player extends GameObject{
 
     // clounds
     if (carried == null) {
-      checkCloud();
+      checkCloudInteraction();
     }
 
     // carrying
     if (!checkPineAndCarry()){
       checkPineRelease();
+    } else {
+      soundManager.playSound("crow_grab.wav");
     }
 
     updateCarried();
@@ -109,6 +117,8 @@ class Player extends GameObject{
 
   void stateProcess() {
     if (state == ST_LANDED){
+
+      soundManager.pauseLoop("crow_wing");
 
       if (checkAndPutOnFloor()){
         if (input.pressed.left || input.pressed.right) {
@@ -128,6 +138,8 @@ class Player extends GameObject{
       stamina += staminaRecoverySpeed;
 
     } else if (state == ST_FLYING) {
+
+      soundManager.playLoop("crow_wing");
 
       boolean landed = checkTreeAndLand();
       if (landed) {
@@ -154,6 +166,8 @@ class Player extends GameObject{
       }
 
     } else if (state == ST_FALLING) {
+
+      soundManager.pauseLoop("crow_wing");
 
       boolean landed = checkTreeAndLand();
       if (landed) {
@@ -232,7 +246,7 @@ class Player extends GameObject{
     return false;
   }
 
-  boolean checkCloud() {
+  boolean checkCloudInteraction() {
     Cloud cloud = (Cloud)globals.world.getGameObjectFromCollided(collided, "Cloud");
     if (cloud != null && input.keyEnter.grab) {
       cloud.interact();

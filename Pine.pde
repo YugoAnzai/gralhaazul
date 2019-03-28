@@ -34,6 +34,7 @@ class Pine extends GameObject implements IWaterable{
 			if (pos.y > (globals.floorY) - pineSize/2) {
         pos.y = globals.floorY - pineSize/2;
 				falling = false;
+				soundManager.playSound("pine_falling.wav");
       }
 		}
 

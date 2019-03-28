@@ -9,6 +9,11 @@ class GameScene extends Scene{
 	  world = new World(player);
 		globals.world = world;
 
+		player.setup();
+
+		soundManager.loadLoop("music", "music/fundo.wav");
+		soundManager.playLoop("music");
+
 	}
 
 	void process() {

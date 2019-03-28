@@ -26,6 +26,7 @@ class Tree extends GameObject{
 		if (heightUnits < maxHeightUnits) {
 			heightUnits++;
 			treeParts.add(new TreePart((int)pos.x, (int)pos.y, heightUnits, this));
+			soundManager.playSound("tree_growing.wav");
 		}
 		return true;
 	}
