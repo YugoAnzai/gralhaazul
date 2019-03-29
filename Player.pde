@@ -45,12 +45,26 @@ class Player extends GameObject{
 
     soundManager.loadLoop("crow_wing", "sfx/crow_wing.wav");
 
+    anim = new Animator((int)pos.x, (int)pos.y, "crow.png", 13, 1);
+
+    int[] animSprites = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+		int[] animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+		anim.createAnimation("flying", animSprites, animDuration);
+
+		animSprites = new int[]{7, 8};
+		animDuration = new int[]{10, 10};
+		anim.createAnimation("idle", animSprites, animDuration);
+
+		anim.setAnimation("idle");
+    anim.play();
+
   }
 
   void draw() {
 
-    fill(130, 110, 250);
-    rect(int(pos.x), int(pos.y), playerSize, playerSize);
+    anim.x = (int)pos.x;
+    anim.y = (int)pos.y;
+    anim.draw();
 
     // HUD : stamina
     int stX = 300;
@@ -118,18 +132,20 @@ class Player extends GameObject{
   void stateProcess() {
     if (state == ST_LANDED){
 
-      soundManager.pauseLoop("crow_wing");
-
       if (checkAndPutOnFloor()){
         if (input.pressed.left || input.pressed.right) {
           movePlayerWithPressed();
         }
         if (input.pressed.up) {
+          soundManager.playLoop("crow_wing");
+          anim.setAnimation("flying");
           state = ST_FLYING;
           return;
         }
       } else {
         if (input.pressed.left || input.pressed.right || input.pressed.up || input.pressed.down) {
+          soundManager.playLoop("crow_wing");
+          anim.setAnimation("flying");
           state = ST_FLYING;
           return;
         }
@@ -139,10 +155,10 @@ class Player extends GameObject{
 
     } else if (state == ST_FLYING) {
 
-      soundManager.playLoop("crow_wing");
-
       boolean landed = checkTreeAndLand();
       if (landed) {
+        soundManager.pauseLoop("crow_wing");
+        anim.setAnimation("idle");
         state = ST_LANDED;
         return;
       }
@@ -154,6 +170,8 @@ class Player extends GameObject{
       }
 
       if (stamina == 0) {
+        soundManager.pauseLoop("crow_wing");
+        anim.setAnimation("idle");
         state = ST_FALLING;
         return;
       }
@@ -161,13 +179,13 @@ class Player extends GameObject{
       movePlayerWithPressed();
 
       if (checkAndPutOnFloor()) {
+        soundManager.pauseLoop("crow_wing");
+        anim.setAnimation("idle");
         state = ST_LANDED;
         return;
       }
 
     } else if (state == ST_FALLING) {
-
-      soundManager.pauseLoop("crow_wing");
 
       boolean landed = checkTreeAndLand();
       if (landed) {

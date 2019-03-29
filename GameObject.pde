@@ -4,6 +4,7 @@ class GameObject {
   Transform speed;
   Transform acc;
   String name;
+  Animator anim;
 
   GameObject(int x, int y, int r, String _name){
     name = _name;
@@ -23,8 +24,12 @@ class GameObject {
 
   }
 
-  void process() {
+  void setup() {
     
+  }
+
+  void process() {
+
   }
 
 }

@@ -7,7 +7,7 @@ class Animator{
 	int h;
 	int x;
 	int y;
-	
+
 	String[] animNames = null;
 	int[][] animSprites = null;
 	int[][] animDuration = null;
@@ -15,7 +15,7 @@ class Animator{
 	protected int curAnimIndex;
 	protected int spriteIndex = 0;
 	protected int frameCount = 0;
-	protected boolean playing = true;
+	protected boolean playing = false;
 	protected boolean ended = false;
 	protected String nextAnimation = null;
 
@@ -23,7 +23,7 @@ class Animator{
 
 		x = _x;
 		y = _y;
-		spritesheet = loadImage(fileName);
+		spritesheet = loadImage("img/" + fileName);
 		sprites = new PImage[wImages * hImages];
 		w = spritesheet.width/wImages;
 		h = spritesheet.height/hImages;

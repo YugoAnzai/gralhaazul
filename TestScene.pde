@@ -3,7 +3,7 @@ class TestScene extends Scene{
 	Animator anim;
 
 	void setup() {
-		anim = new Animator(100, 200, "img/cat.png", 10, 10);
+		anim = new Animator(100, 200, "cat.png", 10, 10);
 
 		int[] animSprites = new int[]{0, 21};
 		int[] animDuration = new int[]{15, 15};
