@@ -28,6 +28,7 @@ class Player extends GameObject{
   GameObject carried = null;
 
   float flySpeed = 4;
+  boolean facingRight = true;
 
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
@@ -39,13 +40,10 @@ class Player extends GameObject{
     hearts = maxHearts;
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
-  }
-
-  void setup() {
 
     soundManager.loadLoop("crow_wing", "sfx/crow_wing.wav");
 
-    anim = new Animator((int)pos.x, (int)pos.y, "crow.png", 13, 1);
+    anim = new Animator((int)pos.x, (int)pos.y, "crow.png", 13, 2);
 
     int[] animSprites = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 		int[] animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
@@ -54,6 +52,14 @@ class Player extends GameObject{
 		animSprites = new int[]{7, 8};
 		animDuration = new int[]{10, 10};
 		anim.createAnimation("idle", animSprites, animDuration);
+
+		// animSprites = new int[]{13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
+		// animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+		// anim.createAnimation("flying_left", animSprites, animDuration);
+    //
+		// animSprites = new int[]{20, 21};
+		// animDuration = new int[]{10, 10};
+		// anim.createAnimation("idle_left", animSprites, animDuration);
 
 		anim.setAnimation("idle");
     anim.play();
@@ -205,9 +211,11 @@ class Player extends GameObject{
 
   void movePlayerWithPressed() {
     if (input.pressed.left) {
+      facingRight = false;
       pos.x -= flySpeed;
     }
     if (input.pressed.right) {
+      facingRight = true;
       pos.x += flySpeed;
     }
     if (input.pressed.up) {

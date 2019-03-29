@@ -10,6 +10,8 @@ class World{
 	ArrayList<Pine> pinesDestroy = new ArrayList();
 	ArrayList<Water> watersDestroy = new ArrayList();
 
+	Animator anim;
+
 	World(Player _player){
 
 		player = _player;
@@ -20,6 +22,15 @@ class World{
 
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
+
+		anim = new Animator(width/2, height/2, "background1.png", 1, 1);
+
+    int[] animSprites = new int[]{0};
+		int[] animDuration = new int[]{99};
+		anim.createAnimation("idle", animSprites, animDuration);
+
+		anim.setAnimation("idle");
+    anim.play();
 
 	}
 
@@ -56,7 +67,7 @@ class World{
 	}
 
 	void draw(){
-		background(20, 100, 80);
+		anim.draw();
 
 		for (Wall wall : walls){
 			wall.draw();

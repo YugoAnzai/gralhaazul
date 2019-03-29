@@ -11,11 +11,27 @@ class Water extends GameObject{
 	Water(int x, int y) {
 		super(x, y, 0, "Water");
 		rectCollider = new RectCollider(this, colliderManager.waters, colliderW, colliderH);
+
+		anim = new Animator((int)pos.x, (int)pos.y, "water.png", 7, 1);
+
+    int[] animSprites = new int[]{0, 1};
+		int[] animDuration = new int[]{5, 5};
+		anim.createAnimation("raining", animSprites, animDuration);
+
+		animSprites = new int[]{1};
+		animDuration = new int[]{99};
+		anim.createAnimation("idle", animSprites, animDuration);
+
+		anim.setAnimation("raining");
+		anim.setNextAnimation("idle");
+    anim.play();
+
 	}
 
 	void draw() {
-		fill(10, 113, 255);
-		rect(pos.x, pos.y, rectW, rectH);
+		anim.x = (int)pos.x;
+    anim.y = (int)pos.y;
+    anim.draw();
 	}
 
 	void process() {
