@@ -18,11 +18,17 @@ class Cloud extends GameObject{
 		maxWaterCounter = _maxWaterCounter;
 		waterCounter = maxWaterCounter;
 		rectCollider = new RectCollider(this, colliderManager.clouds, colliderW, colliderH);
+
+		anim = new Animator(0, 0, "cloud.png", 1, 1);
+		anim.createAnimation("idle", new int[]{0}, new int[]{99});
+		anim.setAnimation("idle");
+
 	}
 
 	void draw() {
-		fill(c);
-		rect(pos.x, pos.y, rectW, rectH);
+		tint(c);
+		super.draw();
+		tint(255);
 	}
 
 	void process() {
