@@ -30,7 +30,7 @@ class World{
 		trees.add(new Tree(500, globals.floorY, 1));
 
 		// Hunters
-		enemies.add(new Hunter(100, 100));
+		enemies.add(new Hunter(100));
 
 		globals.world = this;
 

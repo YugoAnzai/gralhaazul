@@ -22,7 +22,7 @@ class TreePart extends GameObject implements IWaterable{
 		tree = _tree;
 		rectCollider = new RectCollider(this, colliderManager.trees, branchColliderW, branchColliderH);
 
-		anim = new Animator((int)pos.x, (int)pos.y, "tree.png", 1, 1);
+		anim = new Animator(0, 50, "tree.png", 1, 1);
 
     int[] animSprites = new int[]{0};
 		int[] animDuration = new int[]{99};
@@ -62,23 +62,8 @@ class TreePart extends GameObject implements IWaterable{
 	void draw() {
 
 		anim.x = (int)pos.x;
-    anim.y = (int)pos.y + 50;
+    anim.y = (int)pos.y;
     anim.draw();
-
-		// // wood
-		// int heightRef;
-		// if (partHeight == 1) {
-		// 	heightRef = firstHeight;
-		// } else {
-		// 	heightRef = heightOffset;
-		// }
-		//
-		// fill(200, 30, 30);
-		// rect(pos.x, pos.y + heightRef/2 - 25, 25, heightRef);
-		//
-		// // branch
-		// fill(30, 200, 30);
-		// rect(pos.x, pos.y, 150, 50);
 
 	}
 

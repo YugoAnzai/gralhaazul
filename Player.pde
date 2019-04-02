@@ -43,7 +43,7 @@ class Player extends GameObject{
 
     soundManager.loadLoop("crow_wing", "sfx/crow_wing.wav");
 
-    anim = new Animator((int)pos.x, (int)pos.y, "crow.png", 13, 2);
+    anim = new Animator(0, 0, "crow.png", 13, 2);
 
     int[] animSprites = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 		int[] animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};

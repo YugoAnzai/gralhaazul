@@ -5,8 +5,10 @@ class Animator{
 
 	int w;
 	int h;
-	int x;
-	int y;
+	int x = 0;
+	int y = 0;
+	int xOffset;
+	int yOffset;
 
 	String[] animNames = null;
 	int[][] animSprites = null;
@@ -19,10 +21,9 @@ class Animator{
 	protected boolean ended = false;
 	protected String nextAnimation = null;
 
-	Animator(int _x, int _y, String fileName, int wImages, int hImages){
-
-		x = _x;
-		y = _y;
+	Animator(int _xOffset, int _yOffset, String fileName, int wImages, int hImages){
+		xOffset = _xOffset;
+		yOffset = _yOffset;
 		spritesheet = loadImage("img/" + fileName);
 		sprites = new PImage[wImages * hImages];
 		w = spritesheet.width/wImages;
@@ -123,7 +124,7 @@ class Animator{
 			frameCount = 0;
 		}
 
-	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], x, y);
+	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], x + xOffset, y + yOffset);
 
 	}
 
