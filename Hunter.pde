@@ -15,11 +15,19 @@ class Hunter extends Enemy{
 	int stWaChangeDirMinCount = 20;
 	int stWaChangeDirCount;
 	int stWaSpeed = 1;
-	int stWaSightRange = 350;
+	int stWaSightRd = 200;
+	int stWaVertSightX = 150;
+	int stWaVertSightY = 500;
+
+	int stAiMaxCount = 150;
+	int stAiCount = stAiMaxCount;
+
+	int stShRecoverMaxCount = 200;
+	int stShRecoverCount = stShRecoverMaxCount;
 
 	Hunter(int x) {
 		// hunter anchor is on the center of his feet
-		super(x, globals.floorY, "Hunter", 50, 100);
+		super(x, globals.floorY, "Hunter", 30, 80, 0, -50);
 
 		anim = new Animator(0, -50, "hunter.png", 2, 2);
 
@@ -82,7 +90,32 @@ class Hunter extends Enemy{
 			}
 
 			// Check bird in range
-			// if
+			if(stWaCheckSight()) {
+				anim.setAnimation("aiming");
+				state = ST_AIMING;
+			}
+
+		} else if (state == ST_AIMING) {
+
+			stAiCount--;
+			if (stAiCount < 0) {
+				stAiShot();
+				anim.setAnimation("shooting");
+				state = ST_SHOOTING;
+			}
+
+		} else if (state == ST_SHOOTING) {
+
+			stShRecoverCount--;
+			if (stShRecoverCount < 0) {
+				stShRecoverCount = stShRecoverMaxCount;
+				if (pos.x > width/2) stWaDirRight = false;
+				else stWaDirRight = true;
+				anim.setAnimation("walking");
+				stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
+				state = ST_WALKING;
+			}
+
 		}
 
 	}
@@ -92,8 +125,40 @@ class Hunter extends Enemy{
 		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
 	}
 
-	float sqDist(int x1, int y1, int x2, int y2) {
+	boolean stWaCheckSight() {
+		if (sqDist(pos.x, pos.y, player.pos.x, player.pos.y) < sq(stWaSightRd)) {
+			return true;
+		}
+		if (
+			player.pos.x < pos.x + stWaVertSightX &&
+			player.pos.x > pos.x - stWaVertSightX &&
+			player.pos.y < pos.y + stWaVertSightY &&
+			player.pos.y > pos.y - stWaVertSightY
+			) {
+			return true;
+		}
+		return false;
+	}
+
+	void stAiShot() {
+		println("shot");
+		stAiCount = stAiMaxCount;
+	}
+
+	float sqDist(float x1, float y1, float x2, float y2) {
 		return sq(x1-x2) + sq(y1-y2);
+	}
+
+	void debugDraw() {
+		super.debugDraw();
+
+		// sigth
+		noStroke();
+		fill(0, 30, 255, 30);
+		ellipse(pos.x, pos.y, 2*stWaSightRd, 2*stWaSightRd);
+
+		rect(pos.x, pos.y - stWaVertSightY/2, stWaVertSightX * 2, stWaVertSightY);
+
 	}
 
 }
