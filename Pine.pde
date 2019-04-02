@@ -3,7 +3,6 @@ class Pine extends GameObject implements IWaterable{
 	int pineSize = 30;
 	int colliderW = 20;
 	int colliderH = 20;
-	RectCollider rectCollider;
 
 	boolean falling = false;
 	boolean onTreePart = true;
@@ -54,10 +53,6 @@ class Pine extends GameObject implements IWaterable{
 
 	void destroy() {
 		globals.world.pinesDestroy.add(this);
-	}
-
-	void debugDraw(){
-		rectCollider.debugDraw();
 	}
 
 }

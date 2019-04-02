@@ -5,7 +5,6 @@ class TreePart extends GameObject implements IWaterable{
 	int heightOffset = 100;
 	int branchColliderW = 100;
 	int branchColliderH = 20;
-	RectCollider rectCollider;
 
 	Tree tree;
 	int pineGenCount;
@@ -59,20 +58,8 @@ class TreePart extends GameObject implements IWaterable{
 
 	}
 
-	void draw() {
-
-		anim.x = (int)pos.x;
-    anim.y = (int)pos.y;
-    anim.draw();
-
-	}
-
 	boolean water() {
 		return(tree.grow());
-	}
-
-	void debugDraw(){
-		rectCollider.debugDraw();
 	}
 
 }

@@ -15,6 +15,8 @@ class World{
 
 	World(Player _player){
 
+		globals.world = this;
+
 		bg = new Animator(width/2, height/2, "background1.png", 1, 1);
 		bg.createAnimation("idle", new int[]{0}, new int[]{99});
 		bg.setAnimation("idle");
@@ -31,8 +33,6 @@ class World{
 
 		// Hunters
 		enemies.add(new Hunter(100));
-
-		globals.world = this;
 
 	}
 

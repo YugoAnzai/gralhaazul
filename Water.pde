@@ -4,7 +4,6 @@ class Water extends GameObject{
 	int rectH = 20;
 	int colliderW = 100;
 	int colliderH = 20;
-	RectCollider rectCollider;
 	RectCollider[] collided;
 
 	// x, y in the center of branch
@@ -26,12 +25,6 @@ class Water extends GameObject{
 		anim.setNextAnimation("idle");
     anim.play();
 
-	}
-
-	void draw() {
-		anim.x = (int)pos.x;
-    anim.y = (int)pos.y;
-    anim.draw();
 	}
 
 	void process() {
@@ -56,10 +49,6 @@ class Water extends GameObject{
 
 	void destroy() {
 		globals.world.watersDestroy.add(this);
-	}
-
-	void debugDraw(){
-		rectCollider.debugDraw();
 	}
 
 }

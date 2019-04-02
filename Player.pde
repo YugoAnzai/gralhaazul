@@ -7,7 +7,6 @@ class Player extends GameObject{
 
   // collision, size
   int playerSize = 50;
-  RectCollider rectCollider;
   RectCollider[] collided;
   int playerColliderW = 30;
   int playerColliderH = 30;
@@ -59,10 +58,7 @@ class Player extends GameObject{
   }
 
   void draw() {
-
-    anim.x = (int)pos.x;
-    anim.y = (int)pos.y;
-    anim.draw();
+    super.draw();
 
     // HUD : stamina
     int stX = 300;
@@ -84,6 +80,8 @@ class Player extends GameObject{
 
   void debugDraw(int x, int y){
 
+    super.debugDraw();
+
     String[] lines = {
       "state:" + state,
       "pos.x:" + nfc(pos.x, 1) + " pos.y:" + nfc(pos.y, 1),
@@ -93,8 +91,6 @@ class Player extends GameObject{
       "carried: " + (carried == null ? "null" : carried.name),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
-
-    rectCollider.debugDraw();
 
   }
 

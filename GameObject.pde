@@ -5,6 +5,7 @@ class GameObject {
   Transform acc;
   String name;
   Animator anim;
+  RectCollider rectCollider;
 
   GameObject(int x, int y, int r, String _name){
     name = _name;
@@ -47,11 +48,15 @@ class GameObject {
   }
 
   void draw() {
-
+    anim.x = (int)pos.x;
+    anim.y = (int)pos.y;
+    anim.draw();
   }
 
   void debugDraw() {
-
+    if (rectCollider!= null) {
+        rectCollider.debugDraw();
+    }
   }
 
 }

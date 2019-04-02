@@ -2,7 +2,6 @@ class Wall extends GameObject{
 
 	int width;
 	int height;
-	RectCollider rectCollider;
 
 	boolean playerHit;
 
@@ -25,10 +24,6 @@ class Wall extends GameObject{
 
 	void hit(){
 		playerHit = true;
-	}
-
-	void debugDraw(){
-		rectCollider.debugDraw();
 	}
 
 }

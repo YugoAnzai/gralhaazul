@@ -2,7 +2,6 @@ class Enemy extends GameObject{
 
 	int colliderW;
 	int colliderH;
-	RectCollider rectCollider;
 	RectCollider[] collided;
 
 	Enemy(int x, int y, String enemyName, int _colliderW, int _colliderH) {

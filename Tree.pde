@@ -2,7 +2,6 @@ class Tree extends GameObject{
 
 	int heightUnits;
 	int maxHeightUnits = 4;
-	RectCollider rectCollider;
 	ArrayList<TreePart> treeParts = new ArrayList();
 
 	// x, y in the center base of the tree

@@ -4,7 +4,6 @@ class Cloud extends GameObject{
 	int rectH = 50;
 	int colliderW = 100;
 	int colliderH = 20;
-	RectCollider rectCollider;
 
 	int speed;
 	boolean goingRight = true;
@@ -71,10 +70,6 @@ class Cloud extends GameObject{
 		float rate = (float)(maxCount - count)/maxCount;
 		return (minColor - (int)((minColor - maxColor) * rate));
 
-	}
-
-	void debugDraw(){
-		rectCollider.debugDraw();
 	}
 
 }
