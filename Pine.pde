@@ -10,7 +10,7 @@ class Pine extends GameObject implements IWaterable{
 	TreePart fatherTreePart = null;
 
 	Pine(int x, int y, TreePart treePart) {
-		super(x, y, 0, "Pine");
+		super(x, y, "Pine");
 		fatherTreePart = treePart;
 		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
 	}

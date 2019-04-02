@@ -9,7 +9,7 @@ class Water extends GameObject{
 
 	// x, y in the center of branch
 	Water(int x, int y) {
-		super(x, y, 0, "Water");
+		super(x, y, "Water");
 		rectCollider = new RectCollider(this, colliderManager.waters, colliderW, colliderH);
 
 		anim = new Animator((int)pos.x, (int)pos.y, "water.png", 7, 1);

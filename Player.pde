@@ -32,7 +32,7 @@ class Player extends GameObject{
 
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
-    super(x, y, 0, "Player");
+    super(x, y, "Player");
     maxStamina = _maxStamina;
     stamina = maxStamina;
     staminaRecoverySpeed = _staminaRecoverySpeed;
@@ -52,14 +52,6 @@ class Player extends GameObject{
 		animSprites = new int[]{7, 8};
 		animDuration = new int[]{10, 10};
 		anim.createAnimation("idle", animSprites, animDuration);
-
-		// animSprites = new int[]{13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
-		// animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
-		// anim.createAnimation("flying_left", animSprites, animDuration);
-    //
-		// animSprites = new int[]{20, 21};
-		// animDuration = new int[]{10, 10};
-		// anim.createAnimation("idle_left", animSprites, animDuration);
 
 		anim.setAnimation("idle");
     anim.play();

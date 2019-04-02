@@ -13,9 +13,23 @@ class GameObject {
     acc = new Transform(0, 0, 0);
   }
 
+  GameObject(int x, int y, String _name){
+    name = _name;
+    pos = new Transform(x, y, 0);
+    speed = new Transform(0, 0, 0);
+    acc = new Transform(0, 0, 0);
+  }
+
   GameObject(int x, int y, int r){
     name = "Default Object";
     pos = new Transform(x, y, r);
+    speed = new Transform(0, 0, 0);
+    acc = new Transform(0, 0, 0);
+  }
+
+  GameObject(int x, int y){
+    name = "Default Object";
+    pos = new Transform(x, y, 0);
     speed = new Transform(0, 0, 0);
     acc = new Transform(0, 0, 0);
   }
@@ -25,10 +39,18 @@ class GameObject {
   }
 
   void setup() {
-    
+
   }
 
   void process() {
+
+  }
+
+  void draw() {
+
+  }
+
+  void debugDraw() {
 
   }
 

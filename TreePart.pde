@@ -14,7 +14,7 @@ class TreePart extends GameObject implements IWaterable{
 
 	// x, y in the center of branch
 	TreePart(int treeX, int treeY, int _partHeight, Tree _tree) {
-		super(treeX, treeY, 0, "TreePart");
+		super(treeX, treeY, "TreePart");
 		pos.y -= firstHeight - 25 + (_partHeight - 1) * heightOffset;
 		partHeight = _partHeight;
 		pineGenMaxCount = maxCountFromHeight();

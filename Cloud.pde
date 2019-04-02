@@ -14,7 +14,7 @@ class Cloud extends GameObject{
 	int maxWaterCounter;
 
 	Cloud(int x, int y, int _speed, int _maxWaterCounter) {
-		super(x, y, 0, "Cloud");
+		super(x, y, "Cloud");
 		speed = _speed;
 		maxWaterCounter = _maxWaterCounter;
 		waterCounter = maxWaterCounter;
