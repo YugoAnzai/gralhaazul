@@ -8,10 +8,20 @@ class Hunter extends Enemy{
 	final int ST_HIT = 5;
 	int state;
 
-	Hunter(int x, int y) {
-		super(x, y, "Hunter", 50, 100);
+	Player player;
 
-		anim = new Animator((int)pos.x, (int)pos.y, "hunter.png", 2, 2);
+	boolean stWaDirRight = true;
+	int stWaChangeDirMaxCount = 80;
+	int stWaChangeDirMinCount = 20;
+	int stWaChangeDirCount;
+	int stWaSpeed = 1;
+	int stWaSightRange = 350;
+
+	Hunter(int x) {
+		// hunter anchor is on the center of his feet
+		super(x, globals.floorY, "Hunter", 50, 100);
+
+		anim = new Animator(0, -50, "hunter.png", 2, 2);
 
     int[] animSprites = new int[]{0};
 		int[] animDuration = new int[]{99};
@@ -32,16 +42,58 @@ class Hunter extends Enemy{
 		anim.setAnimation("walking");
     anim.play();
 
+		player = globals.world.player;
+
+		state = ST_WALKING;
+		if (x > width/2) stWaDirRight = false;
+		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
+
 	}
 
 	void process() {
 
+		collided = rectCollider.process();
+
+		stateProcess();
+
 	}
 
-	void draw() {
-		anim.x = (int)pos.x;
-    anim.y = (int)pos.y;
-    anim.draw();
+	void stateProcess() {
+
+		if (state == ST_WALKING) {
+
+			// Walk and Check bird direction
+			if (stWaDirRight) {
+				pos.x += stWaSpeed;
+				if (pos.x > player.pos.x) {
+					stWaChangeDirCount--;
+					if (stWaChangeDirCount < 0) {
+						stWaChangeDirection();
+					}
+				}
+			} else {
+				pos.x -= stWaSpeed;
+				if (pos.x < player.pos.x) {
+					stWaChangeDirCount--;
+					if (stWaChangeDirCount < 0) {
+						stWaChangeDirection();
+					}
+				}
+			}
+
+			// Check bird in range
+			// if
+		}
+
+	}
+
+	void stWaChangeDirection() {
+		stWaDirRight = !stWaDirRight;
+		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
+	}
+
+	float sqDist(int x1, int y1, int x2, int y2) {
+		return sq(x1-x2) + sq(y1-y2);
 	}
 
 }
