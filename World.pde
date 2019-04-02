@@ -5,6 +5,7 @@ class World{
 	ArrayList<Pine> pines = new ArrayList();
 	ArrayList<Cloud> clouds = new ArrayList();
 	ArrayList<Water> waters = new ArrayList();
+	ArrayList<Enemy> enemies = new ArrayList();
 	Player player;
 
 	ArrayList<Pine> pinesDestroy = new ArrayList();
@@ -13,6 +14,11 @@ class World{
 	Animator bg;
 
 	World(Player _player){
+
+		bg = new Animator(width/2, height/2, "background1.png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+		bg.play();
 
 		player = _player;
 
@@ -23,14 +29,10 @@ class World{
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
 
-		bg = new Animator(width/2, height/2, "background1.png", 1, 1);
+		// Hunters
+		enemies.add(new Hunter(100, 100));
 
-    int[] animSprites = new int[]{0};
-		int[] animDuration = new int[]{99};
-		bg.createAnimation("idle", animSprites, animDuration);
-
-		bg.setAnimation("idle");
-    bg.play();
+		globals.world = this;
 
 	}
 
@@ -49,6 +51,9 @@ class World{
 		}
 		for (Water water : waters){
 			water.process();
+		}
+		for (Enemy enemy : enemies){
+			enemy.process();
 		}
 
 		destroyProcess();
@@ -84,6 +89,9 @@ class World{
 		for (Water water : waters){
 			water.draw();
 		}
+		for (Enemy enemy : enemies){
+			enemy.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
@@ -101,6 +109,9 @@ class World{
 		}
 		for (Water water : waters){
 			water.debugDraw();
+		}
+		for (Enemy enemy : enemies){
+			enemy.debugDraw();
 		}
 
 		debugDrawGrid();

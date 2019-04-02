@@ -2,14 +2,13 @@ class GameScene extends Scene{
 
 	Player player;
 	World world;
+	EnemyManager enemyManager;
 
 	void setup() {
 
 	  player = new Player(width/2, height/2, 300, 2, 3);
 	  world = new World(player);
-		globals.world = world;
-
-		player.setup();
+		enemyManager = new EnemyManager();
 
 		soundManager.loadLoop("music", "music/fundo.wav");
 		soundManager.playLoop("music");
