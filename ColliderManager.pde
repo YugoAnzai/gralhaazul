@@ -7,6 +7,7 @@ class ColliderManager{
 	ColliderMask clouds;
 	ColliderMask waters;
 	ColliderMask enemies;
+	ColliderMask bullets;
 
 	ColliderManager(){
 
@@ -17,6 +18,7 @@ class ColliderManager{
 		clouds = new ColliderMask();
 		waters = new ColliderMask();
 		enemies = new ColliderMask();
+		bullets = new ColliderMask();
 
 		player.addCollidingMask(walls);
 		player.addCollidingMask(trees);
@@ -30,6 +32,8 @@ class ColliderManager{
 		enemies.addCollidingMask(pines);
 		enemies.addCollidingMask(trees);
 		enemies.addCollidingMask(waters);
+
+		bullets.addCollidingMask(player);
 
 	}
 

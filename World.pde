@@ -6,10 +6,12 @@ class World{
 	ArrayList<Cloud> clouds = new ArrayList();
 	ArrayList<Water> waters = new ArrayList();
 	ArrayList<Enemy> enemies = new ArrayList();
+	ArrayList<Bullet> bullets = new ArrayList();
 	Player player;
 
 	ArrayList<Pine> pinesDestroy = new ArrayList();
 	ArrayList<Water> watersDestroy = new ArrayList();
+	ArrayList<Bullet> bulletsDestroy = new ArrayList();
 
 	Animator bg;
 
@@ -20,7 +22,6 @@ class World{
 		bg = new Animator(width/2, height/2, "background1.png", 1, 1);
 		bg.createAnimation("idle", new int[]{0}, new int[]{99});
 		bg.setAnimation("idle");
-		bg.play();
 
 		player = _player;
 
@@ -55,6 +56,9 @@ class World{
 		for (Enemy enemy : enemies){
 			enemy.process();
 		}
+		for (Bullet bullet : bullets){
+			bullet.process();
+		}
 
 		destroyProcess();
 
@@ -64,11 +68,15 @@ class World{
 		for (Water waterDestroy : watersDestroy) {
 			waters.remove(waterDestroy);
 		}
-		watersDestroy = new ArrayList();
+		watersDestroy.clear();
 		for (Pine pineDestroy : pinesDestroy) {
 			pines.remove(pineDestroy);
 		}
-		pinesDestroy = new ArrayList();
+		pinesDestroy.clear();
+		for (Bullet bulletDestroy : bulletsDestroy) {
+			bullets.remove(bulletDestroy);
+		}
+		bulletsDestroy.clear();
 	}
 
 	void draw(){
@@ -92,6 +100,9 @@ class World{
 		for (Enemy enemy : enemies){
 			enemy.draw();
 		}
+		for (Bullet bullet : bullets){
+			bullet.draw();
+		}
 	}
 
 	void debugDraw(int x, int y) {
@@ -112,6 +123,9 @@ class World{
 		}
 		for (Enemy enemy : enemies){
 			enemy.debugDraw();
+		}
+		for (Bullet bullet : bullets){
+			bullet.debugDraw();
 		}
 
 		debugDrawGrid();

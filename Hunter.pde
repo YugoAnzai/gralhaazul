@@ -16,13 +16,14 @@ class Hunter extends Enemy{
 	int stWaChangeDirCount;
 	int stWaSpeed = 1;
 	int stWaSightRd = 200;
-	int stWaVertSightX = 150;
+	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
 
 	int stAiMaxCount = 150;
 	int stAiCount = stAiMaxCount;
+	float stSpeed = 4;
 
-	int stShRecoverMaxCount = 200;
+	int stShRecoverMaxCount = 150;
 	int stShRecoverCount = stShRecoverMaxCount;
 
 	Hunter(int x) {
@@ -141,7 +142,19 @@ class Hunter extends Enemy{
 	}
 
 	void stAiShot() {
-		println("shot");
+		int x = (int) pos.x + 15;
+		int y = (int) pos.y - 60;
+
+		float xDist = player.pos.x - pos.x;
+    float yDist = player.pos.y - pos.y;
+
+    float hip = sqrt(sq(xDist) + sq(yDist));
+    float multiplier = stSpeed / hip;
+
+    float xSpeed = (multiplier * xDist);
+    float ySpeed = (multiplier * yDist);
+
+		globals.world.bullets.add(new Bullet(x, y, xSpeed, ySpeed));
 		stAiCount = stAiMaxCount;
 	}
 
