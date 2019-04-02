@@ -12,7 +12,7 @@ class Water extends GameObject{
 		super(x, y, "Water");
 		rectCollider = new RectCollider(this, colliderManager.waters, colliderW, colliderH);
 
-		anim = new Animator(0, 100, "water.png", 7, 1);
+		anim = new Animator(0, 70, "water.png", 7, 1);
 
     int[] animSprites = new int[]{0, 1};
 		int[] animDuration = new int[]{5, 5};
