@@ -32,6 +32,8 @@ class Hunter extends Enemy{
 
 		anim = new Animator(0, -50, "hunter.png", 2, 2);
 
+		player = globals.world.player;
+
     int[] animSprites = new int[]{0};
 		int[] animDuration = new int[]{99};
 		anim.createAnimation("walking", animSprites, animDuration);
@@ -51,7 +53,8 @@ class Hunter extends Enemy{
 		anim.setAnimation("walking");
     anim.play();
 
-		player = globals.world.player;
+		soundManager.loadLoop("hunter_walk", "sfx/hunter_walk.wav");
+		soundManager.playLoop("hunter_walk");
 
 		state = ST_WALKING;
 		if (x > width/2) stWaDirRight = false;
@@ -93,6 +96,7 @@ class Hunter extends Enemy{
 			// Check bird in range
 			if(stWaCheckSight()) {
 				anim.setAnimation("aiming");
+				soundManager.pauseLoop("hunter_walk");
 				state = ST_AIMING;
 			}
 
@@ -101,6 +105,7 @@ class Hunter extends Enemy{
 			stAiCount--;
 			if (stAiCount < 0) {
 				stAiShot();
+				soundManager.playSound("hunter_shot.wav");
 				anim.setAnimation("shooting");
 				state = ST_SHOOTING;
 			}
@@ -114,6 +119,7 @@ class Hunter extends Enemy{
 				else stWaDirRight = true;
 				anim.setAnimation("walking");
 				stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
+				soundManager.playLoop("hunter_walk");
 				state = ST_WALKING;
 			}
 
