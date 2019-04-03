@@ -4,6 +4,12 @@ class Enemy extends GameObject{
 	int colliderH;
 	RectCollider[] collided;
 
+	boolean fleeing = false;
+	int fleeingCounter = 100;
+	int fleeSpeed = 6;
+
+	Pine pine;
+
 	Enemy(int x, int y, String enemyName, int _colliderW, int _colliderH, int xOffset, int yOffset) {
 		super(x, y, enemyName);
 		colliderW = _colliderW;
@@ -15,19 +21,27 @@ class Enemy extends GameObject{
 
 		collided = rectCollider.process();
 
-		Pine pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
-		if(pine!= null) {
-			pine.destroy();
-			pine = null;
-			pineHit();
+		pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
+
+		if (fleeing) {
+			fleeingCounter--;
+			pos.x += fleeSpeed;
+			if (fleeingCounter <= 0) {
+				destroy();
+			}
 		}
 
 	}
 
 	void pineHit() {
-		println("pine hit");
 		soundManager.playSound("pine_hit.wav");
+		rectCollider.removeFromColliderMask();
+		if (int(random(1.99)) == 0) fleeSpeed = -fleeSpeed;
+		fleeing = true;
+	}
 
+	void destroy() {
+		globals.world.enemiesDestroy.add(this);
 	}
 
 }

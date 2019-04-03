@@ -65,6 +65,19 @@ class Hunter extends Enemy{
 	void process() {
 		super.process();
 
+		// check pine hit
+		if(pine!= null) {
+			if (pine.falling) {
+				pine.destroy();
+				pine = null;
+
+				anim.setAnimation("walking");
+				state = ST_WALKING;
+
+				pineHit();
+			}
+		}
+
 		stateProcess();
 
 	}
@@ -116,9 +129,9 @@ class Hunter extends Enemy{
 				stShRecoverCount = stShRecoverMaxCount;
 				if (pos.x > width/2) stWaDirRight = false;
 				else stWaDirRight = true;
-				anim.setAnimation("walking");
 				stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
 				soundManager.playLoop("hunter_walk");
+				anim.setAnimation("walking");
 				state = ST_WALKING;
 			}
 

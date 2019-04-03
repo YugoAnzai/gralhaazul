@@ -12,6 +12,7 @@ class World{
 	ArrayList<Pine> pinesDestroy = new ArrayList();
 	ArrayList<Water> watersDestroy = new ArrayList();
 	ArrayList<Bullet> bulletsDestroy = new ArrayList();
+	ArrayList<Enemy> enemiesDestroy = new ArrayList();
 
 	Animator bg;
 
@@ -77,6 +78,10 @@ class World{
 			bullets.remove(bulletDestroy);
 		}
 		bulletsDestroy.clear();
+		for (Enemy enemyDestroy : enemiesDestroy) {
+			enemies.remove(enemyDestroy);
+		}
+		enemiesDestroy.clear();
 	}
 
 	void draw(){
