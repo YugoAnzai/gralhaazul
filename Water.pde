@@ -48,6 +48,7 @@ class Water extends GameObject{
 	}
 
 	void destroy() {
+		rectCollider.removeFromColliderMask();
 		globals.world.watersDestroy.add(this);
 	}
 

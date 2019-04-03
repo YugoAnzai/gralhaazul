@@ -63,8 +63,7 @@ class Hunter extends Enemy{
 	}
 
 	void process() {
-
-		collided = rectCollider.process();
+		super.process();
 
 		stateProcess();
 
@@ -151,12 +150,11 @@ class Hunter extends Enemy{
 		int x = (int) pos.x + 15;
 		int y = (int) pos.y - 60;
 
-		float xDist = player.pos.x - pos.x;
-    float yDist = player.pos.y - pos.y;
+		float xDist = player.pos.x - x;
+    float yDist = player.pos.y - y;
 
     float hip = sqrt(sq(xDist) + sq(yDist));
     float multiplier = stSpeed / hip;
-
     float xSpeed = (multiplier * xDist);
     float ySpeed = (multiplier * yDist);
 

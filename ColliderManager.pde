@@ -30,8 +30,6 @@ class ColliderManager{
 
 		enemies.addCollidingMask(player);
 		enemies.addCollidingMask(pines);
-		enemies.addCollidingMask(trees);
-		enemies.addCollidingMask(waters);
 
 		bullets.addCollidingMask(player);
 

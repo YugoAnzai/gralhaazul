@@ -15,4 +15,8 @@ class ColliderMask{
 		collidingMasks.add(colliderMask);
 	}
 
+	void removeCollider(RectCollider collider) {
+		colliders.remove(collider);
+	}
+
 }

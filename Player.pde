@@ -269,8 +269,13 @@ class Player extends GameObject{
     return false;
   }
 
-  void hit(){
-    println("Player hit");
+  void bulletHit(){
+    soundManager.playSound("crow_hit.wav");
+    hearts--;
+    println("Player hit. hearts:" + hearts);
+    if (hearts <= 0) {
+      println("Player died");
+    }
   }
 
 }

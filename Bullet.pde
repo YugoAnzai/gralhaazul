@@ -18,14 +18,21 @@ class Bullet extends GameObject{
 
 	void process() {
 
+		collided = rectCollider.process();
+
 		pos.x += speed.x;
 		pos.y += speed.y;
 
-		collided = rectCollider.process();
+		Player player = (Player)globals.world.getGameObjectFromCollided(collided, "Player");
+		if(player!= null) {
+			player.bulletHit();
+			destroy();
+		}
 
 	}
 
 	void destroy() {
+		rectCollider.removeFromColliderMask();
 		globals.world.bulletsDestroy.add(this);
 	}
 

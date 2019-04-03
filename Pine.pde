@@ -52,6 +52,7 @@ class Pine extends GameObject implements IWaterable{
 	}
 
 	void destroy() {
+		rectCollider.removeFromColliderMask();
 		globals.world.pinesDestroy.add(this);
 	}
 

@@ -11,4 +11,23 @@ class Enemy extends GameObject{
 		rectCollider = new RectCollider(this, colliderManager.enemies, colliderW, colliderH, xOffset, yOffset);
 	}
 
+	void process() {
+
+		collided = rectCollider.process();
+
+		Pine pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
+		if(pine!= null) {
+			pine.destroy();
+			pine = null;
+			pineHit();
+		}
+
+	}
+
+	void pineHit() {
+		println("pine hit");
+		soundManager.playSound("pine_hit.wav");
+
+	}
+
 }
