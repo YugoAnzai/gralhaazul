@@ -35,13 +35,13 @@ class TreePart extends GameObject implements IWaterable{
 	int maxCountFromHeight() {
 		switch(partHeight) {
 			case 1:
-				return 1000;
+				return 1300;
 			case 2:
-				return 1200;
+				return 2000;
 			case 3:
-				return 1800;
+				return 2800;
 			default:
-				return 2500;
+				return 3300;
 		}
 	}
 

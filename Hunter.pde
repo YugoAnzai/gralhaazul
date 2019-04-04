@@ -24,7 +24,7 @@ class Hunter extends Enemy{
 	int stCuCutCount = stCuCutMaxCount;
 	Pine stCuPineBeingCut;
 
-	int stAiMaxCount = 150;
+	int stAiMaxCount = 80;
 	int stAiCount = stAiMaxCount;
 	float stSpeed = 4;
 

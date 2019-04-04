@@ -27,8 +27,8 @@ class World{
 		player = _player;
 
 		// Clouds
-		clouds.add(new Cloud(100, 50, 0.6, 800));
-		clouds.add(new Cloud(500, 150, 0.9, 1000));
+		clouds.add(new Cloud(100, 50, 0.6, 650));
+		clouds.add(new Cloud(500, 150, 0.9, 800));
 
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
