@@ -8,7 +8,7 @@ class GameScene extends Scene{
 
 	  player = new Player(width/2, height/2, 300, 2, 3);
 	  world = new World(player);
-		enemyManager = new EnemyManager();
+		enemyManager = new EnemyManager(500, 1300, 50);
 
 		soundManager.loadLoop("music", "music/fundo.wav");
 		soundManager.playLoop("music");
@@ -19,6 +19,7 @@ class GameScene extends Scene{
 		super.process();
 		world.process();
 	  player.process();
+		enemyManager.process();
 	}
 
 	void draw(){
@@ -29,6 +30,7 @@ class GameScene extends Scene{
 	void debugDraw() {
 		world.debugDraw(0, 150);
 	  player.debugDraw(80, 0);
+	  enemyManager.debugDraw(400, 0);
 	}
 
 	void destroy(){

@@ -2,17 +2,17 @@ class Cloud extends GameObject{
 
 	int rectW = 150;
 	int rectH = 50;
-	int colliderW = 100;
-	int colliderH = 20;
+	int colliderW = 150;
+	int colliderH = 70;
 
-	int speed;
+	float speed;
 	boolean goingRight = true;
 	boolean hasWater = false;
 	color c;
 	int waterCounter;
 	int maxWaterCounter;
 
-	Cloud(int x, int y, int _speed, int _maxWaterCounter) {
+	Cloud(int x, int y, float _speed, int _maxWaterCounter) {
 		super(x, y, "Cloud");
 		speed = _speed;
 		maxWaterCounter = _maxWaterCounter;

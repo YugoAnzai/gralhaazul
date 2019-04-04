@@ -20,7 +20,7 @@ class Hunter extends Enemy{
 	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
 
-	int stCuCutMaxCount = 500;
+	int stCuCutMaxCount = 300;
 	int stCuCutCount = stCuCutMaxCount;
 	Pine stCuPineBeingCut;
 

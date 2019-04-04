@@ -37,11 +37,11 @@ class TreePart extends GameObject implements IWaterable{
 			case 1:
 				return 1000;
 			case 2:
-				return 1500;
+				return 1200;
 			case 3:
-				return 4000;
+				return 1800;
 			default:
-				return 5000;
+				return 2500;
 		}
 	}
 
