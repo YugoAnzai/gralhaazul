@@ -6,6 +6,7 @@ class Hunter extends Enemy{
 	final int ST_AIMING = 3;
 	final int ST_SHOOTING = 4;
 	final int ST_HIT = 5;
+	final int ST_FLEEING = 6;
 	int state;
 
 	Player player;
@@ -18,6 +19,10 @@ class Hunter extends Enemy{
 	int stWaSightRd = 200;
 	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
+
+	int stCuCutMaxCount = 500;
+	int stCuCutCount = stCuCutMaxCount;
+	Pine stCuPineBeingCut;
 
 	int stAiMaxCount = 150;
 	int stAiCount = stAiMaxCount;
@@ -71,8 +76,12 @@ class Hunter extends Enemy{
 				pine.destroy();
 				pine = null;
 
+				if(stCuPineBeingCut != null) {
+					stCuPineBeingCut.rectCollider.addToColliderMask();
+				}
+
 				anim.setAnimation("walking");
-				state = ST_WALKING;
+				state = ST_FLEEING;
 
 				pineHit();
 			}
@@ -110,6 +119,32 @@ class Hunter extends Enemy{
 				anim.setAnimation("aiming");
 				soundManager.pauseLoop("hunter_walk");
 				state = ST_AIMING;
+				return;
+			}
+
+			// Check pine cut
+			if(pine!= null) {
+				if(!pine.falling) {
+					anim.setAnimation("cutting_pine");
+					soundManager.pauseLoop("hunter_walk");
+					pine.rectCollider.removeFromColliderMask();
+					stCuPineBeingCut = pine;
+					stCuCutCount = stCuCutMaxCount;
+					state = ST_CUTTING_PINE;
+					return;
+				}
+			}
+
+		} else if (state == ST_CUTTING_PINE) {
+
+			stCuCutCount--;
+			if (stCuCutCount <= 0) {
+				stCuPineBeingCut.destroy();
+				stCuPineBeingCut = null;
+				soundManager.playLoop("hunter_walk");
+				anim.setAnimation("walking");
+				state = ST_WALKING;
+				return;
 			}
 
 		} else if (state == ST_AIMING) {
@@ -120,6 +155,7 @@ class Hunter extends Enemy{
 				soundManager.playSound("hunter_shot.wav");
 				anim.setAnimation("shooting");
 				state = ST_SHOOTING;
+				return;
 			}
 
 		} else if (state == ST_SHOOTING) {
@@ -133,6 +169,7 @@ class Hunter extends Enemy{
 				soundManager.playLoop("hunter_walk");
 				anim.setAnimation("walking");
 				state = ST_WALKING;
+				return;
 			}
 
 		}

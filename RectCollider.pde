@@ -89,4 +89,8 @@ class RectCollider extends Collider{
 		colliderMask.removeCollider(this);
 	}
 
+	void addToColliderMask() {
+		colliderMask.addCollider(this);
+	}
+
 }

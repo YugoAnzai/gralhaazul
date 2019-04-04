@@ -76,6 +76,15 @@ class Player extends GameObject{
     rect(stX, stY, w, stH);
     rectMode(CENTER);
 
+    // HUD hearts;
+    stX = 150;
+
+    for (int i = 0; i < hearts; i++) {
+      stX += 30;
+      fill(200, 50, 50);
+      rect(stX, stY, 20, 20);
+    }
+
   }
 
   void debugDraw(int x, int y){
@@ -272,7 +281,6 @@ class Player extends GameObject{
   void bulletHit(){
     soundManager.playSound("crow_hit.wav");
     hearts--;
-    println("Player hit. hearts:" + hearts);
     if (hearts <= 0) {
       println("Player died");
     }

@@ -41,6 +41,7 @@ class Enemy extends GameObject{
 	}
 
 	void destroy() {
+		rectCollider.removeFromColliderMask();
 		globals.world.enemiesDestroy.add(this);
 	}
 
