@@ -22,7 +22,7 @@ class Pine extends GameObject implements IWaterable{
 	void pickup() {
 		if (onTreePart) {
 			onTreePart = false;
-			fatherTreePart.hasPine = false;
+			fatherTreePart.generatedPine = null;
 		}
 	}
 

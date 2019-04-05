@@ -9,6 +9,7 @@ class World{
 	ArrayList<Bullet> bullets = new ArrayList();
 	Player player;
 
+	ArrayList<Tree> treesDestroy = new ArrayList();
 	ArrayList<Pine> pinesDestroy = new ArrayList();
 	ArrayList<Water> watersDestroy = new ArrayList();
 	ArrayList<Bullet> bulletsDestroy = new ArrayList();
@@ -32,6 +33,8 @@ class World{
 
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
+
+		enemies.add(new Lumberjack(0));
 
 	}
 
@@ -63,14 +66,18 @@ class World{
 	}
 
 	void destroyProcess() {
-		for (Water waterDestroy : watersDestroy) {
-			waters.remove(waterDestroy);
+		for (Tree treeDestroy : treesDestroy) {
+			trees.remove(treeDestroy);
 		}
 		watersDestroy.clear();
 		for (Pine pineDestroy : pinesDestroy) {
 			pines.remove(pineDestroy);
 		}
 		pinesDestroy.clear();
+		for (Water waterDestroy : watersDestroy) {
+			waters.remove(waterDestroy);
+		}
+		watersDestroy.clear();
 		for (Bullet bulletDestroy : bulletsDestroy) {
 			bullets.remove(bulletDestroy);
 		}

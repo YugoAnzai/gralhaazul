@@ -9,7 +9,7 @@ class TreePart extends GameObject implements IWaterable{
 	Tree tree;
 	int pineGenCount;
 	int pineGenMaxCount;
-	boolean hasPine = false;
+	Pine generatedPine;
 
 	// x, y in the center of branch
 	TreePart(int treeX, int treeY, int _partHeight, Tree _tree) {
@@ -47,11 +47,11 @@ class TreePart extends GameObject implements IWaterable{
 
 	void process() {
 
-		if(!hasPine) {
+		if(generatedPine == null) {
 			pineGenCount--;
 			if (pineGenCount <= 0) {
-				hasPine = true;
-				globals.world.pines.add(new Pine((int)pos.x, (int)pos.y, this));
+				generatedPine = new Pine((int)pos.x, (int)pos.y, this);
+				globals.world.pines.add(generatedPine);
 				pineGenCount = pineGenMaxCount;
 			}
 		}
@@ -60,6 +60,16 @@ class TreePart extends GameObject implements IWaterable{
 
 	boolean water() {
 		return(tree.grow());
+	}
+
+	void destroy() {
+		rectCollider.removeFromColliderMask();
+
+		if (generatedPine != null) {
+			generatedPine.falling = true;
+			generatedPine.pickup();
+		}
+
 	}
 
 }

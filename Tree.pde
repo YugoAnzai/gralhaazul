@@ -42,4 +42,12 @@ class Tree extends GameObject{
 		}
 	}
 
+	void destroy() {
+		for (int i = treeParts.size() -1 ; i >= 0; i--) {
+			treeParts.get(i).destroy();
+			treeParts.remove(i);
+		}
+		globals.world.treesDestroy.add(this);
+	}
+
 }

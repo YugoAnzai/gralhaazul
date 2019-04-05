@@ -3,10 +3,9 @@ class Hunter extends Enemy{
 	// States
 	final int ST_WALKING = 1;
 	final int ST_CUTTING_PINE = 2;
-	final int ST_AIMING = 3;
-	final int ST_SHOOTING = 4;
-	final int ST_HIT = 5;
-	final int ST_FLEEING = 6;
+	final int ST_FLEEING = 3;
+	final int ST_AIMING = 4;
+	final int ST_SHOOTING = 5;
 	int state;
 
 	Player player;
@@ -15,7 +14,7 @@ class Hunter extends Enemy{
 	int stWaChangeDirMaxCount = 80;
 	int stWaChangeDirMinCount = 20;
 	int stWaChangeDirCount;
-	int stWaSpeed = 1;
+	float stWaSpeed = 0.9;
 	int stWaSightRd = 200;
 	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
