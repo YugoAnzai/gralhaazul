@@ -25,8 +25,12 @@ class Lumberjack extends Enemy{
 	int stHiCount = stHiMaxCount;
 	Tree stHiTreeBeingCut;
 
-	int stSwMaxCount = 50;
-	int stSwCount = stHiMaxCount;
+	int stSwMaxCount = 80;
+	int stSwCount = stSwMaxCount;
+	int stSwVisualMaxCount = 2;
+	int stSwVisualCount = stSwVisualMaxCount;
+	int stSwYOffset = -70;
+	boolean stSwShowingVisual;
 	int stSwRd = 100;
 
 	Lumberjack(int x) {
@@ -55,9 +59,6 @@ class Lumberjack extends Enemy{
 
 		anim.setAnimation("walking");
     anim.play();
-
-		soundManager.loadLoop("hunter_walk", "sfx/hunter_walk.wav");
-		soundManager.playLoop("hunter_walk");
 
 		findNearestTree();
 
@@ -116,7 +117,7 @@ class Lumberjack extends Enemy{
 			}
 
 			// Check bird in range
-			if(stWaCheckSight()) {
+			if(checkPlayerdist(stWaSight, stSwYOffset)) {
 				anim.setAnimation("swinging_player");
 				state = ST_SWINGING_PLAYER;
 				return;
@@ -126,7 +127,6 @@ class Lumberjack extends Enemy{
 			if(pine!= null) {
 				if(!pine.falling) {
 					anim.setAnimation("cutting_pine");
-					soundManager.pauseLoop("hunter_walk");
 					pine.rectCollider.removeFromColliderMask();
 					stCuPineBeingCut = pine;
 					stCuCutCount = stCuCutMaxCount;
@@ -141,7 +141,6 @@ class Lumberjack extends Enemy{
 			if (stCuCutCount <= 0) {
 				stCuPineBeingCut.destroy();
 				stCuPineBeingCut = null;
-				soundManager.playLoop("hunter_walk");
 				anim.setAnimation("walking");
 				state = ST_WALKING;
 				return;
@@ -162,7 +161,28 @@ class Lumberjack extends Enemy{
 
 		} else if (state == ST_SWINGING_PLAYER) {
 
-			// Implement
+			stSwCount--;
+			if (stSwCount <= 0) {
+				// Show visual and count
+				if (!stSwShowingVisual) {
+					stSwShowingVisual = true;
+				} else {
+					stSwVisualCount--;
+					if (stSwVisualCount <= 0) {
+						// if player in range, hit
+						if(checkPlayerdist(stSwRd, stSwYOffset)) {
+							player.bulletHit();
+						}
+						stSwCount = stSwMaxCount;
+						stSwShowingVisual = false;
+						stSwVisualCount = stSwVisualMaxCount;
+						anim.setAnimation("walking");
+						state = ST_WALKING;
+						return;
+					}
+				}
+
+			}
 
 		}
 
@@ -182,11 +202,21 @@ class Lumberjack extends Enemy{
 		return sq(x1-x2) + sq(y1-y2);
 	}
 
-	boolean stWaCheckSight() {
-		if (sqDist(pos.x, pos.y, player.pos.x, player.pos.y) < sq(stWaSight)) {
+	boolean checkPlayerdist(float dist, float yOffset) {
+		if (sqDist(pos.x, pos.y + yOffset, player.pos.x, player.pos.y) < sq(dist)) {
 			return true;
 		}
 		return false;
+	}
+
+	void draw() {
+		super.draw();
+
+		if (stSwShowingVisual) {
+			fill(240, 50, 50);
+			ellipse(pos.x, pos.y + stSwYOffset, 2 * stSwRd, 2 * stSwRd);
+		}
+
 	}
 
 	void debugDraw() {

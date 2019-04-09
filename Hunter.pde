@@ -57,9 +57,6 @@ class Hunter extends Enemy{
 		anim.setAnimation("walking");
     anim.play();
 
-		soundManager.loadLoop("hunter_walk", "sfx/hunter_walk.wav");
-		soundManager.playLoop("hunter_walk");
-
 		state = ST_WALKING;
 		if (x > width/2) stWaDirRight = false;
 		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
@@ -116,7 +113,6 @@ class Hunter extends Enemy{
 			// Check bird in range
 			if(stWaCheckSight()) {
 				anim.setAnimation("aiming");
-				soundManager.pauseLoop("hunter_walk");
 				state = ST_AIMING;
 				return;
 			}
@@ -125,7 +121,6 @@ class Hunter extends Enemy{
 			if(pine!= null) {
 				if(!pine.falling) {
 					anim.setAnimation("cutting_pine");
-					soundManager.pauseLoop("hunter_walk");
 					pine.rectCollider.removeFromColliderMask();
 					stCuPineBeingCut = pine;
 					stCuCutCount = stCuCutMaxCount;
@@ -140,7 +135,6 @@ class Hunter extends Enemy{
 			if (stCuCutCount <= 0) {
 				stCuPineBeingCut.destroy();
 				stCuPineBeingCut = null;
-				soundManager.playLoop("hunter_walk");
 				anim.setAnimation("walking");
 				state = ST_WALKING;
 				return;
@@ -165,7 +159,6 @@ class Hunter extends Enemy{
 				if (pos.x > width/2) stWaDirRight = false;
 				else stWaDirRight = true;
 				stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
-				soundManager.playLoop("hunter_walk");
 				anim.setAnimation("walking");
 				state = ST_WALKING;
 				return;
