@@ -28,7 +28,6 @@ class EnemyManager{
 	String chooseType() {
 		if (globals.world.trees.size() > 2) {
 			if (enemiesCreatedCount > 3) {
-				println("lumber");
 				if (random(2) < 1) return "Lumberjack";
 			}
 		}

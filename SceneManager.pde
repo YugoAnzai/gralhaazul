@@ -15,6 +15,7 @@ class SceneManager{
 		else if(sceneName == "CreditsScene") scene = new CreditsScene();
 		// else if(sceneName == "TestScene") scene = new TestScene();
 		else if(sceneName == "OverworldScene") scene = new OverworldScene();
+		else if(sceneName == "GameOverScene") scene = new GameOverScene();
 
 		return scene;
 	}

@@ -282,7 +282,7 @@ class Player extends GameObject{
     soundManager.playSound("crow_hit.wav");
     hearts--;
     if (hearts <= 0) {
-      println("Player died");
+      sceneManager.changeScene("GameOverScene");
     }
   }
 

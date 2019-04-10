@@ -12,9 +12,9 @@ class GameScene extends Scene{
 		soundManager.loadLoop("music", "music/fundo.wav");
 		soundManager.playLoop("music");
 
-		if (globals.level == 1) {
-			level1Setup();
-		}
+		if (globals.level == 1) level1Setup();
+		else if (globals.level == 2) level2Setup();
+		else if (globals.level == 3) level3Setup();
 
 	}
 
@@ -90,6 +90,8 @@ class GameScene extends Scene{
 
 	void destroy(){
 		super.destroy();
+		soundManager.pauseLoop("music");
+		soundManager.stopLoop("music");
 		player = null;
 		world = null;
 	}

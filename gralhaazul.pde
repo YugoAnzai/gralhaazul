@@ -17,8 +17,8 @@ void setup() {
   debug = new Debug();
   soundManager = new SoundManager(this);
 
-  // sceneManager = new SceneManager("SplashScene");
-  sceneManager = new SceneManager("OverworldScene");
+  sceneManager = new SceneManager("SplashScene");
+  // sceneManager = new SceneManager("OverworldScene");
   // sceneManager = new SceneManager("GameScene");
   // sceneManager = new SceneManager("TestScene");
 

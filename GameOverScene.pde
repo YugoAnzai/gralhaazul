@@ -1,10 +1,10 @@
-class MenuScene extends Scene{
+class GameOverScene extends Scene{
 
 	ArrayList<SelectibleText> texts = new ArrayList();
 
 	void setup() {
-		texts.add(new SelectibleText(100, 300, "Play Game"));
-		texts.add(new SelectibleText(100, 400, "Credits"));
+		texts.add(new SelectibleText(100, 300, "Tentar Novamente"));
+		texts.add(new SelectibleText(100, 400, "Ir Para o Mapa"));
 
 		texts.get(0).selected = true;
 	}
@@ -29,12 +29,11 @@ class MenuScene extends Scene{
 		if (input.keyEnter.enter) {
 			int index = getSelectedIndex();
 			if (index == 0) {
-				sceneManager.changeScene("OverworldScene");
+				sceneManager.changeScene("GameScene");
 			} else if (index == 1) {
-				sceneManager.changeScene("CreditsScene");
+				sceneManager.changeScene("OverworldScene");
 			}
 		}
-
 
 	}
 
@@ -53,7 +52,7 @@ class MenuScene extends Scene{
 
 		textSize(70);
 		fill(0, 150, 255);
-		text("Gralha Azul", 100, 200);
+		text("Poxa, não foi desta vez", 100, 200);
 
 		for (SelectibleText text : texts){
 			text.draw();
