@@ -10,4 +10,7 @@ class Globals {
 
   int level = 1;
 
+  boolean level2locked = true;
+  boolean level3locked = true;
+
 }

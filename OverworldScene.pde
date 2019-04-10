@@ -18,9 +18,9 @@ class OverworldScene extends Scene{
 		bg.createAnimation("idle", new int[]{0}, new int[]{99});
 		bg.setAnimation("idle");
 
-		levels.add(new OverworldLevel(525, 200, 0));
-		levels.add(new OverworldLevel(620, 330, 0));
-		levels.add(new OverworldLevel(450, 460, 0));
+		levels.add(new OverworldLevel(525, 200, 0, false));
+		levels.add(new OverworldLevel(620, 330, 0, globals.level2locked));
+		levels.add(new OverworldLevel(450, 460, 0, globals.level3locked));
 
 		levels.get(0).selected = true;
 
@@ -58,11 +58,14 @@ class OverworldScene extends Scene{
 			int index = getSelectedIndex();
 			levels.get(index).selected = false;
 
-			if (input.keyEnter.down) index++;
-			else if (input.keyEnter.up) index--;
-
-			if (index < 0) index += levels.size();
-			else if (index >= levels.size()) index -= levels.size();
+			if (input.keyEnter.down) {
+				if (index < levels.size()) index++;
+				if (levels.get(index).locked) {
+					index--;
+				}
+			} else if (input.keyEnter.up) {
+				if (index > 0) index--;
+			}
 
 			levels.get(index).selected = true;
 
@@ -78,6 +81,12 @@ class OverworldScene extends Scene{
 	}
 
 	void setBirdTarget(int x, int y) {
+
+		if (
+			x - tolerance < bird.x && bird.x < x + tolerance
+			&&
+			y - tolerance < bird.y && bird.y < y + tolerance
+		) return;
 
 		targetX = x;
 		targetY = y;
