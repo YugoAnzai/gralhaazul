@@ -8,4 +8,6 @@ class Globals {
   // game Globals
   World world;
 
+  int level = 1;
+
 }

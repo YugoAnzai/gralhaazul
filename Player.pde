@@ -172,7 +172,7 @@ class Player extends GameObject{
         stamina -= staminaCarryingConsumeSpeed;
       }
 
-      if (stamina == 0) {
+      if (stamina <= 0) {
         soundManager.pauseLoop("crow_wing");
         anim.setAnimation("idle");
         state = ST_FALLING;

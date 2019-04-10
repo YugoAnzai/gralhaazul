@@ -71,8 +71,8 @@ class OverworldScene extends Scene{
 		}
 
 		if (input.keyEnter.enter) {
-			int index = getSelectedIndex();
-			println(index);
+			globals.level = getSelectedIndex() + 1;
+			sceneManager.changeScene("GameScene");
 		}
 
 	}

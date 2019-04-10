@@ -27,7 +27,8 @@ class EnemyManager{
 
 	String chooseType() {
 		if (globals.world.trees.size() > 2) {
-			if (enemiesCreatedCount > 5) {
+			if (enemiesCreatedCount > 3) {
+				println("lumber");
 				if (random(2) < 1) return "Lumberjack";
 			}
 		}
@@ -39,10 +40,9 @@ class EnemyManager{
 		if (random(2) < 1) x = rightX;
 
 		if (type == "Hunter") globals.world.enemies.add(new Hunter(x));
-		if (type == "Lumberjack") globals.world.enemies.add(new Lumberjack(x));
+		else if (type == "Lumberjack") globals.world.enemies.add(new Lumberjack(x));
 
 		enemiesCreatedCount++;
-
 		refreshCreateCount();
 
 	}
@@ -58,6 +58,7 @@ class EnemyManager{
 		String[] lines = {
       "enCrdC:" + enemiesCreatedCount,
       "enCrC:" + enemyCreateCount,
+			"trees:" + globals.world.trees.size(),
     };
     debug.draw(lines, x, y, color(0, 0, 0), color(200, 10, 30));
 	}

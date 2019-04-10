@@ -8,10 +8,60 @@ class GameScene extends Scene{
 
 	  player = new Player(width/2, height/2, 500, 3, 3);
 	  world = new World(player);
-		enemyManager = new EnemyManager(1, 1300, 50);
 
 		soundManager.loadLoop("music", "music/fundo.wav");
 		soundManager.playLoop("music");
+
+		if (globals.level == 1) {
+			level1Setup();
+		}
+
+	}
+
+	void level1Setup() {
+
+		enemyManager = new EnemyManager(1000, 1500, 50);
+
+		// Clouds
+		world.clouds.add(new Cloud(100, 50, 0.6, 650, 0));
+		world.clouds.add(new Cloud(100, 150, 0.3, 800, 0));
+
+		// Pine
+		Pine pine = new Pine(500, 500, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
+
+	}
+
+	void level2Setup() {
+
+		enemyManager = new EnemyManager(300, 1300, 60);
+
+		// Clouds
+		world.clouds.add(new Cloud(100, 50, 1, 300, 100));
+
+		// Pine
+		Pine pine = new Pine(650, 500, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
+
+	}
+
+	void level3Setup() {
+
+		enemyManager = new EnemyManager(0, 1000, 200);
+
+		// Clouds
+		world.clouds.add(new Cloud(100, 50, 0.9, 800, 100));
+		world.clouds.add(new Cloud(500, 150, 1.2, 900, 100));
+
+		// Pine
+		Pine pine = new Pine(200, 500, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
 
 	}
 
@@ -25,6 +75,11 @@ class GameScene extends Scene{
 	void draw(){
 	  world.draw();
 	  player.draw();
+
+		fill(0);
+		textSize(20);
+		text("Level " + globals.level, 10, 20);
+
 	}
 
 	void debugDraw() {

@@ -21,18 +21,11 @@ class World{
 
 		globals.world = this;
 
-		bg = new Animator(width/2, height/2, "background1.png", 1, 1);
+		bg = new Animator(width/2, height/2, "background" + globals.level +".png", 1, 1);
 		bg.createAnimation("idle", new int[]{0}, new int[]{99});
 		bg.setAnimation("idle");
 
 		player = _player;
-
-		// Clouds
-		clouds.add(new Cloud(100, 50, 0.6, 650));
-		clouds.add(new Cloud(500, 150, 0.9, 800));
-
-		// Trees
-		trees.add(new Tree(500, globals.floorY, 1));
 
 	}
 

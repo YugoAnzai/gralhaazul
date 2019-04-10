@@ -12,11 +12,11 @@ class Cloud extends GameObject{
 	int waterCounter;
 	int maxWaterCounter;
 
-	Cloud(int x, int y, float _speed, int _maxWaterCounter) {
+	Cloud(int x, int y, float _speed, int _maxWaterCounter, int _waterCounter) {
 		super(x, y, "Cloud");
 		speed = _speed;
 		maxWaterCounter = _maxWaterCounter;
-		waterCounter = maxWaterCounter;
+		waterCounter = _waterCounter;
 		rectCollider = new RectCollider(this, colliderManager.clouds, colliderW, colliderH);
 
 		anim = new Animator(0, 0, "cloud.png", 1, 1);
