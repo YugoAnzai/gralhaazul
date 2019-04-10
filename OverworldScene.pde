@@ -1,0 +1,125 @@
+class OverworldScene extends Scene{
+
+	Animator bg;
+	Animator bird;
+	ArrayList<OverworldLevel> levels = new ArrayList();
+
+	float targetX;
+	float targetY;
+	float xSpeed;
+	float ySpeed;
+	float baseSpeed = 2;
+	int tolerance = 5;
+	boolean birdTravelling = false;
+
+	void setup() {
+
+		bg = new Animator(width/2, height/2, "overworld.png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		levels.add(new OverworldLevel(525, 200, 0));
+		levels.add(new OverworldLevel(620, 330, 0));
+		levels.add(new OverworldLevel(450, 460, 0));
+
+		levels.get(0).selected = true;
+
+    bird = new Animator(0, 0, "overworldBird.png", 2, 1);
+		bird.createAnimation("idle", new int[]{0,1}, new int[]{7,7});
+		bird.setAnimation("idle");
+		bird.play();
+    bird.x = levels.get(0).x;
+    bird.y = levels.get(0).y;
+		targetX = bird.x;
+		targetY = bird.y;
+		birdTravelling = false;
+
+	}
+
+	void process() {
+		super.process();
+
+		if (birdTravelling) {
+			bird.x += xSpeed;
+			bird.y += ySpeed;
+
+			if (
+				targetX - tolerance < bird.x && bird.x < targetX + tolerance
+				&&
+				targetY - tolerance < bird.y && bird.y < targetY + tolerance
+			) {
+				birdTravelling = false;
+			}
+
+		}
+
+		if (input.keyEnter.up || input.keyEnter.down) {
+
+			int index = getSelectedIndex();
+			levels.get(index).selected = false;
+
+			if (input.keyEnter.down) index++;
+			else if (input.keyEnter.up) index--;
+
+			if (index < 0) index += levels.size();
+			else if (index >= levels.size()) index -= levels.size();
+
+			levels.get(index).selected = true;
+
+			setBirdTarget(levels.get(index).x, levels.get(index).y);
+
+		}
+
+		if (input.keyEnter.enter) {
+			int index = getSelectedIndex();
+			println(index);
+		}
+
+	}
+
+	void setBirdTarget(int x, int y) {
+
+		targetX = x;
+		targetY = y;
+
+		float xDist = x - bird.x;
+		float yDist = y - bird.y;
+
+		float hip = sqrt(sq(xDist) + sq(yDist));
+		float multiplier = baseSpeed / hip;
+		xSpeed = (multiplier * xDist);
+		ySpeed = (multiplier * yDist);
+
+		birdTravelling = true;
+
+	}
+
+	int getSelectedIndex() {
+		for (int i = 0; i < levels.size(); i++) {
+			if (levels.get(i).selected) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	void draw(){
+
+		bg.draw();
+
+		for (OverworldLevel level : levels){
+			level.draw();
+		}
+
+		bird.draw();
+
+	}
+
+	void debugDraw() {
+	}
+
+	void destroy(){
+		super.destroy();
+	}
+
+}

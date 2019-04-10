@@ -5,8 +5,8 @@ class Animator{
 
 	int w;
 	int h;
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 	int xOffset;
 	int yOffset;
 
@@ -124,7 +124,7 @@ class Animator{
 			frameCount = 0;
 		}
 
-	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], x + xOffset, y + yOffset);
+	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], (int)x + xOffset, (int)y + yOffset);
 
 	}
 

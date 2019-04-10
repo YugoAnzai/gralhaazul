@@ -3,9 +3,8 @@ class MenuScene extends Scene{
 	ArrayList<SelectibleText> texts = new ArrayList();
 
 	void setup() {
-		texts.add(new SelectibleText(100, 300, "New Game"));
-		texts.add(new SelectibleText(100, 400, "Load"));
-		texts.add(new SelectibleText(100, 500, "Credits"));
+		texts.add(new SelectibleText(100, 300, "Play Game"));
+		texts.add(new SelectibleText(100, 400, "Credits"));
 
 		texts.get(0).selected = true;
 	}
@@ -29,9 +28,7 @@ class MenuScene extends Scene{
 
 		if (input.keyEnter.enter) {
 			int index = getSelectedIndex();
-			if (texts.get(index).text == "New Game") {
-				sceneManager.changeScene("GameScene");
-			} else if (texts.get(index).text == "Load") {
+			if (texts.get(index).text == "Play Game") {
 				sceneManager.changeScene("GameScene");
 			} else if (texts.get(index).text == "Credits") {
 				sceneManager.changeScene("CreditsScene");
