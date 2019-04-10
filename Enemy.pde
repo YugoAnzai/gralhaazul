@@ -45,4 +45,18 @@ class Enemy extends GameObject{
 		globals.world.enemiesDestroy.add(this);
 	}
 
+	void playStepSound() {
+		float volume = 0.3;
+		float random = random(4);
+		if (random < 1) {
+			soundManager.playSound("hunter_walk_1.wav", volume);
+		} else if (random < 2) {
+			soundManager.playSound("hunter_walk_2.wav", volume);
+		} else if (random < 3) {
+			soundManager.playSound("hunter_walk_3.wav", volume);
+		} else if (random < 4) {
+			soundManager.playSound("hunter_walk_4.wav", volume);
+		}
+	}
+
 }

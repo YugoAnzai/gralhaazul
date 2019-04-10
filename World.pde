@@ -34,8 +34,6 @@ class World{
 		// Trees
 		trees.add(new Tree(500, globals.floorY, 1));
 
-		enemies.add(new Lumberjack(0));
-
 	}
 
 	void process() {
@@ -69,7 +67,7 @@ class World{
 		for (Tree treeDestroy : treesDestroy) {
 			trees.remove(treeDestroy);
 		}
-		watersDestroy.clear();
+		treesDestroy.clear();
 		for (Pine pineDestroy : pinesDestroy) {
 			pines.remove(pineDestroy);
 		}

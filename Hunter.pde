@@ -18,6 +18,8 @@ class Hunter extends Enemy{
 	int stWaSightRd = 200;
 	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
+	int stWaStepMaxCount = 50;
+	int stWaStepCount = stWaStepMaxCount;
 
 	int stCuCutMaxCount = 300;
 	int stCuCutCount = stCuCutMaxCount;
@@ -90,6 +92,13 @@ class Hunter extends Enemy{
 	void stateProcess() {
 
 		if (state == ST_WALKING) {
+
+			// Step sound
+			stWaStepCount--;
+			if (stWaStepCount <= 0) {
+				playStepSound();
+				stWaStepCount = stWaStepMaxCount;
+			}
 
 			// Walk and Check bird direction
 			if (stWaDirRight) {

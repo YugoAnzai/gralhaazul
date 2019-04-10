@@ -17,6 +17,12 @@ class SoundManager{
 		soundEffect.play();
 	}
 
+	void playSound(String fileName, float volume) {
+		SoundFile soundEffect = new SoundFile(p, "sound/sfx/" + fileName);
+		soundEffect.amp(volume);
+		soundEffect.play();
+	}
+
 	void loadLoop(String loopName, String fileName) {
 		loopNames.add(loopName);
 		loopPlaying.add(false);

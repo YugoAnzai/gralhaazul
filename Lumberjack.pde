@@ -16,6 +16,8 @@ class Lumberjack extends Enemy{
 	float stWaSpeed = 0.3;
 	int stWaCutTreeDistance = 50;
 	int stWaSight = 100;
+	int stWaStepMaxCount = 70;
+	int stWaStepCount = stWaStepMaxCount;
 
 	int stCuCutMaxCount = 150;
 	int stCuCutCount = stCuCutMaxCount;
@@ -93,6 +95,13 @@ class Lumberjack extends Enemy{
 	void stateProcess() {
 
 		if (state == ST_WALKING) {
+
+			// Step sound
+			stWaStepCount--;
+			if (stWaStepCount <= 0) {
+				playStepSound();
+				stWaStepCount = stWaStepMaxCount;
+			}
 
 			if (nearestTree != null) {
 				// Walk to nearest tree

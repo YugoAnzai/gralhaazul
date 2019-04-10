@@ -8,7 +8,7 @@ class GameScene extends Scene{
 
 	  player = new Player(width/2, height/2, 500, 3, 3);
 	  world = new World(player);
-		enemyManager = new EnemyManager(500, 1300, 50);
+		enemyManager = new EnemyManager(1, 1300, 50);
 
 		soundManager.loadLoop("music", "music/fundo.wav");
 		soundManager.playLoop("music");
