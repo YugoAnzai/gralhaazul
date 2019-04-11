@@ -66,10 +66,42 @@ class GameScene extends Scene{
 	}
 
 	void process() {
+
 		super.process();
 		world.process();
 	  player.process();
 		enemyManager.process();
+
+		if (globals.level == 1) level1CheckWin();
+		else if (globals.level == 2) level2CheckWin();
+		else if (globals.level == 3) level3CheckWin();
+
+	}
+
+	void level1CheckWin() {
+
+		if (world.trees.size() >= 4) {
+			globals.level2locked = false;
+			sceneManager.changeScene("OverworldScene");
+		}
+
+	}
+
+	void level2CheckWin() {
+
+		if (world.trees.size() >= 5) {
+			globals.level3locked = false;
+			sceneManager.changeScene("OverworldScene");
+		}
+
+	}
+
+	void level3CheckWin() {
+
+		if (world.trees.size() >= 6) {
+			sceneManager.changeScene("EndScene");
+		}
+
 	}
 
 	void draw(){
