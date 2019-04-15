@@ -6,7 +6,7 @@ class Player extends GameObject{
   int state;
 
   // collision, size
-  int playerSize = 50;
+  int playerSize = 20;
   RectCollider[] collided;
   int playerColliderW = 30;
   int playerColliderH = 30;
