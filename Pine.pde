@@ -44,6 +44,7 @@ class Pine extends GameObject implements IWaterable{
 	boolean water() {
 		if (!falling && pos.y == globals.floorY - pineSize/2) {
 			globals.world.trees.add(new Tree((int)pos.x, globals.floorY, 1));
+			soundManager.playSound("tree_growing.wav");
 			destroy();
 			return true;
 		} else {
