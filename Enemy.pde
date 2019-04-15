@@ -5,7 +5,6 @@ class Enemy extends GameObject{
 	RectCollider[] collided;
 
 	boolean fleeing = false;
-	int fleeingCounter = 100;
 	int fleeSpeed = 6;
 
 	Pine pine;
@@ -24,10 +23,10 @@ class Enemy extends GameObject{
 		pine = (Pine)globals.world.getGameObjectFromCollided(collided, "Pine");
 
 		if (fleeing) {
-			fleeingCounter--;
 			pos.x += fleeSpeed;
-			if (fleeingCounter <= 0) {
+			if (pos.x < -25 || pos.x > width + 25) {
 				destroy();
+				println("enemy destroyed");
 			}
 		}
 
@@ -36,7 +35,7 @@ class Enemy extends GameObject{
 	void pineHit() {
 		soundManager.playSound("pine_hit.wav");
 		rectCollider.removeFromColliderMask();
-		if (int(random(1.99)) == 0) fleeSpeed = -fleeSpeed;
+		if (random(2) < 1) fleeSpeed = -fleeSpeed;
 		fleeing = true;
 	}
 
