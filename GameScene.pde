@@ -6,8 +6,6 @@ class GameScene extends Scene{
 
 	void setup() {
 
-		colliderManager.resetAllColliderMasks();
-		
 	  player = new Player(width/2, height/2, 700, 4, 4);
 	  world = new World(player);
 
@@ -126,6 +124,7 @@ class GameScene extends Scene{
 
 	void destroy(){
 		super.destroy();
+		colliderManager.resetAllColliderMasks();
 		soundManager.pauseLoop("music");
 		soundManager.stopLoop("music");
 		player = null;
