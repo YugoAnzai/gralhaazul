@@ -59,9 +59,11 @@ class OverworldScene extends Scene{
 			levels.get(index).selected = false;
 
 			if (input.keyEnter.down) {
-				if (index < levels.size()) index++;
-				if (levels.get(index).locked) {
-					index--;
+				if (index < levels.size() - 1) {
+					index++;
+					if (levels.get(index).locked) {
+						index--;
+					}
 				}
 			} else if (input.keyEnter.up) {
 				if (index > 0) index--;

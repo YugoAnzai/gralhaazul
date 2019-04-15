@@ -28,12 +28,12 @@ class OverworldLevel {
     if (selected) {
       tint(200);
     }
-    if (locked) {
-      tint(255, 0, 0);
+      
+    if (!locked) {
+      circle.draw();
     }
-    
-    circle.draw();
     tint(255);
+    
 
     if (completion > 0) {
 
