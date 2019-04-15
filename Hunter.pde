@@ -14,7 +14,7 @@ class Hunter extends Enemy{
 	int stWaChangeDirMaxCount = 80;
 	int stWaChangeDirMinCount = 20;
 	int stWaChangeDirCount;
-	float stWaSpeed = 0.9;
+	float stWaSpeed = 1.1;
 	int stWaSightRd = 200;
 	int stWaVertSightX = 120;
 	int stWaVertSightY = 500;
@@ -32,9 +32,13 @@ class Hunter extends Enemy{
 	int stShRecoverMaxCount = 150;
 	int stShRecoverCount = stShRecoverMaxCount;
 
-	Hunter(int x) {
+	Hunter(int x, float _stWaSpeed, int _stAiMaxCount,  int _stShRecoverMaxCount) {
 		// hunter anchor is on the center of his feet
 		super(x, globals.floorY, "Hunter", 30, 80, 0, -50);
+
+		stWaSpeed = _stWaSpeed;
+		stAiMaxCount = _stAiMaxCount;
+		stShRecoverMaxCount = _stShRecoverMaxCount;
 
 		anim = new Animator(0, -50, "hunter.png", 2, 2);
 

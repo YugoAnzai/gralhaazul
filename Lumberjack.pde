@@ -13,21 +13,21 @@ class Lumberjack extends Enemy{
 
 	Tree nearestTree;
 
-	float stWaSpeed = 0.3;
+	float stWaSpeed = 0.8;
 	int stWaCutTreeDistance = 50;
 	int stWaSight = 100;
 	int stWaStepMaxCount = 70;
 	int stWaStepCount = stWaStepMaxCount;
 
-	int stCuCutMaxCount = 150;
+	int stCuCutMaxCount = 200;
 	int stCuCutCount = stCuCutMaxCount;
 	Pine stCuPineBeingCut;
 
-	int stHiMaxCount = 300;
+	int stHiMaxCount = 200;
 	int stHiCount = stHiMaxCount;
 	Tree stHiTreeBeingCut;
 
-	int stSwMaxCount = 80;
+	int stSwMaxCount = 40;
 	int stSwCount = stSwMaxCount;
 	int stSwVisualMaxCount = 2;
 	int stSwVisualCount = stSwVisualMaxCount;
@@ -35,9 +35,11 @@ class Lumberjack extends Enemy{
 	boolean stSwShowingVisual;
 	int stSwRd = 100;
 
-	Lumberjack(int x) {
+	Lumberjack(int x, float _stWaSpeed) {
 		// hunter anchor is on the center of his feet
 		super(x, globals.floorY, "Lumberjack", 30, 80, 0, -50);
+
+		stWaSpeed = _stWaSpeed;
 
 		anim = new Animator(0, -50, "lumberjack.png", 2, 2);
 

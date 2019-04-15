@@ -35,13 +35,14 @@ class OverworldLevel {
       }
       circle.draw();
       tint(255);
-    }
 
-    fill(0);
-    textSize(14);
-    textAlign(CENTER);
-    text(name, x, y + textOffset);
-    textAlign(LEFT);
+      fill(0);
+      textSize(14);
+      textAlign(CENTER);
+      text(name, x, y + textOffset);
+      textAlign(LEFT);
+
+    }
 
   }
 

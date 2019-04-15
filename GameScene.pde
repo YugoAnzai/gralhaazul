@@ -6,7 +6,7 @@ class GameScene extends Scene{
 
 	void setup() {
 
-	  player = new Player(width/2, globals.floorY, 700, 4, 4);
+	  player = new Player(width/2, globals.floorY, 700, 6, 3);
 	  world = new World(player);
 
 		soundManager.loadLoop("music", "music/fundo.wav", 0.1);
@@ -20,11 +20,11 @@ class GameScene extends Scene{
 
 	void level1Setup() {
 
-		enemyManager = new EnemyManager(1000, 1500, 50);
+		enemyManager = new EnemyManager(800, 1300, 50);
 
 		// Clouds
-		world.clouds.add(new Cloud(600, 50, 0.6, 650, 0));
-		world.clouds.add(new Cloud(100, 150, 0.8, 800, 0));
+		world.clouds.add(new Cloud(600, 50, 0.6, 550, 0));
+		world.clouds.add(new Cloud(100, 150, 0.8, 700, 0));
 
 		// Pine
 		Pine pine = new Pine(500, 500, null);
@@ -36,7 +36,7 @@ class GameScene extends Scene{
 
 	void level2Setup() {
 
-		enemyManager = new EnemyManager(300, 1300, 60);
+		enemyManager = new EnemyManager(600, 1000, 60);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 0.8, 800, 0));
@@ -52,7 +52,7 @@ class GameScene extends Scene{
 
 	void level3Setup() {
 
-		enemyManager = new EnemyManager(0, 1000, 200);
+		enemyManager = new EnemyManager(100, 800, 80);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 1, 700, 100));
@@ -77,11 +77,21 @@ class GameScene extends Scene{
 		else if (globals.level == 2) level2CheckWin();
 		else if (globals.level == 3) level3CheckWin();
 
+		checkFail();
+
+	}
+
+	void checkFail() {
+
+		if (globals.world.trees.size() == 0 && globals.world.pines.size() == 0) {
+			sceneManager.changeScene("GameOverScene");
+		}
+
 	}
 
 	void level1CheckWin() {
 
-		if (world.trees.size() >= 4) {
+		if (countFullTrees() >= 3) {
 			globals.level2locked = false;
 			globals.selectedLevel = 2;
 			sceneManager.changeScene("VictoryScene");
@@ -91,7 +101,7 @@ class GameScene extends Scene{
 
 	void level2CheckWin() {
 
-		if (world.trees.size() >= 5) {
+		if (countFullTrees() >= 4) {
 			globals.level3locked = false;
 			globals.selectedLevel = 3;
 			sceneManager.changeScene("VictoryScene");
@@ -101,7 +111,7 @@ class GameScene extends Scene{
 
 	void level3CheckWin() {
 
-		if (world.trees.size() >= 6) {
+		if (countFullTrees() >= 5) {
 			globals.selectedLevel = 1;
 			globals.gameEnded = true;
 			sceneManager.changeScene("EndScene");
@@ -109,14 +119,46 @@ class GameScene extends Scene{
 
 	}
 
+	int countFullTrees() {
+		int fullTrees = 0;
+		for (Tree tree : globals.world.trees){
+			if (tree.heightUnits == tree.maxHeightUnits) fullTrees++;
+		}
+		return fullTrees;
+	}
+
 	void draw(){
 	  world.draw();
 	  player.draw();
 
 		fill(0);
-		textSize(20);
-		text("Level " + globals.level, 10, 20);
+		textSize(25);
+		text("Missão " + globals.level, 10, 20);
 
+		String mission = "";
+		if (globals.level == 1) {
+			mission = level1StringMission();
+		} else if (globals.level == 2) {
+			mission = level2StringMission();
+		} else if (globals.level == 2) {
+			mission = level3StringMission();
+		}
+		fill(0);
+		textSize(25);
+		text(mission, 10, 700);
+
+	}
+
+	String level1StringMission() {
+		return "Árvores " + countFullTrees() + "/" + 3;
+	}
+
+	String level2StringMission() {
+		return "Árvores " + countFullTrees() + "/" + 4;
+	}
+
+	String level3StringMission() {
+		return "Árvores " + countFullTrees() + "/" + 5;
 	}
 
 	void debugDraw() {
