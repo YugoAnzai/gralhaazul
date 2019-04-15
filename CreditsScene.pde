@@ -20,9 +20,8 @@ class CreditsScene extends Scene{
 		text("21205466 - Carlos Eduardo", 100, 100);
 		text("20649004 - Daniela M Garcia", 100, 200);
 		text("21114061 - Giovanni", 100, 300);
-		text("21179207 - Samanta", 100, 400);
-		text("20816627 - Sofia", 100, 500);
-		text("21181866 - Yugo Anzai", 100, 600);
+		text("20816627 - Sofia", 100, 400);
+		text("21181866 - Yugo Anzai", 100, 500);
 
 	}
 
