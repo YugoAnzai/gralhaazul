@@ -29,6 +29,14 @@ class SoundManager{
 		loopSounds.add(new SoundFile(p, "sound/" + fileName));
 	}
 
+	void loadLoop(String loopName, String fileName, float volume) {
+		loopNames.add(loopName);
+		loopPlaying.add(false);
+		SoundFile loop = new SoundFile(p, "sound/" + fileName);
+		loop.amp(volume);
+		loopSounds.add(loop);
+	}
+
 	void stopLoop(String loopName) {
 		int index = loopIndex(loopName);
 		loopNames.remove(index);
