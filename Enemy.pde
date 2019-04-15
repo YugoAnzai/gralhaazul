@@ -26,7 +26,6 @@ class Enemy extends GameObject{
 			pos.x += fleeSpeed;
 			if (pos.x < -25 || pos.x > width + 25) {
 				destroy();
-				println("enemy destroyed");
 			}
 		}
 
