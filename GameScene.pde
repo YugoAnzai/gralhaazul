@@ -9,7 +9,7 @@ class GameScene extends Scene{
 	  player = new Player(width/2, globals.floorY, 700, 4, 4);
 	  world = new World(player);
 
-		soundManager.loadLoop("music", "music/fundo.wav");
+		soundManager.loadLoop("music", "music/fundo.wav", 0.1);
 		soundManager.playLoop("music");
 
 		if (globals.level == 1) level1Setup();
