@@ -59,4 +59,8 @@ class GameObject {
     }
   }
 
+  void finalize() {
+    println(name + " cleared");
+  }
+
 }

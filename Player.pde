@@ -286,4 +286,9 @@ class Player extends GameObject{
     }
   }
 
+  void destroy() {
+    soundManager.pauseLoop("crow_wing");
+		soundManager.unloadLoop("crow_wing");
+  }
+
 }

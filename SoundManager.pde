@@ -37,7 +37,7 @@ class SoundManager{
 		loopSounds.add(loop);
 	}
 
-	void stopLoop(String loopName) {
+	void unloadLoop(String loopName) {
 		int index = loopIndex(loopName);
 		loopNames.remove(index);
 		loopPlaying.remove(index);

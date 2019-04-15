@@ -132,6 +132,24 @@ class World{
 
 	}
 
+	void clear() {
+		walls.clear();
+		trees.clear();
+		pines.clear();
+		clouds.clear();
+		waters.clear();
+		enemies.clear();
+		bullets.clear();
+
+		player = null;
+
+		treesDestroy.clear();
+		pinesDestroy.clear();
+		watersDestroy.clear();
+		bulletsDestroy.clear();
+		enemiesDestroy.clear();
+	}
+
 	void debugDrawGrid(){
 		int interval = 50;
 		stroke(0, 0, 255, 80);

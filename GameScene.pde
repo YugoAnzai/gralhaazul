@@ -81,7 +81,7 @@ class GameScene extends Scene{
 
 	void level1CheckWin() {
 
-		if (world.trees.size() >= 1) {
+		if (world.trees.size() >= 4) {
 			globals.level2locked = false;
 			globals.selectedLevel = 2;
 			sceneManager.changeScene("VictoryScene");
@@ -129,9 +129,13 @@ class GameScene extends Scene{
 		super.destroy();
 		colliderManager.resetAllColliderMasks();
 		soundManager.pauseLoop("music");
-		soundManager.stopLoop("music");
+		soundManager.unloadLoop("music");
+		player.destroy();
 		player = null;
+		world.clear();
 		world = null;
+		enemyManager = null;
+		System.gc();
 	}
 
 }

@@ -18,9 +18,9 @@ class OverworldScene extends Scene{
 		bg.createAnimation("idle", new int[]{0}, new int[]{99});
 		bg.setAnimation("idle");
 
-		levels.add(new OverworldLevel(525, 200, 0, false));
-		levels.add(new OverworldLevel(620, 330, 0, globals.level2locked));
-		levels.add(new OverworldLevel(450, 460, 0, globals.level3locked));
+		levels.add(new OverworldLevel(525, 200, "1 - Paraná", 0, false));
+		levels.add(new OverworldLevel(620, 330, "2 - Santa Catarina", 0, globals.level2locked));
+		levels.add(new OverworldLevel(450, 460, "3 - Rio Grande do Sul", 0, globals.level3locked));
 
 		levels.get(globals.selectedLevel - 1).selected = true;
 
