@@ -35,4 +35,15 @@ class ColliderManager{
 
 	}
 
+	void resetAllColliderMasks() {
+		player.resetColliders();
+		walls.resetColliders();
+		trees.resetColliders();
+		pines.resetColliders();
+		clouds.resetColliders();
+		waters.resetColliders();
+		enemies.resetColliders();
+		bullets.resetColliders();
+	}
+
 }

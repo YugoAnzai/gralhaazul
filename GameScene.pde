@@ -6,7 +6,9 @@ class GameScene extends Scene{
 
 	void setup() {
 
-	  player = new Player(width/2, height/2, 500, 3, 3);
+		colliderManager.resetAllColliderMasks();
+		
+	  player = new Player(width/2, height/2, 700, 4, 4);
 	  world = new World(player);
 
 		soundManager.loadLoop("music", "music/fundo.wav");
@@ -15,6 +17,7 @@ class GameScene extends Scene{
 		if (globals.level == 1) level1Setup();
 		else if (globals.level == 2) level2Setup();
 		else if (globals.level == 3) level3Setup();
+
 
 	}
 
@@ -39,7 +42,8 @@ class GameScene extends Scene{
 		enemyManager = new EnemyManager(300, 1300, 60);
 
 		// Clouds
-		world.clouds.add(new Cloud(100, 50, 1, 300, 100));
+		world.clouds.add(new Cloud(100, 50, 0.8, 300, 100));
+		world.clouds.add(new Cloud(800, 100, 1, 300, 100));
 
 		// Pine
 		Pine pine = new Pine(650, 500, null);
