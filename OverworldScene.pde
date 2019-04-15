@@ -77,7 +77,11 @@ class OverworldScene extends Scene{
 
 		if (input.keyEnter.enter) {
 			globals.level = getSelectedIndex() + 1;
-			sceneManager.changeScene("GameScene");
+			if (!globals.sawInstructions) {
+				sceneManager.changeScene("InstructionsScene");
+			} else {
+				sceneManager.changeScene("GameScene");
+			}
 		}
 
 	}

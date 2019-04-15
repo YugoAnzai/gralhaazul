@@ -9,6 +9,7 @@ class Globals {
   World world;
   int level = 1;
   boolean gameEnded = false;
+  boolean sawInstructions = false;
 
   // Overworld
   int selectedLevel = 1;
