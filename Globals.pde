@@ -2,7 +2,7 @@ class Globals {
 
   boolean debug = false;
 
-  float fallSpeed = 2;
+  float fallSpeed = 3;
   int floorY = 600;
 
   // game Globals
