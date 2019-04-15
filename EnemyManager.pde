@@ -1,7 +1,7 @@
 class EnemyManager{
 
-	int leftX = -50;
-	int rightX = 1050;
+	int leftX = -25;
+	int rightX = 1025;
 
 	int baseSpawnTime;
 	int rampUp;
