@@ -84,7 +84,7 @@ class GameScene extends Scene{
 		if (world.trees.size() >= 1) {
 			globals.level2locked = false;
 			globals.selectedLevel = 2;
-			sceneManager.changeScene("OverworldScene");
+			sceneManager.changeScene("VictoryScene");
 		}
 
 	}
@@ -94,7 +94,7 @@ class GameScene extends Scene{
 		if (world.trees.size() >= 5) {
 			globals.level3locked = false;
 			globals.selectedLevel = 3;
-			sceneManager.changeScene("OverworldScene");
+			sceneManager.changeScene("VictoryScene");
 		}
 
 	}
