@@ -22,14 +22,14 @@ class OverworldScene extends Scene{
 		levels.add(new OverworldLevel(620, 330, 0, globals.level2locked));
 		levels.add(new OverworldLevel(450, 460, 0, globals.level3locked));
 
-		levels.get(0).selected = true;
+		levels.get(globals.selectedLevel - 1).selected = true;
 
     bird = new Animator(0, 0, "overworldBird.png", 2, 1);
 		bird.createAnimation("idle", new int[]{0,1}, new int[]{7,7});
 		bird.setAnimation("idle");
 		bird.play();
-    bird.x = levels.get(0).x;
-    bird.y = levels.get(0).y;
+    bird.x = levels.get(globals.selectedLevel - 1).x;
+    bird.y = levels.get(globals.selectedLevel - 1).y;
 		targetX = bird.x;
 		targetY = bird.y;
 		birdTravelling = false;

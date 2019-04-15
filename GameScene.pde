@@ -81,8 +81,9 @@ class GameScene extends Scene{
 
 	void level1CheckWin() {
 
-		if (world.trees.size() >= 4) {
+		if (world.trees.size() >= 1) {
 			globals.level2locked = false;
+			globals.selectedLevel = 2;
 			sceneManager.changeScene("OverworldScene");
 		}
 
@@ -92,6 +93,7 @@ class GameScene extends Scene{
 
 		if (world.trees.size() >= 5) {
 			globals.level3locked = false;
+			globals.selectedLevel = 3;
 			sceneManager.changeScene("OverworldScene");
 		}
 
@@ -100,6 +102,8 @@ class GameScene extends Scene{
 	void level3CheckWin() {
 
 		if (world.trees.size() >= 6) {
+			globals.selectedLevel = 1;
+			globals.gameEnded = true;
 			sceneManager.changeScene("EndScene");
 		}
 

@@ -7,9 +7,11 @@ class Globals {
 
   // game Globals
   World world;
-
   int level = 1;
+  boolean gameEnded = false;
 
+  // Overworld
+  int selectedLevel = 1;
   boolean level2locked = true;
   boolean level3locked = true;
 
