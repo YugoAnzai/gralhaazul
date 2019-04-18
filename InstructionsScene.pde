@@ -21,11 +21,10 @@ class InstructionsScene extends Scene{
 		text("Instruções", 100, 100);
 		textSize(20);
 		fill(100, 200, 150);
-		text("Use WASD para mover o pássaro", 100, 200);
-		text("Use Espaço para pousar em árvores", 100, 300);
-		text("Use J para pegar pinha e interagir com nuvem", 100, 400);
-		textSize(14);
-		text("Plante árvores até o quarto nível usando a água das nuvens", 100, 600);
+		text("Use WASD ou as setas para mover o pássaro", 100, 200);
+		text("Use Espaço para pinha e interagir com as nuvens", 100, 300);
+		textSize(20);
+		text("Plante árvores até o quarto nível usando a água das nuvens", 100, 500);
 
 	}
 
