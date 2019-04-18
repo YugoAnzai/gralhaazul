@@ -26,9 +26,8 @@ class Player extends GameObject{
   int carriedYOffset = 30;
   GameObject carried = null;
 
-  float flySpeed = 4;
+  float flySpeed = 5;
   boolean facingRight = true;
-
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
     super(x, y, "Player");
@@ -159,6 +158,7 @@ class Player extends GameObject{
     } else if (state == ST_FLYING) {
 
       boolean landed = checkTreeAndLand();
+
       if (landed) {
         soundManager.pauseLoop("crow_wing");
         anim.setAnimation("idle");
@@ -254,7 +254,8 @@ class Player extends GameObject{
 
   boolean checkTreeAndLand(){
     TreePart treePart = (TreePart)globals.world.getGameObjectFromCollided(collided, "TreePart");
-    if (treePart != null && input.keyEnter.land) {
+    boolean notMovingInputs = !input.pressed.right && !input.pressed.left && !input.pressed.up && !input.pressed.down;
+    if (treePart != null && notMovingInputs) {
       pos.y = treePart.pos.y;
       return true;
     }

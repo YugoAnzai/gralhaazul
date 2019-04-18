@@ -69,25 +69,25 @@ class Input{
   }
 
   void keyPressed(){
-    if(key == 'a') rawInputPressed.left = true;
-    if(key == 'd') rawInputPressed.right = true;
-    if(key == 'w') rawInputPressed.up = true;
-    if(key == 's') rawInputPressed.down = true;
-    if(key == ' ') rawInputPressed.land = true;
-    if(key == 'j') rawInputPressed.grab = true;
+    if(key == 'a' || keyCode == LEFT) rawInputPressed.left = true;
+    if(key == 'd' || keyCode == RIGHT) rawInputPressed.right = true;
+    if(key == 'w' || keyCode == UP) rawInputPressed.up = true;
+    if(key == 's' || keyCode == DOWN) rawInputPressed.down = true;
+    if(key == 'j') rawInputPressed.land = true;
+    if(key == ' ') rawInputPressed.grab = true;
     if(key == 'p') rawInputPressed.debug = true;
-    if(key == ENTER || key == RETURN) rawInputPressed.enter = true;
+    if(key == ENTER || key == RETURN || key == ' ') rawInputPressed.enter = true;
   }
 
   void keyReleased() {
-    if(key == 'a') rawInputPressed.left = false;
-    if(key == 'd') rawInputPressed.right = false;
-    if(key == 'w') rawInputPressed.up = false;
-    if(key == 's') rawInputPressed.down = false;
-    if(key == ' ') rawInputPressed.land = false;
-    if(key == 'j') rawInputPressed.grab = false;
+    if(key == 'a' || keyCode == LEFT) rawInputPressed.left = false;
+    if(key == 'd' || keyCode == RIGHT) rawInputPressed.right = false;
+    if(key == 'w' || keyCode == UP) rawInputPressed.up = false;
+    if(key == 's' || keyCode == DOWN) rawInputPressed.down = false;
+    if(key == 'j') rawInputPressed.land = false;
+    if(key == ' ') rawInputPressed.grab = false;
     if(key == 'p') rawInputPressed.debug = false;
-    if(key == ENTER || key == RETURN) rawInputPressed.enter = false;
+    if(key == ENTER || key == RETURN || key == ' ') rawInputPressed.enter = false;
   }
 
  void debugDraw(int x, int y) {
