@@ -5,16 +5,18 @@ class EnemyManager{
 
 	int baseSpawnTime;
 	int rampUp;
-	int treesPartMultiplier = 30;
-	int maxEnemyCountRampUp = 500;
+	int maxEnemyCountRampUp = 400;
+	int treesPartMultiplier;
+	int maxTreePartRampUp = 300;
 
 	int enemiesCreated = 0;
 	int enemyCreateCount = 0;
 
-	EnemyManager(int initialCount, int _baseSpawnTime, int _rampUp){
+	EnemyManager(int initialCount, int _baseSpawnTime, int _rampUp, int _treePartMultiplier){
 		enemyCreateCount = initialCount;
 		baseSpawnTime = _baseSpawnTime;
 		rampUp = _rampUp;
+		treesPartMultiplier = _treePartMultiplier;
 	}
 
 	void process() {
@@ -36,7 +38,7 @@ class EnemyManager{
 
 	Enemy chooseTypeAndCreate() {
 		if (globals.world.trees.size() > 1) {
-			if (enemiesCreated > 3) {
+			if (enemiesCreated > 4) {
 				if (random(2.3) < 1) return createLumberjack();
 			}
 		}
@@ -47,15 +49,16 @@ class EnemyManager{
 		int x = leftX;
 		if (random(2) < 1) x = rightX;
 
-		float stWaSpeed = 1.2;
+		float stWaSpeed = 1.0;
 		int stAiMaxCount = 80;
 		int stShRecoverMaxCount = 150;
 
-		if (enemiesCreated > 7) stAiMaxCount = 60;
-		if (enemiesCreated > 12) stShRecoverMaxCount = 80;
-		if (enemiesCreated > 10) stWaSpeed = 1.4;
-		if (enemiesCreated > 20) stAiMaxCount = 20;
-		if (enemiesCreated > 25) stWaSpeed = 1.7;
+		if (enemiesCreated > 15) stWaSpeed = 1.2;
+		if (enemiesCreated > 30) stWaSpeed = 1.4;
+		if (enemiesCreated > 20) stAiMaxCount = 60;
+		if (enemiesCreated > 40) stAiMaxCount = 50;
+		if (enemiesCreated > 25) stShRecoverMaxCount = 130;
+		if (enemiesCreated > 50) stShRecoverMaxCount = 110;
 
 		return new Hunter(x, stWaSpeed, stAiMaxCount, stShRecoverMaxCount);
 
@@ -67,8 +70,9 @@ class EnemyManager{
 
 		float stWaSpeed = 0.6;
 
-		if (enemiesCreated > 10) stWaSpeed = 0.8;
-		if (enemiesCreated > 20) stWaSpeed = 1.1;
+		if (enemiesCreated > 20) stWaSpeed = 0.8;
+		if (enemiesCreated > 40) stWaSpeed = 0.9;
+		if (enemiesCreated > 80) stWaSpeed = 1.3;
 
 		return new Lumberjack(x, stWaSpeed);
 
@@ -77,7 +81,7 @@ class EnemyManager{
 	void refreshCreateCount() {
 		enemyCreateCount = baseSpawnTime
 		- (int)constrain((rampUp * (enemiesCreated * 0.5)), 0, maxEnemyCountRampUp)
-		- countTreeParts() * treesPartMultiplier
+		- (int)constrain(countTreeParts() * treesPartMultiplier, 0, maxTreePartRampUp)
 		;
 	}
 

@@ -6,7 +6,7 @@ class GameScene extends Scene{
 
 	void setup() {
 
-	  player = new Player(width/2, globals.floorY, 700, 6, 3);
+	  player = new Player(width/2, globals.floorY, 600, 7, 3);
 	  world = new World(player);
 
 		soundManager.loadLoop("music", "music/fundo.wav", 0.1);
@@ -20,7 +20,7 @@ class GameScene extends Scene{
 
 	void level1Setup() {
 
-		enemyManager = new EnemyManager(800, 1300, 50);
+		enemyManager = new EnemyManager(800, 1200, 50, 20);
 
 		// Clouds
 		world.clouds.add(new Cloud(600, 50, 0.6, 550, 0));
@@ -36,7 +36,7 @@ class GameScene extends Scene{
 
 	void level2Setup() {
 
-		enemyManager = new EnemyManager(600, 1000, 60);
+		enemyManager = new EnemyManager(500, 1000, 60, 30);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 0.8, 800, 0));
@@ -52,7 +52,7 @@ class GameScene extends Scene{
 
 	void level3Setup() {
 
-		enemyManager = new EnemyManager(100, 800, 80);
+		enemyManager = new EnemyManager(300, 900, 80, 40);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 1, 700, 100));

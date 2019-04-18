@@ -29,11 +29,14 @@ class Lumberjack extends Enemy{
 
 	int stSwMaxCount = 40;
 	int stSwCount = stSwMaxCount;
-	int stSwVisualMaxCount = 2;
+	int stSwVisualMaxCount = 4;
 	int stSwVisualCount = stSwVisualMaxCount;
 	int stSwYOffset = -70;
 	boolean stSwShowingVisual;
 	int stSwRd = 100;
+
+	int stReMaxCount = 150;
+	int stReCount = stReMaxCount;
 
 	Lumberjack(int x, float _stWaSpeed) {
 		// hunter anchor is on the center of his feet
@@ -187,12 +190,23 @@ class Lumberjack extends Enemy{
 						stSwCount = stSwMaxCount;
 						stSwShowingVisual = false;
 						stSwVisualCount = stSwVisualMaxCount;
-						anim.setAnimation("walking");
-						state = ST_WALKING;
+						anim.setAnimation("recovering");
+						state = ST_RECOVERING;
 						return;
+						
 					}
 				}
 
+			}
+
+		} else if (state == ST_RECOVERING) {
+
+			stReCount--;
+			if (stReCount <= 0) {
+				stReCount = stReMaxCount;
+				anim.setAnimation("walking");
+				state = ST_WALKING;
+				return;
 			}
 
 		}
@@ -236,7 +250,7 @@ class Lumberjack extends Enemy{
 		// sigth
 		noStroke();
 		fill(0, 30, 255, 30);
-		ellipse(pos.x, pos.y, 2*stWaSight, 2*stWaSight);
+		ellipse(pos.x, pos.y + stSwYOffset, 2*stWaSight, 2*stWaSight);
 
 	}
 
