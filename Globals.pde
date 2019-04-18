@@ -10,6 +10,7 @@ class Globals {
   int level = 1;
   boolean gameEnded = false;
   boolean sawInstructions = false;
+  boolean sawCutscene = false;
 
   // Overworld
   int selectedLevel = 1;

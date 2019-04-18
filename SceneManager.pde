@@ -19,6 +19,7 @@ class SceneManager{
 		else if(sceneName == "EndScene") scene = new EndScene();
 		else if(sceneName == "VictoryScene") scene = new VictoryScene();
 		else if(sceneName == "InstructionsScene") scene = new InstructionsScene();
+		else if(sceneName == "CutsceneScene") scene = new CutsceneScene();
 
 		return scene;
 	}

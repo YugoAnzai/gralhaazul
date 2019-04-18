@@ -29,7 +29,11 @@ class MenuScene extends Scene{
 		if (input.keyEnter.enter) {
 			int index = getSelectedIndex();
 			if (index == 0) {
-				sceneManager.changeScene("OverworldScene");
+				if (!globals.sawCutscene) {
+					sceneManager.changeScene("CutsceneScene");
+				} else {
+					sceneManager.changeScene("OverworldScene");
+				}
 			} else if (index == 1) {
 				sceneManager.changeScene("CreditsScene");
 			}
