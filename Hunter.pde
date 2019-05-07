@@ -34,37 +34,43 @@ class Hunter extends Enemy{
 
 	Hunter(int x, float _stWaSpeed, int _stAiMaxCount,  int _stShRecoverMaxCount) {
 		// hunter anchor is on the center of his feet
-		super(x, globals.floorY, "Hunter", 30, 80, 0, -50);
+		super(x, globals.floorY, "Hunter", 40, 100, 0, -50);
 
 		stWaSpeed = _stWaSpeed;
 		stAiMaxCount = _stAiMaxCount;
 		stShRecoverMaxCount = _stShRecoverMaxCount;
 
-		anim = new Animator(0, -50, "hunter.png", 2, 2);
+		anim = new Animator(0, -50, "hunter.png", 4, 3);
 
 		player = globals.world.player;
 
-    int[] animSprites = new int[]{0};
-		int[] animDuration = new int[]{99};
+    int[] animSprites = new int[]{0,1,2,3};
+		int[] animDuration = new int[]{18,18,18,18};
 		anim.createAnimation("walking", animSprites, animDuration);
-		animSprites = new int[]{1};
-		animDuration = new int[]{99};
-		anim.createAnimation("cutting_pine", animSprites, animDuration);
-		animSprites = new int[]{2};
-		animDuration = new int[]{99};
+		animSprites = new int[]{4,5};
+		animDuration = new int[]{20,20};
 		anim.createAnimation("aiming", animSprites, animDuration);
-		animSprites = new int[]{3};
-		animDuration = new int[]{99};
+		animSprites = new int[]{6,7,8,4};
+		animDuration = new int[]{40,3,20,100};
 		anim.createAnimation("shooting", animSprites, animDuration);
-		animSprites = new int[]{1,2};
-		animDuration = new int[]{2,2};
+		animSprites = new int[]{9,10};
+		animDuration = new int[]{16,10};
+		anim.createAnimation("cutting_pine", animSprites, animDuration);
+		animSprites = new int[]{11};
+		animDuration = new int[]{12};
 		anim.createAnimation("hit", animSprites, animDuration);
+		animSprites = new int[]{0,1,2,3};
+		animDuration = new int[]{5,5,5,5};
+		anim.createAnimation("fleeing", animSprites, animDuration);
 
 		anim.setAnimation("walking");
     anim.play();
 
 		state = ST_WALKING;
-		if (x > width/2) stWaDirRight = false;
+		if (x > width/2) {
+			stWaDirRight = false;
+			anim.flipped = true;
+		}
 		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
 
 	}
@@ -82,7 +88,8 @@ class Hunter extends Enemy{
 					stCuPineBeingCut.rectCollider.addToColliderMask();
 				}
 
-				anim.setAnimation("walking");
+				anim.setAnimation("hit");
+				anim.setNextAnimation("fleeing");
 				state = ST_FLEEING;
 
 				pineHit();
@@ -169,8 +176,13 @@ class Hunter extends Enemy{
 			stShRecoverCount--;
 			if (stShRecoverCount < 0) {
 				stShRecoverCount = stShRecoverMaxCount;
-				if (pos.x > width/2) stWaDirRight = false;
-				else stWaDirRight = true;
+				if (pos.x > width/2) {
+					stWaDirRight = false;
+					anim.flipped = true;
+				} else {
+					stWaDirRight = true;
+					anim.flipped = false;
+				}
 				stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
 				anim.setAnimation("walking");
 				state = ST_WALKING;
@@ -183,6 +195,7 @@ class Hunter extends Enemy{
 
 	void stWaChangeDirection() {
 		stWaDirRight = !stWaDirRight;
+		anim.flipped = ! anim.flipped;
 		stWaChangeDirCount = (int) random(stWaChangeDirMinCount, stWaChangeDirMaxCount);
 	}
 

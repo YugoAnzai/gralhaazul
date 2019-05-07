@@ -27,6 +27,8 @@ class World{
 
 		player = _player;
 
+		enemies.add(new Hunter(10, 1.0, 80, 150));
+
 	}
 
 	void process() {

@@ -20,8 +20,8 @@ void setup() {
   globalTextBox = new TextBox(500, 550);
 
   // sceneManager = new SceneManager("CutsceneScene");
-  // sceneManager = new SceneManager("GameScene");
-  sceneManager = new SceneManager("TestScene");
+  sceneManager = new SceneManager("GameScene");
+  // sceneManager = new SceneManager("TestScene");
   // sceneManager = new SceneManager("SplashScene");
 
 }

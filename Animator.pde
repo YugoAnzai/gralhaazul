@@ -9,6 +9,7 @@ class Animator{
 	float y = 0;
 	int xOffset;
 	int yOffset;
+	boolean flipped = false;
 
 	String[] animNames = null;
 	int[][] animSprites = null;
@@ -124,7 +125,14 @@ class Animator{
 			frameCount = 0;
 		}
 
-	  	image(sprites[animSprites[curAnimIndex][spriteIndex]], (int)x + xOffset, (int)y + yOffset);
+		if (flipped) {
+			pushMatrix();
+			scale(-1, 1);
+			image(sprites[animSprites[curAnimIndex][spriteIndex]], -((int)x + xOffset), (int)y + yOffset);
+			popMatrix();
+		} else {
+			image(sprites[animSprites[curAnimIndex][spriteIndex]], (int)x + xOffset, (int)y + yOffset);
+		}
 
 	}
 
