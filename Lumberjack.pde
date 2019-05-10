@@ -40,29 +40,38 @@ class Lumberjack extends Enemy{
 
 	Lumberjack(int x, float _stWaSpeed) {
 		// hunter anchor is on the center of his feet
-		super(x, globals.floorY, "Lumberjack", 30, 80, 0, -50);
+		super(x, globals.floorY, "Lumberjack", 40, 100, 0, -50);
 
 		stWaSpeed = _stWaSpeed;
 
-		anim = new Animator(0, -50, "lumberjack.png", 2, 2);
+		anim = new Animator(0, -50, "lumberjack.png", 4, 3);
 
 		player = globals.world.player;
 
-    int[] animSprites = new int[]{0};
-		int[] animDuration = new int[]{99};
+    int[] animSprites = new int[]{0,1,2,3};
+		int[] animDuration = new int[]{22,22,22,22};
 		anim.createAnimation("walking", animSprites, animDuration);
-		animSprites = new int[]{1};
-		animDuration = new int[]{99};
+		animSprites = new int[]{4,5,6};
+		animDuration = new int[]{20,5,20};
+		anim.createAnimation("cutting_tree", animSprites, animDuration);
+		animSprites = new int[]{10,9};
+		animDuration = new int[]{16,10};
 		anim.createAnimation("cutting_pine", animSprites, animDuration);
-		animSprites = new int[]{2};
+		animSprites = new int[]{7};
 		animDuration = new int[]{99};
 		anim.createAnimation("aiming", animSprites, animDuration);
-		animSprites = new int[]{3};
-		animDuration = new int[]{99};
+		animSprites = new int[]{8,9};
+		animDuration = new int[]{20,40};
 		anim.createAnimation("swinging_player", animSprites, animDuration);
-		animSprites = new int[]{1,2};
-		animDuration = new int[]{2,2};
+		animSprites = new int[]{10};
+		animDuration = new int[]{99};
 		anim.createAnimation("recovering", animSprites, animDuration);
+		animSprites = new int[]{11};
+		animDuration = new int[]{12};
+		anim.createAnimation("hit", animSprites, animDuration);
+		animSprites = new int[]{0,1,2,3};
+		animDuration = new int[]{5,5,5,5};
+		anim.createAnimation("fleeing", animSprites, animDuration);
 
 		anim.setAnimation("walking");
     anim.play();
@@ -86,7 +95,8 @@ class Lumberjack extends Enemy{
 					stCuPineBeingCut.rectCollider.addToColliderMask();
 				}
 
-				anim.setAnimation("walking");
+				anim.setAnimation("hit");
+				anim.setNextAnimation("fleeing");
 				state = ST_FLEEING;
 
 				pineHit();
@@ -118,7 +128,7 @@ class Lumberjack extends Enemy{
 
 				// Check near Tree;
 				if (abs(nearestTree.pos.x - pos.x) < stWaCutTreeDistance) {
-					anim.setAnimation("cutting_pine");
+					anim.setAnimation("cutting_tree");
 					stHiTreeBeingCut = nearestTree;
 					nearestTree = null;
 					stHiCount = stHiMaxCount;
@@ -132,7 +142,7 @@ class Lumberjack extends Enemy{
 
 			// Check bird in range
 			if(checkPlayerdist(stWaSight, stSwYOffset)) {
-				anim.setAnimation("swinging_player");
+				anim.setAnimation("aiming");
 				state = ST_SWINGING_PLAYER;
 				return;
 			}
@@ -178,8 +188,9 @@ class Lumberjack extends Enemy{
 			stSwCount--;
 			if (stSwCount <= 0) {
 				// Show visual and count
+				anim.setAnimation("swinging_player");
 				if (!stSwShowingVisual) {
-					stSwShowingVisual = true;
+					// stSwShowingVisual = true;
 				} else {
 					stSwVisualCount--;
 					if (stSwVisualCount <= 0) {
@@ -193,7 +204,7 @@ class Lumberjack extends Enemy{
 						anim.setAnimation("recovering");
 						state = ST_RECOVERING;
 						return;
-						
+
 					}
 				}
 
