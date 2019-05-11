@@ -28,9 +28,9 @@ class World{
 		player = _player;
 
 		// enemies.add(new Hunter(10, 1.0, 80, 150));
-		enemies.add(new Lumberjack(600, 0.6));
-		trees.add(new Tree(400, globals.floorY, 2));
-		trees.add(new Tree(100, globals.floorY, 2));
+		// enemies.add(new Lumberjack(600, 0.6));
+		// trees.add(new Tree(400, globals.floorY, 2));
+		// trees.add(new Tree(100, globals.floorY, 2));
 
 	}
 
