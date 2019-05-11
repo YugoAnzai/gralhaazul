@@ -162,6 +162,12 @@ class Hunter extends Enemy{
 
 		} else if (state == ST_AIMING) {
 
+			if (player.pos.x > pos.x) {
+				anim.flipped = false;
+			} else {
+				anim.flipped = true;
+			}
+
 			stAiCount--;
 			if (stAiCount < 0) {
 				stAiShot();
