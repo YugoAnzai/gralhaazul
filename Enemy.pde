@@ -45,7 +45,12 @@ class Enemy extends GameObject{
 	void pineHit() {
 		soundManager.playSound("pine_hit.wav", 0.4);
 		rectCollider.removeFromColliderMask();
-		if (random(2) < 1) fleeSpeed = -fleeSpeed;
+		if (random(2) < 1) {
+			fleeSpeed = -fleeSpeed;
+			anim.flipped = true;
+		} else {
+			anim.flipped = false;
+		}
 		fleeing = true;
 	}
 

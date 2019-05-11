@@ -102,12 +102,6 @@ class Animator{
 
 	void draw(){
 
-		if (nextAnimation != null && ended) {
-			setAnimation(nextAnimation);
-			nextAnimation = null;
-			ended = false;
-		}
-
 		if (playing) {
 			frameCount++;
 		}
@@ -123,6 +117,12 @@ class Animator{
 			spriteIndex = spriteIndex % animSprites[curAnimIndex].length;
 
 			frameCount = 0;
+		}
+
+		if (nextAnimation != null && ended) {
+			setAnimation(nextAnimation);
+			nextAnimation = null;
+			ended = false;
 		}
 
 		if (flipped) {
