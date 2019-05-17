@@ -9,7 +9,10 @@ class GameScene extends Scene{
 	  player = new Player(width/2, globals.floorY, 600, 7, 3);
 	  world = new World(player);
 
-		soundManager.loadLoop("music", "music/forest.wav", 0.1);
+		soundManager.loadLoop("forest", "music/forest.wav", 0.1);
+		soundManager.playLoop("forest");
+
+		soundManager.loadLoop("music", "music/level"+globals.level+".mp3", 0.1);
 		soundManager.playLoop("music");
 
 		if (globals.level == 1) level1Setup();
@@ -145,7 +148,7 @@ class GameScene extends Scene{
 		}
 		fill(0);
 		textSize(25);
-		text(mission, 10, 700);
+		text(mission, 30, 650);
 
 	}
 

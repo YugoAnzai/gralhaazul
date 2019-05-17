@@ -21,6 +21,7 @@ class Player extends GameObject{
   // hearts
   int maxHearts;
   int hearts;
+  Animator heart;
 
   // carry
   int carriedYOffset = 30;
@@ -54,6 +55,10 @@ class Player extends GameObject{
 		anim.setAnimation("idle");
     anim.play();
 
+    heart = new Animator(0, 0, "heart.png", 1, 1);
+    heart.createAnimation("idle", new int[]{0}, new int[]{99});
+    heart.setAnimation("idle");
+
   }
 
   void draw() {
@@ -61,7 +66,7 @@ class Player extends GameObject{
 
     // HUD : stamina
     int stX = 300;
-    int stY = 675;
+    int stY = 650;
     int stW = 600;
     int stH = 15;
 
@@ -79,9 +84,10 @@ class Player extends GameObject{
     stX = 150;
 
     for (int i = 0; i < hearts; i++) {
-      stX += 30;
-      fill(200, 50, 50);
-      rect(stX, stY, 20, 20);
+      stX += 60;
+      heart.x = stX;
+      heart.y = stY;
+      heart.draw();
     }
 
   }
