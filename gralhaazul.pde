@@ -32,8 +32,8 @@ void setup() {
   soundManager = new SoundManager(this);
   globalTextBox = new TextBox(500, 550);
 
-  sceneManager = new SceneManager("EndScene");
-  // sceneManager = new SceneManager("GameScene");
+  // sceneManager = new SceneManager("EndScene");
+  sceneManager = new SceneManager("GameScene");
   // sceneManager = new SceneManager("OverworldScene");
   // sceneManager = new SceneManager("SplashScene");
 

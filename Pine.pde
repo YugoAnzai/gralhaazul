@@ -12,11 +12,11 @@ class Pine extends GameObject implements IWaterable{
 		super(x, y, "Pine");
 		fatherTreePart = treePart;
 		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
-	}
 
-	void draw() {
-		fill(204, 113, 44);
-		ellipse(pos.x, pos.y, pineSize, pineSize);
+		anim = new Animator(0, 0, "pine.png", 1, 1);
+		anim.createAnimation("idle", new int[]{0}, new int[]{99});
+		anim.setAnimation("idle");
+
 	}
 
 	void pickup() {
