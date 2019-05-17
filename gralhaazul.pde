@@ -21,8 +21,8 @@ void setup() {
 
   // sceneManager = new SceneManager("CutsceneScene");
   // sceneManager = new SceneManager("GameScene");
-  sceneManager = new SceneManager("OverworldScene");
-  // sceneManager = new SceneManager("SplashScene");
+  // sceneManager = new SceneManager("OverworldScene");
+  sceneManager = new SceneManager("SplashScene");
 
 }
 

@@ -15,13 +15,21 @@ class CreditsScene extends Scene{
 	void draw(){
 		background(0);
 
-		textSize(50);
+		textSize(30);
+		fill(255);
+		text("Feito Por:", 100, 100);
+
+		textSize(40);
 		fill(0, 150, 255);
-		text("21205466 - Carlos Eduardo", 100, 100);
-		text("20649004 - Daniela M Garcia", 100, 200);
-		text("21114061 - Giovanni", 100, 300);
-		text("20816627 - Sofia", 100, 400);
-		text("21181866 - Yugo Anzai", 100, 500);
+		text("Carlos Belmiro (21205466)", 100, 150);
+		text("Daniela Garcia (20649004)", 100, 250);
+		text("Giovanni Raposo (21114061)", 100, 350);
+		text("Sofia Defino (20816627)", 100, 450);
+		text("Yugo Anzai (21181866)", 100, 550);
+
+		fill(255);
+		textSize(30);
+		text("Pressione enter para continuar", 500, 650);
 
 	}
 

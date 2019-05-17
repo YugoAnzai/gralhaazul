@@ -10,6 +10,9 @@ class SplashScene extends Scene{
 			sceneManager.changeScene("MenuScene");
 		}
 
+		soundManager.loadLoop("menu", "music/menu.mp3", 0.1);
+		soundManager.playLoop("menu");
+
 	}
 
 	void draw(){
