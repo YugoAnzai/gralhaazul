@@ -14,7 +14,7 @@ class Globals {
 
   // Overworld
   int selectedLevel = 1;
-  boolean level2locked = false;
-  boolean level3locked = false;
+  boolean level2locked = true;
+  boolean level3locked = true;
 
 }
