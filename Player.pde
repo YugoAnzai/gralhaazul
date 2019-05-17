@@ -65,9 +65,9 @@ class Player extends GameObject{
     super.draw();
 
     // HUD : stamina
-    int stX = 300;
-    int stY = 650;
-    int stW = 600;
+    int stX = 400;
+    int stY = 640;
+    int stW = 500;
     int stH = 15;
 
     rectMode(CORNER);
@@ -82,9 +82,10 @@ class Player extends GameObject{
 
     // HUD hearts;
     stX = 150;
+    stY = 650;
 
     for (int i = 0; i < hearts; i++) {
-      stX += 60;
+      stX += 50;
       heart.x = stX;
       heart.y = stY;
       heart.draw();

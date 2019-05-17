@@ -23,6 +23,8 @@ void setup() {
   rectMode(CENTER);
   imageMode(CENTER);
 
+  textFont(createFont("brlnsr.ttf", 48));
+
   globals = new Globals();
   colliderManager = new ColliderManager();
   input = new Input();
@@ -31,9 +33,9 @@ void setup() {
   globalTextBox = new TextBox(500, 550);
 
   // sceneManager = new SceneManager("TestScene");
-  // sceneManager = new SceneManager("GameScene");
+  sceneManager = new SceneManager("GameScene");
   // sceneManager = new SceneManager("OverworldScene");
-  sceneManager = new SceneManager("SplashScene");
+  // sceneManager = new SceneManager("SplashScene");
 
 }
 
@@ -73,11 +75,11 @@ void debugDraw(){
     sceneManager.debugDraw();
   }
 
-  textSize(10);
-  fill(255);
-  text("maxMemory " + maxMemory, 10, 670);
-  text("allocatedMemory " + allocatedMemory, 10, 680);
-  text("freeMemory " + freeMemory, 10, 690);
+  // textSize(10);
+  // fill(255);
+  // text("maxMemory " + maxMemory, 10, 670);
+  // text("allocatedMemory " + allocatedMemory, 10, 680);
+  // text("freeMemory " + freeMemory, 10, 690);
 
 }
 

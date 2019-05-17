@@ -14,7 +14,7 @@ class TextBox{
 	int w = 800;
 	int h = 150;
 	int margin = 20;
-	int textSize = 17;
+	int textSize = 20;
 	int initAlfa = 0;
 	float alfa = initAlfa;
 	float alfaJump = (float)(255 - initAlfa) / maxSkipCounter;

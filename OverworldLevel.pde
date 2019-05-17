@@ -37,7 +37,7 @@ class OverworldLevel {
       tint(255);
 
       fill(0);
-      textSize(14);
+      textSize(18);
       textAlign(CENTER);
       text(name, x, y + textOffset);
       textAlign(LEFT);
