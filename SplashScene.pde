@@ -1,6 +1,10 @@
 class SplashScene extends Scene{
 
 	void setup() {
+
+		soundManager.loadLoop("menu", "music/menu.mp3");
+		soundManager.playLoop("menu");
+		
 	}
 
 	void process() {
@@ -10,17 +14,17 @@ class SplashScene extends Scene{
 			sceneManager.changeScene("MenuScene");
 		}
 
-		soundManager.loadLoop("menu", "music/menu.mp3", 0.1);
-		soundManager.playLoop("menu");
-
 	}
 
 	void draw(){
+
 		background(0);
 
 		textSize(70);
 		fill(0, 200, 150);
-		text("GGGralha Team", 100, height/2);
+		textAlign(CENTER);
+		text("GGGralha Team", width/2, height/2);
+		textAlign(LEFT);
 
 	}
 

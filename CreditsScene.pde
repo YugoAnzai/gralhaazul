@@ -29,7 +29,7 @@ class CreditsScene extends Scene{
 
 		fill(255);
 		textSize(30);
-		text("Pressione enter para continuar", 500, 650);
+		text("Pressione enter para voltar", 500, 650);
 
 	}
 

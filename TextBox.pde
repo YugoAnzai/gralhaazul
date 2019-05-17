@@ -66,7 +66,7 @@ class TextBox{
 		text(lines.get(index), x, y, w - 2* margin, h - 2* margin);
 
 		if (canSkip) {
-			fill(0, 255, 100);
+			fill(0, 255, 0);
 			rect(x + w/2, y + h/2, 20 , 20);
 		}
 

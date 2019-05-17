@@ -1,3 +1,10 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 Globals globals;
 Input input;
 Debug debug;
@@ -5,6 +12,10 @@ ColliderManager colliderManager;
 SceneManager sceneManager;
 SoundManager soundManager;
 TextBox globalTextBox;
+
+long maxMemory;
+long allocatedMemory;
+long freeMemory;
 
 void setup() {
 
@@ -19,7 +30,7 @@ void setup() {
   soundManager = new SoundManager(this);
   globalTextBox = new TextBox(500, 550);
 
-  // sceneManager = new SceneManager("CutsceneScene");
+  // sceneManager = new SceneManager("TestScene");
   // sceneManager = new SceneManager("GameScene");
   // sceneManager = new SceneManager("OverworldScene");
   sceneManager = new SceneManager("SplashScene");
@@ -45,6 +56,10 @@ void process(){
     }
   }
 
+  maxMemory = Runtime.getRuntime().maxMemory();
+  allocatedMemory = Runtime.getRuntime().totalMemory();
+  freeMemory = Runtime.getRuntime().freeMemory();
+
 }
 
 void _draw(){
@@ -57,6 +72,12 @@ void debugDraw(){
     input.debugDraw(0, 0);
     sceneManager.debugDraw();
   }
+
+  textSize(10);
+  fill(255);
+  text("maxMemory " + maxMemory, 10, 670);
+  text("allocatedMemory " + allocatedMemory, 10, 680);
+  text("freeMemory " + freeMemory, 10, 690);
 
 }
 

@@ -3,10 +3,12 @@ class MenuScene extends Scene{
 	ArrayList<SelectibleText> texts = new ArrayList();
 
 	void setup() {
-		texts.add(new SelectibleText(100, 300, "Play Game"));
+
+		texts.add(new SelectibleText(100, 300, "Jogar"));
 		texts.add(new SelectibleText(100, 400, "Credits"));
 
 		texts.get(0).selected = true;
+
 	}
 
 	void process() {
@@ -62,6 +64,12 @@ class MenuScene extends Scene{
 		for (SelectibleText text : texts){
 			text.draw();
 		}
+
+		fill(255);
+		textSize(25);
+		textAlign(CENTER);
+		text("Use as setas ou wasd para mover e Enter ou Espaço para selecionar", width/2, 650);
+		textAlign(LEFT);
 
 	}
 
