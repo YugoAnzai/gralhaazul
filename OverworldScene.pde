@@ -34,6 +34,12 @@ class OverworldScene extends Scene{
 		targetY = bird.y;
 		birdTravelling = false;
 
+		int index = soundManager.loopIndex("menu");
+		if (index < 0) {
+			soundManager.loadLoop("menu", "music/menu.mp3");
+			soundManager.playLoop("menu");
+		}
+
 	}
 
 	void process() {
@@ -135,6 +141,10 @@ class OverworldScene extends Scene{
 
 	void destroy(){
 		super.destroy();
+
+		soundManager.pauseLoop("menu");
+		soundManager.unloadLoop("menu");
+
 	}
 
 }
