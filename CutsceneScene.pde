@@ -41,6 +41,14 @@ class CutsceneScene extends Scene{
 		background(0);
 		globalTextBox.draw();
 
+		if (globalTextBox.finished) {
+			fill(255);
+			textSize(25);
+			textAlign(CENTER);
+			text("Espaço ou Enter para Avançar", width/2, 650);
+			textAlign(LEFT);
+		}
+
 	}
 
 	void debugDraw() {

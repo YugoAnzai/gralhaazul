@@ -36,6 +36,9 @@ class TextBox{
 
 	void next() {
 		if (canSkip) {
+
+			soundManager.playSound("tick.mp3");
+
 			if (index >= lines.size() - 1) {
 				finished = true;
 			} else {

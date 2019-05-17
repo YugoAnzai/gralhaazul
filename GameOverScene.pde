@@ -7,12 +7,18 @@ class GameOverScene extends Scene{
 		texts.add(new SelectibleText(100, 400, "Ir Para o Mapa"));
 
 		texts.get(0).selected = true;
+
+		soundManager.playSound("loose.mp3");
+
 	}
 
 	void process() {
 		super.process();
 
 		if (input.keyEnter.up || input.keyEnter.down) {
+
+			soundManager.playSound("tick.mp3");
+
 			int index = getSelectedIndex();
 			texts.get(index).selected = false;
 
@@ -29,8 +35,10 @@ class GameOverScene extends Scene{
 		if (input.keyEnter.enter) {
 			int index = getSelectedIndex();
 			if (index == 0) {
+				soundManager.playSound("levelIntro.mp3");
 				sceneManager.changeScene("GameScene");
 			} else if (index == 1) {
+				soundManager.playSound("select.mp3");
 				sceneManager.changeScene("OverworldScene");
 			}
 		}

@@ -1,6 +1,9 @@
 class VictoryScene extends Scene{
 
 	void setup() {
+
+		soundManager.playSound("victory.mp3");
+
 	}
 
 	void process() {
@@ -17,7 +20,9 @@ class VictoryScene extends Scene{
 
 		textSize(50);
 		fill(0, 200, 150);
-		text("Parabéns! Missão " + globals.level + " completa", 100, height/2);
+		textAlign(CENTER);
+		text("Parabéns! Missão " + globals.level + " completa", width/2, height/2);
+		textAlign(LEFT);
 
 	}
 

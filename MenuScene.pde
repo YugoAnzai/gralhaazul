@@ -1,13 +1,18 @@
 class MenuScene extends Scene{
 
 	ArrayList<SelectibleText> texts = new ArrayList();
+	Animator logo;
 
 	void setup() {
 
-		texts.add(new SelectibleText(100, 300, "Jogar"));
-		texts.add(new SelectibleText(100, 400, "Credits"));
+		texts.add(new SelectibleText(470, 500, "Jogar"));
+		texts.add(new SelectibleText(470, 560, "Credits"));
 
 		texts.get(0).selected = true;
+
+		logo = new Animator(0, 0, "logo.png", 1, 1);
+		logo.createAnimation("idle", new int[]{0}, new int[]{99});
+		logo.setAnimation("idle");
 
 	}
 
@@ -15,6 +20,9 @@ class MenuScene extends Scene{
 		super.process();
 
 		if (input.keyEnter.up || input.keyEnter.down) {
+
+			soundManager.playSound("tick.mp3");
+
 			int index = getSelectedIndex();
 			texts.get(index).selected = false;
 
@@ -29,6 +37,7 @@ class MenuScene extends Scene{
 		}
 
 		if (input.keyEnter.enter) {
+			soundManager.playSound("select.mp3");
 			int index = getSelectedIndex();
 			if (index == 0) {
 				if (!globals.sawCutscene) {
@@ -57,9 +66,9 @@ class MenuScene extends Scene{
 
 		background(0);
 
-		textSize(70);
-		fill(0, 150, 255);
-		text("Gralha Azul", 100, 200);
+		logo.x = width/2;
+		logo.y = 200;
+		logo.draw();
 
 		for (SelectibleText text : texts){
 			text.draw();
