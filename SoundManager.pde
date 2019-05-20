@@ -18,24 +18,10 @@ class SoundManager{
 		soundEffect.play();
 	}
 
-	void playSound(String fileName, float volume) {
-		AudioPlayer soundEffect = minim.loadFile("sound/sfx/" + fileName);
-		soundEffect.setVolume(volume);
-		soundEffect.play();
-	}
-
 	void loadLoop(String loopName, String fileName) {
 		loopNames.add(loopName);
 		loopPlaying.add(false);
 		loopSounds.add(minim.loadFile("sound/" + fileName));
-	}
-
-	void loadLoop(String loopName, String fileName, float volume) {
-		loopNames.add(loopName);
-		loopPlaying.add(false);
-		AudioPlayer loop = minim.loadFile("sound/" + fileName);
-		loop.setVolume(volume);
-		loopSounds.add(loop);
 	}
 
 	void unloadLoop(String loopName) {

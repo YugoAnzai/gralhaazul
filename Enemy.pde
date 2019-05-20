@@ -43,7 +43,7 @@ class Enemy extends GameObject{
 	}
 
 	void pineHit() {
-		soundManager.playSound("pine_hit.wav", 0.4);
+		soundManager.playSound("pine_hit.wav");
 		rectCollider.removeFromColliderMask();
 		if (random(2) < 1) {
 			fleeSpeed = -fleeSpeed;
@@ -60,16 +60,15 @@ class Enemy extends GameObject{
 	}
 
 	void playStepSound() {
-		float volume = 0.3;
 		float random = random(4);
 		if (random < 1) {
-			soundManager.playSound("hunter_walk_1.wav", volume);
+			soundManager.playSound("hunter_walk_1.wav");
 		} else if (random < 2) {
-			soundManager.playSound("hunter_walk_2.wav", volume);
+			soundManager.playSound("hunter_walk_2.wav");
 		} else if (random < 3) {
-			soundManager.playSound("hunter_walk_3.wav", volume);
+			soundManager.playSound("hunter_walk_3.wav");
 		} else if (random < 4) {
-			soundManager.playSound("hunter_walk_4.wav", volume);
+			soundManager.playSound("hunter_walk_4.wav");
 		}
 	}
 
