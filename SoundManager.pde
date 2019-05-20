@@ -26,6 +26,7 @@ class SoundManager{
 	}
 
 	void unloadLoop(String loopName) {
+		print("Unloading loop: " + fileName);
 		int index = loopIndex(loopName);
 		loopNames.remove(index);
 		loopPlaying.remove(index);
