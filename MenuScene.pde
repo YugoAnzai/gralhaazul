@@ -77,7 +77,7 @@ class MenuScene extends Scene{
 		fill(255);
 		textSize(25);
 		textAlign(CENTER);
-		text("Use as setas ou wasd para mover e Enter ou Espaço para selecionar", width/2, 650);
+		text("Use as setas para mover e Espaço para selecionar", width/2, 650);
 		textAlign(LEFT);
 
 	}

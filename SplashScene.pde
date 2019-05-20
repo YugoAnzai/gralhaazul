@@ -27,6 +27,12 @@ class SplashScene extends Scene{
 		text("GGGralha Team", width/2, height/2);
 		textAlign(LEFT);
 
+		fill(255);
+		textSize(25);
+		textAlign(CENTER);
+		text("Aperte Espaço", width/2, 650);
+		textAlign(LEFT);
+
 	}
 
 	void debugDraw() {

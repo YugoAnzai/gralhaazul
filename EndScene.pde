@@ -39,7 +39,7 @@ class EndScene extends Scene{
 			fill(255);
 			textSize(25);
 			textAlign(CENTER);
-			text("Espaço ou Enter para Avançar", width/2, 650);
+			text("Aperte Espaço para Avançar", width/2, 650);
 			textAlign(LEFT);
 		}
 

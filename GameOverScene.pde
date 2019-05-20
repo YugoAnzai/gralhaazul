@@ -60,7 +60,11 @@ class GameOverScene extends Scene{
 
 		textSize(70);
 		fill(0, 150, 255);
-		text("Poxa, não foi desta vez", 100, 200);
+		text("Poxa, não foi desta vez", 100, 150);
+
+		textSize(30);
+		fill(0, 150, 255);
+		text("Você perdeu todas as vidas ou ficou sem árvores nem pinhas.", 100, 200);
 
 		for (SelectibleText text : texts){
 			text.draw();
