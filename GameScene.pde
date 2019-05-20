@@ -4,6 +4,9 @@ class GameScene extends Scene{
 	World world;
 	EnemyManager enemyManager;
 
+	int waterY = 300;
+	int pineY = 500;
+
 	void setup() {
 
 	  player = new Player(width/2, globals.floorY, 600, 7, 3);
@@ -30,10 +33,12 @@ class GameScene extends Scene{
 		world.clouds.add(new Cloud(100, 150, 0.8, 700, 0));
 
 		// Pine
-		Pine pine = new Pine(500, 500, null);
+		int pineX = 500;
+		Pine pine = new Pine(pineX, pineY, null);
 		pine.onTreePart = false;
 		pine.falling = true;
 		world.pines.add(pine);
+		world.waters.add(new Water(pineX, waterY));
 
 	}
 
@@ -46,10 +51,12 @@ class GameScene extends Scene{
 		world.clouds.add(new Cloud(800, 100, 1, 600, 300));
 
 		// Pine
-		Pine pine = new Pine(650, 500, null);
+		int pineX = 650;
+		Pine pine = new Pine(pineX, pineY, null);
 		pine.onTreePart = false;
 		pine.falling = true;
 		world.pines.add(pine);
+		world.waters.add(new Water(pineX, waterY));
 
 	}
 
@@ -62,10 +69,12 @@ class GameScene extends Scene{
 		world.clouds.add(new Cloud(500, 150, 1.3, 900, 100));
 
 		// Pine
-		Pine pine = new Pine(200, 500, null);
+		int pineX = 200;
+		Pine pine = new Pine(pineX, pineY, null);
 		pine.onTreePart = false;
 		pine.falling = true;
 		world.pines.add(pine);
+		world.waters.add(new Water(pineX, waterY));
 
 	}
 
