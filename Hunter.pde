@@ -171,7 +171,7 @@ class Hunter extends Enemy{
 			stAiCount--;
 			if (stAiCount < 0) {
 				stAiShot();
-				soundManager.playSound("hunter_shot.wav");
+				soundManager.playSound("hunter_shot.mp3");
 				anim.setAnimation("shooting");
 				state = ST_SHOOTING;
 				return;

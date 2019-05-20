@@ -40,7 +40,7 @@ class Player extends GameObject{
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
 
-    soundManager.loadLoop("crow_wing", "sfx/crow_wing.wav");
+    soundManager.loadLoop("crow_wing", "sfx/crow_wing.mp3");
 
     anim = new Animator(0, 0, "crow.png", 13, 2);
 
@@ -124,7 +124,7 @@ class Player extends GameObject{
     if (!checkPineAndCarry()){
       checkPineRelease();
     } else {
-      soundManager.playSound("crow_grab.wav");
+      soundManager.playSound("crow_grab.mp3");
     }
 
     updateCarried();
@@ -287,7 +287,7 @@ class Player extends GameObject{
   }
 
   void bulletHit(){
-    soundManager.playSound("crow_hit.wav");
+    soundManager.playSound("crow_hit.mp3");
     hearts--;
     if (hearts <= 0) {
       sceneManager.changeScene("GameOverScene");

@@ -19,6 +19,7 @@ class SoundManager{
 	}
 
 	void loadLoop(String loopName, String fileName) {
+		print("Loading loop: " + fileName);
 		loopNames.add(loopName);
 		loopPlaying.add(false);
 		loopSounds.add(minim.loadFile("sound/" + fileName));
