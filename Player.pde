@@ -24,7 +24,7 @@ class Player extends GameObject{
   Animator heart;
 
   // carry
-  int carriedYOffset = 30;
+  int carriedYOffset = 35;
   GameObject carried = null;
 
   float flySpeed = 5;

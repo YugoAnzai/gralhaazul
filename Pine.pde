@@ -1,8 +1,8 @@
 class Pine extends GameObject implements IWaterable{
 
 	int pineSize = 30;
-	int colliderW = 20;
-	int colliderH = 20;
+	int colliderW = 27;
+	int colliderH = 27;
 
 	boolean falling = false;
 	boolean onTreePart = true;
