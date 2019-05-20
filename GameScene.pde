@@ -6,16 +6,17 @@ class GameScene extends Scene{
 
 	int waterY = 300;
 	int pineY = 500;
+	int completeTrees;
 
 	void setup() {
 
-	  player = new Player(width/2, globals.floorY, 600, 7, 3);
+	  player = new Player(width/2, globals.floorY, 600, 12, 3);
 	  world = new World(player);
 
-		soundManager.loadLoop("forest", "music/forest.wav", 0.1);
+		soundManager.loadLoop("forest", "music/forest.wav");
 		soundManager.playLoop("forest");
 
-		soundManager.loadLoop("music", "music/level"+globals.level+".mp3", 0.1);
+		soundManager.loadLoop("music", "music/level"+globals.level+".mp3");
 		soundManager.playLoop("music");
 
 		if (globals.level == 1) level1Setup();
@@ -25,6 +26,8 @@ class GameScene extends Scene{
 	}
 
 	void level1Setup() {
+
+		completeTrees = 3;
 
 		enemyManager = new EnemyManager(800, 1200, 50, 20);
 
@@ -44,6 +47,8 @@ class GameScene extends Scene{
 
 	void level2Setup() {
 
+		completeTrees = 4;
+
 		enemyManager = new EnemyManager(500, 1000, 60, 30);
 
 		// Clouds
@@ -61,6 +66,8 @@ class GameScene extends Scene{
 	}
 
 	void level3Setup() {
+
+		completeTrees = 5;
 
 		enemyManager = new EnemyManager(300, 900, 80, 40);
 
@@ -103,7 +110,7 @@ class GameScene extends Scene{
 
 	void level1CheckWin() {
 
-		if (countFullTrees() >= 3) {
+		if (countFullTrees() >= completeTrees) {
 			globals.level2locked = false;
 			globals.selectedLevel = 2;
 			sceneManager.changeScene("VictoryScene");
@@ -113,7 +120,7 @@ class GameScene extends Scene{
 
 	void level2CheckWin() {
 
-		if (countFullTrees() >= 4) {
+		if (countFullTrees() >= completeTrees) {
 			globals.level3locked = false;
 			globals.selectedLevel = 3;
 			sceneManager.changeScene("VictoryScene");
@@ -123,7 +130,7 @@ class GameScene extends Scene{
 
 	void level3CheckWin() {
 
-		if (countFullTrees() >= 5) {
+		if (countFullTrees() >= completeTrees) {
 			globals.selectedLevel = 1;
 			globals.gameEnded = true;
 			sceneManager.changeScene("EndScene");
@@ -145,32 +152,32 @@ class GameScene extends Scene{
 
 		fill(0);
 		textSize(25);
-		text("Missão " + globals.level, 10, 20);
+		text("Missão " + globals.level + " - ", 10, 20);
 
 		String mission = "";
 		if (globals.level == 1) {
 			mission = level1StringMission();
 		} else if (globals.level == 2) {
 			mission = level2StringMission();
-		} else if (globals.level == 2) {
+		} else if (globals.level == 3) {
 			mission = level3StringMission();
 		}
 		fill(0);
 		textSize(25);
-		text(mission, 30, 650);
+		text(mission, 130, 20);
 
 	}
 
 	String level1StringMission() {
-		return "Árvores " + countFullTrees() + "/" + 3;
+		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
 	}
 
 	String level2StringMission() {
-		return "Árvores " + countFullTrees() + "/" + 4;
+		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
 	}
 
 	String level3StringMission() {
-		return "Árvores " + countFullTrees() + "/" + 5;
+		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
 	}
 
 	void debugDraw() {
