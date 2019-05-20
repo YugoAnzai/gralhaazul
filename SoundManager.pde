@@ -19,14 +19,14 @@ class SoundManager{
 	}
 
 	void loadLoop(String loopName, String fileName) {
-		print("Loading loop: " + fileName);
+		println("Loading loop: " + fileName);
 		loopNames.add(loopName);
 		loopPlaying.add(false);
 		loopSounds.add(minim.loadFile("sound/" + fileName));
 	}
 
 	void unloadLoop(String loopName) {
-		print("Unloading loop: " + fileName);
+		println("Unloading loop: " + loopName);
 		int index = loopIndex(loopName);
 		loopNames.remove(index);
 		loopPlaying.remove(index);
