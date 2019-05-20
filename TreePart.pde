@@ -66,8 +66,7 @@ class TreePart extends GameObject implements IWaterable{
 		rectCollider.removeFromColliderMask();
 
 		if (generatedPine != null) {
-			generatedPine.falling = true;
-			generatedPine.pickup();
+			generatedPine.destroy();
 		}
 
 	}
