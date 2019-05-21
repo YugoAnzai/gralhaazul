@@ -293,14 +293,15 @@ class GameScene extends Scene{
 			fill(0);
 			textSize(20);
 			textAlign(CENTER);
-			text("Molhe a pinha com a chuva. Interaja com a nuvem com 'Espaço' para fazer chover", width/2, 50);
+			text("Mova com as setas ou com as teclas wasd", width/2, 50);
+			text("Molhe a pinha com a chuva. Interaja com a nuvem com 'Espaço' para fazer chover", width/2, 75);
 			textAlign(LEFT);
 		} else if (globals.level == -2) {
 			mission = "Faça a árvore crescer até 4 andares";
 			fill(0);
 			textSize(20);
 			textAlign(CENTER);
-			text("Molhe a árvore com a chuva para fazê-la crescer", width/2, 50);
+			text("Molhe a árvore com a chuva para fazê-la crescer mais", width/2, 50);
 			textAlign(LEFT);
 		} else if (globals.level == -3) {
 			mission = "Espante todos os caçadores: " + (3 - world.enemies.size()) + " / 3 caçadores";
