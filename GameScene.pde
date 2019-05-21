@@ -69,11 +69,12 @@ class GameScene extends Scene{
 		soundManager.playLoop("level3");
 		completeTrees = 5;
 
-		enemyManager = new EnemyManager(300, 900, 80, 40);
+		enemyManager = new EnemyManager(500, 1000, 55, 30);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 1, 700, 100));
-		world.clouds.add(new Cloud(500, 150, 1.3, 900, 100));
+		world.clouds.add(new Cloud(700, 125, 1.3, 900, 0));
+		world.clouds.add(new Cloud(500, 200, 1.2, 800, 200));
 
 		// Pine
 		int pineX = 200;
