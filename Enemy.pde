@@ -29,7 +29,7 @@ class Enemy extends GameObject{
 			if (!fleeShoutDone) {
 				fleeShoutCount--;
 				if (fleeShoutCount < 0) {
-					soundManager.playSound("hunter_hit.mp3");
+					soundManager.playSound("hunter_hit");
 					fleeShoutDone = true;
 				}
 			}
@@ -43,7 +43,7 @@ class Enemy extends GameObject{
 	}
 
 	void pineHit() {
-		soundManager.playSound("pine_hit.mp3");
+		soundManager.playSound("pine_hit");
 		rectCollider.removeFromColliderMask();
 		if (random(2) < 1) {
 			fleeSpeed = -fleeSpeed;
@@ -62,13 +62,13 @@ class Enemy extends GameObject{
 	void playStepSound() {
 		float random = random(4);
 		if (random < 1) {
-			soundManager.playSound("hunter_walk_1.mp3");
+			soundManager.playSound("hunter_walk_1");
 		} else if (random < 2) {
-			soundManager.playSound("hunter_walk_2.mp3");
+			soundManager.playSound("hunter_walk_2");
 		} else if (random < 3) {
-			soundManager.playSound("hunter_walk_3.mp3");
+			soundManager.playSound("hunter_walk_3");
 		} else if (random < 4) {
-			soundManager.playSound("hunter_walk_4.mp3");
+			soundManager.playSound("hunter_walk_4");
 		}
 	}
 

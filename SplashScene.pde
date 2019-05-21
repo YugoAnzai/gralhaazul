@@ -2,8 +2,7 @@ class SplashScene extends Scene{
 
 	void setup() {
 
-		soundManager.loadLoop("intro", "music/cutscene.mp3");
-		soundManager.playLoop("intro");
+		soundManager.playLoop("cutscene");
 
 	}
 
@@ -11,7 +10,7 @@ class SplashScene extends Scene{
 		super.process();
 
 		if (input.keyEnter.enter) {
-			soundManager.playSound("select.mp3");
+			soundManager.playSound("select");
 			sceneManager.changeScene("MenuScene");
 		}
 

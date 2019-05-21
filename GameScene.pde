@@ -13,11 +13,8 @@ class GameScene extends Scene{
 	  player = new Player(width/2, globals.floorY, 600, 12, 3);
 	  world = new World(player);
 
-		soundManager.loadLoop("forest", "music/forest.mp3");
 		soundManager.playLoop("forest");
 
-		soundManager.loadLoop("music", "music/level"+globals.level+".mp3");
-		soundManager.playLoop("music");
 
 		if (globals.level == 1) level1Setup();
 		else if (globals.level == 2) level2Setup();
@@ -27,6 +24,7 @@ class GameScene extends Scene{
 
 	void level1Setup() {
 
+		soundManager.playLoop("level1");
 		completeTrees = 3;
 
 		enemyManager = new EnemyManager(800, 1200, 50, 20);
@@ -47,6 +45,7 @@ class GameScene extends Scene{
 
 	void level2Setup() {
 
+		soundManager.playLoop("level2");
 		completeTrees = 4;
 
 		enemyManager = new EnemyManager(500, 1000, 60, 30);
@@ -67,6 +66,7 @@ class GameScene extends Scene{
 
 	void level3Setup() {
 
+		soundManager.playLoop("level3");
 		completeTrees = 5;
 
 		enemyManager = new EnemyManager(300, 900, 80, 40);
@@ -189,8 +189,10 @@ class GameScene extends Scene{
 	void destroy(){
 		super.destroy();
 		colliderManager.resetAllColliderMasks();
-		soundManager.pauseLoop("music");
-		soundManager.unloadLoop("music");
+		soundManager.pauseLoop("level1");
+		soundManager.pauseLoop("level2");
+		soundManager.pauseLoop("level3");
+		soundManager.pauseLoop("forest");
 		player.destroy();
 		player = null;
 		world.clear();

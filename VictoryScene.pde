@@ -2,7 +2,7 @@ class VictoryScene extends Scene{
 
 	void setup() {
 
-		soundManager.playSound("victory.mp3");
+		soundManager.playSound("victory");
 
 	}
 

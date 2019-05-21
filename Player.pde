@@ -40,8 +40,6 @@ class Player extends GameObject{
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
 
-    soundManager.loadLoop("crow_wing", "sfx/crow_wing.mp3");
-
     anim = new Animator(0, 0, "crow.png", 13, 2);
 
     int[] animSprites = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
@@ -124,7 +122,7 @@ class Player extends GameObject{
     if (!checkPineAndCarry()){
       checkPineRelease();
     } else {
-      soundManager.playSound("crow_grab.mp3");
+      soundManager.playSound("crow_grab");
     }
 
     updateCarried();
@@ -146,14 +144,12 @@ class Player extends GameObject{
           movePlayerWithPressed();
         }
         if (input.pressed.up) {
-          soundManager.playLoop("crow_wing");
           anim.setAnimation("flying");
           state = ST_FLYING;
           return;
         }
       } else {
         if (input.pressed.left || input.pressed.right || input.pressed.up || input.pressed.down) {
-          soundManager.playLoop("crow_wing");
           anim.setAnimation("flying");
           state = ST_FLYING;
           return;
@@ -167,7 +163,6 @@ class Player extends GameObject{
       boolean landed = checkTreeAndLand();
 
       if (landed) {
-        soundManager.pauseLoop("crow_wing");
         anim.setAnimation("idle");
         state = ST_LANDED;
         return;
@@ -180,7 +175,6 @@ class Player extends GameObject{
       }
 
       if (stamina <= 0) {
-        soundManager.pauseLoop("crow_wing");
         anim.setAnimation("idle");
         state = ST_FALLING;
         return;
@@ -189,7 +183,6 @@ class Player extends GameObject{
       movePlayerWithPressed();
 
       if (checkAndPutOnFloor()) {
-        soundManager.pauseLoop("crow_wing");
         anim.setAnimation("idle");
         state = ST_LANDED;
         return;
@@ -287,7 +280,7 @@ class Player extends GameObject{
   }
 
   void bulletHit(){
-    soundManager.playSound("crow_hit.mp3");
+    soundManager.playSound("crow_hit");
     hearts--;
     if (hearts <= 0) {
       sceneManager.changeScene("GameOverScene");
@@ -295,8 +288,6 @@ class Player extends GameObject{
   }
 
   void destroy() {
-    soundManager.pauseLoop("crow_wing");
-		soundManager.unloadLoop("crow_wing");
   }
 
 }

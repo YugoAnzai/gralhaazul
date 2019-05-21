@@ -2,7 +2,7 @@ class TestScene extends Scene{
 
 	void setup() {
 
-		soundManager.playSound("hunter_hit.mp3");
+		soundManager.playSound("hunter_hit");
 
 	}
 

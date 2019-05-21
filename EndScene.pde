@@ -2,10 +2,9 @@ class EndScene extends Scene{
 
 	void setup() {
 
-		soundManager.playSound("victory.mp3");
+		soundManager.playSound("victory");
 
-		soundManager.loadLoop("overworld", "music/menu.mp3");
-		soundManager.playLoop("overworld");
+		soundManager.playLoop("menu");
 
 		globalTextBox.reset();
 		globalTextBox.addLine("Após reflorestar os três Estados do Sul, a gralha se torna uma Lendária Gralha Azul.");
@@ -51,8 +50,7 @@ class EndScene extends Scene{
 	void destroy(){
 		super.destroy();
 
-		soundManager.pauseLoop("overworld");
-		soundManager.unloadLoop("overworld");
+		soundManager.pauseLoop("menu");
 
 	}
 

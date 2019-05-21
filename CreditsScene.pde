@@ -8,7 +8,7 @@ class CreditsScene extends Scene{
 
 		if (input.keyEnter.enter) {
 			sceneManager.changeScene("MenuScene");
-			soundManager.playSound("return.mp3");
+			soundManager.playSound("return");
 		}
 
 	}

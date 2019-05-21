@@ -8,7 +8,7 @@ class GameOverScene extends Scene{
 
 		texts.get(0).selected = true;
 
-		soundManager.playSound("loose.mp3");
+		soundManager.playSound("loose");
 
 	}
 
@@ -17,7 +17,7 @@ class GameOverScene extends Scene{
 
 		if (input.keyEnter.up || input.keyEnter.down) {
 
-			soundManager.playSound("tick.mp3");
+			soundManager.playSound("tick");
 
 			int index = getSelectedIndex();
 			texts.get(index).selected = false;
@@ -35,10 +35,10 @@ class GameOverScene extends Scene{
 		if (input.keyEnter.enter) {
 			int index = getSelectedIndex();
 			if (index == 0) {
-				soundManager.playSound("levelIntro.mp3");
+				soundManager.playSound("level_intro");
 				sceneManager.changeScene("GameScene");
 			} else if (index == 1) {
-				soundManager.playSound("select.mp3");
+				soundManager.playSound("select");
 				sceneManager.changeScene("OverworldScene");
 			}
 		}

@@ -21,7 +21,7 @@ class MenuScene extends Scene{
 
 		if (input.keyEnter.up || input.keyEnter.down) {
 
-			soundManager.playSound("tick.mp3");
+			soundManager.playSound("tick");
 
 			int index = getSelectedIndex();
 			texts.get(index).selected = false;
@@ -37,7 +37,7 @@ class MenuScene extends Scene{
 		}
 
 		if (input.keyEnter.enter) {
-			soundManager.playSound("select.mp3");
+			soundManager.playSound("select");
 			int index = getSelectedIndex();
 			if (index == 0) {
 				if (!globals.sawCutscene) {

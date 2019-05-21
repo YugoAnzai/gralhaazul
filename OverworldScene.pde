@@ -34,14 +34,8 @@ class OverworldScene extends Scene{
 		targetY = bird.y;
 		birdTravelling = false;
 
-		int index = soundManager.loopIndex("intro");
-		if (index >= 0) {
-			soundManager.pauseLoop("intro");
-			soundManager.unloadLoop("intro");
-		}
-
-		soundManager.loadLoop("overworld", "music/menu.mp3");
-		soundManager.playLoop("overworld");
+		soundManager.pauseLoop("cutscene");
+		soundManager.playLoop("menu");
 
 	}
 
@@ -64,7 +58,7 @@ class OverworldScene extends Scene{
 
 		if (input.keyEnter.up || input.keyEnter.down) {
 
-			soundManager.playSound("tick.mp3");
+			soundManager.playSound("tick");
 
 			int index = getSelectedIndex();
 			levels.get(index).selected = false;
@@ -88,7 +82,7 @@ class OverworldScene extends Scene{
 
 		if (input.keyEnter.enter) {
 
-			soundManager.playSound("levelIntro.mp3");
+			soundManager.playSound("level_intro");
 
 			globals.level = getSelectedIndex() + 1;
 			if (!globals.sawInstructions) {
@@ -150,8 +144,7 @@ class OverworldScene extends Scene{
 	void destroy(){
 		super.destroy();
 
-		soundManager.pauseLoop("overworld");
-		soundManager.unloadLoop("overworld");
+		soundManager.pauseLoop("menu");
 
 	}
 

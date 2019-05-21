@@ -177,7 +177,6 @@ class Lumberjack extends Enemy{
 			stHiCount--;
 
 			if (stHiCount <= 0) {
-				soundManager.playSound("tree_falling.mp3");
 				anim.setAnimation("walking");
 				findNearestTree();
 				state = ST_WALKING;
@@ -191,7 +190,7 @@ class Lumberjack extends Enemy{
 
 			stSwCount--;
 			if (stSwCount <= 0) {
-				
+
 				anim.setAnimation("swinging_player");
 				anim.setNextAnimation("recovering");
 
