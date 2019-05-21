@@ -6,7 +6,10 @@ class GameScene extends Scene{
 
 	int waterY = 300;
 	int pineY = 500;
-	int completeTrees;
+	int completeTrees = 0;
+	String missionName = "Missão";
+
+	Animator bg;
 
 	void setup() {
 
@@ -15,15 +18,109 @@ class GameScene extends Scene{
 
 		soundManager.playLoop("forest");
 
-
 		if (globals.level == 1) level1Setup();
 		else if (globals.level == 2) level2Setup();
 		else if (globals.level == 3) level3Setup();
+		else if (globals.level == -1) tutorial1Setup();
+		else if (globals.level == -2) tutorial2Setup();
+		else if (globals.level == -3) tutorial3Setup();
+
+	}
+
+	void tutorial1Setup() {
+
+		bg = new Animator(width/2, height/2, "background2.png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Treinamento 1";
+		soundManager.playLoop("level2");
+
+		// Clouds
+		world.clouds.add(new Cloud(600, 50, 0.6, 550, 0));
+		world.clouds.add(new Cloud(100, 125, 0.8, 700, 0));
+		world.clouds.add(new Cloud(300, 200, 0.7, 400, 0));
+
+		// Pine
+		int pineX = 500;
+		Pine pine = new Pine(pineX, pineY, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
+
+		pineX = 200;
+		pine = new Pine(pineX, pineY, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
+
+		pineX = 800;
+		pine = new Pine(pineX, pineY, null);
+		pine.onTreePart = false;
+		pine.falling = true;
+		world.pines.add(pine);
+
+	}
+
+	void tutorial2Setup() {
+
+		bg = new Animator(width/2, height/2, "background2.png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Treinamento 2";
+		soundManager.playLoop("level2");
+		completeTrees = 1;
+
+		// Clouds
+		world.clouds.add(new Cloud(600, 50, 1, 500, 0));
+		world.clouds.add(new Cloud(100, 125, 1, 500, 0));
+
+		// Trees
+		world.trees.add(new Tree(500, globals.floorY, 1));
+
+	}
+
+	void tutorial3Setup() {
+
+		bg = new Animator(width/2, height/2, "background2.png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Treinamento 3";
+		soundManager.playLoop("level2");
+
+		// Trees
+		Tree tree = new Tree(300, globals.floorY, 4);
+		for (TreePart treePart : tree.treeParts) {
+			treePart.pineGenCount = 1;
+		}
+		world.trees.add(tree);
+		tree = new Tree(500, globals.floorY, 4);
+		for (TreePart treePart : tree.treeParts) {
+			treePart.pineGenCount = 1;
+		}
+		world.trees.add(tree);
+		tree = new Tree(700, globals.floorY, 4);
+		for (TreePart treePart : tree.treeParts) {
+			treePart.pineGenCount = 1;
+		}
+		world.trees.add(tree);
+
+		// Enemies
+		world.enemies.add(new Hunter(30, 0.9, 100, 150));
+		world.enemies.add(new Hunter(100, 0.9, 100, 150));
+		world.enemies.add(new Hunter(900, 0.9, 100, 150));
 
 	}
 
 	void level1Setup() {
 
+		bg = new Animator(width/2, height/2, "background" + globals.level +".png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Missão 1";
 		soundManager.playLoop("level1");
 		completeTrees = 3;
 
@@ -45,6 +142,11 @@ class GameScene extends Scene{
 
 	void level2Setup() {
 
+		bg = new Animator(width/2, height/2, "background" + globals.level +".png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Missão 2";
 		soundManager.playLoop("level2");
 		completeTrees = 4;
 
@@ -66,6 +168,11 @@ class GameScene extends Scene{
 
 	void level3Setup() {
 
+		bg = new Animator(width/2, height/2, "background" + globals.level +".png", 1, 1);
+		bg.createAnimation("idle", new int[]{0}, new int[]{99});
+		bg.setAnimation("idle");
+
+		missionName = "Missão 3";
 		soundManager.playLoop("level3");
 		completeTrees = 5;
 
@@ -89,13 +196,17 @@ class GameScene extends Scene{
 	void process() {
 
 		super.process();
+
 		world.process();
 	  player.process();
-		enemyManager.process();
+		if (enemyManager != null) enemyManager.process();
 
 		if (globals.level == 1) level1CheckWin();
 		else if (globals.level == 2) level2CheckWin();
 		else if (globals.level == 3) level3CheckWin();
+		else if (globals.level == -1) tutorial1CheckWin();
+		else if (globals.level == -2) tutorial2CheckWin();
+		else if (globals.level == -3) tutorial3CheckWin();
 
 		checkFail();
 
@@ -107,6 +218,24 @@ class GameScene extends Scene{
 			sceneManager.changeScene("GameOverScene");
 		}
 
+	}
+
+	void tutorial1CheckWin() {
+		if (globals.world.trees.size() >= 3) {
+			sceneManager.changeScene("VictoryScene");
+		}
+	}
+
+	void tutorial2CheckWin() {
+		if (countFullTrees() >= completeTrees) {
+			sceneManager.changeScene("VictoryScene");
+		}
+	}
+
+	void tutorial3CheckWin() {
+		if (world.enemies.size() == 0) {
+			sceneManager.changeScene("VictoryScene");
+		}
 	}
 
 	void level1CheckWin() {
@@ -148,37 +277,46 @@ class GameScene extends Scene{
 	}
 
 	void draw(){
+		bg.draw();
 	  world.draw();
 	  player.draw();
 
 		fill(0);
 		textSize(25);
-		text("Missão " + globals.level + " - ", 10, 20);
+		text(missionName, 10, 20);
 
 		String mission = "";
-		if (globals.level == 1) {
-			mission = level1StringMission();
-		} else if (globals.level == 2) {
-			mission = level2StringMission();
-		} else if (globals.level == 3) {
-			mission = level3StringMission();
+		if (globals.level == 1 || globals.level == 2 || globals.level == 3) {
+			mission = "Plante árvores de 4 andares : " + countFullTrees() + " / " + completeTrees;
+		} else if (globals.level == -1) {
+			mission = "Faça árvores brotarem: " + globals.world.trees.size() + "/ 3 árvores";
+			fill(0);
+			textSize(20);
+			textAlign(CENTER);
+			text("Molhe a pinha com a chuva. Interaja com a nuvem com 'Espaço' para fazer chover", width/2, 50);
+			textAlign(LEFT);
+		} else if (globals.level == -2) {
+			mission = "Faça a árvore crescer até 4 andares";
+			fill(0);
+			textSize(20);
+			textAlign(CENTER);
+			text("Molhe a árvore com a chuva para fazê-la crescer", width/2, 50);
+			textAlign(LEFT);
+		} else if (globals.level == -3) {
+			mission = "Espante todos os caçadores: " + (3 - world.enemies.size()) + " / 3 caçadores";
+			fill(0);
+			textSize(20);
+			textAlign(CENTER);
+			text("Pegue pinhas com 'Espaço', e arremesse nos caçadores. Cuidado com seus tiros!", width/2, 50);
+			textAlign(LEFT);
 		}
+
 		fill(0);
 		textSize(25);
-		text(mission, 130, 20);
+		textAlign(CENTER);
+		text(mission, width/2, 20);
+		textAlign(LEFT);
 
-	}
-
-	String level1StringMission() {
-		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
-	}
-
-	String level2StringMission() {
-		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
-	}
-
-	String level3StringMission() {
-		return "Árvores de 4 andares completas: " + countFullTrees() + " / " + completeTrees;
 	}
 
 	void debugDraw() {

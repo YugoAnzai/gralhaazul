@@ -1,8 +1,16 @@
 class VictoryScene extends Scene{
 
+	String message = "";
+
 	void setup() {
 
 		soundManager.playSound("victory");
+
+		if (globals.level >= 0) {
+			message = "Parabéns! Missão " + globals.level + " completa";
+		} else {
+			message = "Parabéns Aprendiz! Treinamento " + (-globals.level) + " completo";
+		}
 
 	}
 
@@ -10,7 +18,14 @@ class VictoryScene extends Scene{
 		super.process();
 
 		if (input.keyEnter.enter) {
-			sceneManager.changeScene("OverworldScene");
+
+			if (globals.level == -1 || globals.level == -2) {
+				globals.level--;
+				sceneManager.changeScene("GameScene");
+			} else if (globals.level == -3 || globals.level > 0) {
+				sceneManager.changeScene("OverworldScene");
+			}
+
 		}
 
 	}
@@ -21,7 +36,7 @@ class VictoryScene extends Scene{
 		textSize(50);
 		fill(0, 200, 150);
 		textAlign(CENTER);
-		text("Parabéns! Missão " + globals.level + " completa", width/2, height/2);
+		text(message, width/2, height/2);
 		textAlign(LEFT);
 
 		fill(255);

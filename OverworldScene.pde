@@ -85,11 +85,8 @@ class OverworldScene extends Scene{
 			soundManager.playSound("level_intro");
 
 			globals.level = getSelectedIndex() + 1;
-			if (!globals.sawInstructions) {
-				sceneManager.changeScene("InstructionsScene");
-			} else {
-				sceneManager.changeScene("GameScene");
-			}
+			sceneManager.changeScene("GameScene");
+			
 		}
 
 	}

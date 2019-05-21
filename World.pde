@@ -15,15 +15,9 @@ class World{
 	ArrayList<Bullet> bulletsDestroy = new ArrayList();
 	ArrayList<Enemy> enemiesDestroy = new ArrayList();
 
-	Animator bg;
-
 	World(Player _player){
 
 		globals.world = this;
-
-		bg = new Animator(width/2, height/2, "background" + globals.level +".png", 1, 1);
-		bg.createAnimation("idle", new int[]{0}, new int[]{99});
-		bg.setAnimation("idle");
 
 		player = _player;
 
@@ -85,7 +79,6 @@ class World{
 	}
 
 	void draw(){
-		bg.draw();
 
 		for (Wall wall : walls){
 			wall.draw();

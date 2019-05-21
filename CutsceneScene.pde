@@ -32,7 +32,8 @@ class CutsceneScene extends Scene{
 			if (!globalTextBox.finished) {
 				globalTextBox.next();
 			} else {
-				sceneManager.changeScene("OverworldScene");
+				soundManager.pauseLoop("cutscene");
+				sceneManager.changeScene("GameScene");
 			}
 		}
 
