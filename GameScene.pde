@@ -155,6 +155,7 @@ class GameScene extends Scene{
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 0.8, 800, 0));
 		world.clouds.add(new Cloud(800, 100, 1, 600, 300));
+		world.clouds.add(new Cloud(500, 150, 1.2, 900, 200));
 
 		// Pine
 		int pineX = 650;
@@ -180,8 +181,8 @@ class GameScene extends Scene{
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 1, 700, 100));
-		world.clouds.add(new Cloud(700, 125, 1.3, 900, 0));
-		world.clouds.add(new Cloud(500, 200, 1.2, 800, 200));
+		world.clouds.add(new Cloud(700, 100, 1.3, 900, 0));
+		world.clouds.add(new Cloud(500, 150, 1.2, 800, 200));
 
 		// Pine
 		int pineX = 200;
