@@ -116,13 +116,9 @@ class Player extends GameObject{
     // clounds
     if (carried == null) {
       checkCloudInteraction();
-    }
-
-    // carrying
-    if (!checkPineAndCarry()){
-      checkPineRelease();
+      checkPineAndCarry();
     } else {
-      soundManager.playSound("crow_grab");
+      checkPineRelease();
     }
 
     updateCarried();
@@ -246,7 +242,7 @@ class Player extends GameObject{
     if (pine != null && input.keyEnter.grab) {
       carried = pine;
       pine.pickup();
-      updateCarried();
+      soundManager.playSound("crow_grab");
       return true;
     }
     return false;
