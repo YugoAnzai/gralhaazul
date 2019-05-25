@@ -323,7 +323,7 @@ class GameScene extends Scene{
 	void debugDraw() {
 		world.debugDraw(0, 150);
 	  player.debugDraw(80, 0);
-	  enemyManager.debugDraw(400, 0);
+		if (enemyManager != null) enemyManager.debugDraw(400, 0);
 	}
 
 	void destroy(){

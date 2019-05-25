@@ -40,15 +40,19 @@ class Player extends GameObject{
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
 
-    anim = new Animator(0, 0, "crow.png", 13, 2);
+    anim = new Animator(0, 0, "crow.png", 3, 3);
 
-    int[] animSprites = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-		int[] animDuration = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+    int[] animSprites = new int[]{0, 1, 2, 3, 4, 5};
+		int[] animDuration = new int[]{5, 9, 9, 6, 5, 3};
 		anim.createAnimation("flying", animSprites, animDuration);
 
-		animSprites = new int[]{7, 8};
-		animDuration = new int[]{10, 10};
+		animSprites = new int[]{4};
+		animDuration = new int[]{99};
 		anim.createAnimation("idle", animSprites, animDuration);
+
+		animSprites = new int[]{0};
+		animDuration = new int[]{99};
+		anim.createAnimation("falling", animSprites, animDuration);
 
 		anim.setAnimation("idle");
     anim.play();
@@ -171,7 +175,7 @@ class Player extends GameObject{
       }
 
       if (stamina <= 0) {
-        anim.setAnimation("idle");
+        anim.setAnimation("falling");
         state = ST_FALLING;
         return;
       }
