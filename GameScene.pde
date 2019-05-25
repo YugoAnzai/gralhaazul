@@ -108,9 +108,9 @@ class GameScene extends Scene{
 		world.trees.add(tree);
 
 		// Enemies
-		world.enemies.add(new Hunter(30, 0.9, 100, 150));
-		world.enemies.add(new Hunter(100, 0.9, 100, 150));
-		world.enemies.add(new Hunter(900, 0.9, 100, 150));
+		world.enemies.add(new Hunter(-300, 1, 100, 150));
+		world.enemies.add(new Hunter(-400, 0.8, 100, 150));
+		world.enemies.add(new Hunter(1300, 0.9, 100, 150));
 
 	}
 
@@ -289,26 +289,25 @@ class GameScene extends Scene{
 		if (globals.level == 1 || globals.level == 2 || globals.level == 3) {
 			mission = "Plante árvores de 4 andares : " + countFullTrees() + " / " + completeTrees;
 		} else if (globals.level == -1) {
-			mission = "Faça árvores brotarem: " + globals.world.trees.size() + "/ 3 árvores";
+			mission = "Molhe pinhas e brote árvores: " + globals.world.trees.size() + " / 3 árvores";
 			fill(0);
 			textSize(20);
 			textAlign(CENTER);
-			text("Mova com as setas ou com as teclas wasd", width/2, 50);
-			text("Molhe a pinha com a chuva. Interaja com a nuvem com 'Espaço' para fazer chover", width/2, 75);
+			text("Mova com as setas e bata na nuvem com 'Espaço'.", width/2, 50);
 			textAlign(LEFT);
 		} else if (globals.level == -2) {
-			mission = "Faça a árvore crescer até 4 andares";
+			mission = "Faça a árvore crescer até 4 andares.";
 			fill(0);
 			textSize(20);
 			textAlign(CENTER);
-			text("Molhe a árvore com a chuva para fazê-la crescer mais", width/2, 50);
+			text("Molhe a árvore com a chuva.", width/2, 50);
 			textAlign(LEFT);
 		} else if (globals.level == -3) {
-			mission = "Espante todos os caçadores: " + (3 - world.enemies.size()) + " / 3 caçadores";
+			mission = "Espante os caçadores: " + (3 - world.enemies.size()) + " / 3 caçadores";
 			fill(0);
 			textSize(20);
 			textAlign(CENTER);
-			text("Pegue pinhas com 'Espaço', e arremesse nos caçadores. Cuidado com seus tiros!", width/2, 50);
+			text("Pegue pinhas com 'Espaço' e arremesse nos caçadores.", width/2, 50);
 			textAlign(LEFT);
 		}
 

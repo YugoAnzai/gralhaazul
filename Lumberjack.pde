@@ -64,7 +64,7 @@ class Lumberjack extends Enemy{
 		animDuration = new int[]{99};
 		anim.createAnimation("recovering", animSprites, animDuration);
 		animSprites = new int[]{11};
-		animDuration = new int[]{12};
+		animDuration = new int[]{36};
 		anim.createAnimation("hit", animSprites, animDuration);
 		animSprites = new int[]{0,1,2,3};
 		animDuration = new int[]{5,5,5,5};

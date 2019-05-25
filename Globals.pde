@@ -7,7 +7,7 @@ class Globals {
 
   // game Globals
   World world;
-  int level = -1;
+  int level = -3;
   boolean gameEnded = false;
   boolean sawInstructions = false;
   boolean sawCutscene = false;
