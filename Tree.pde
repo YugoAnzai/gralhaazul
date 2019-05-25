@@ -11,6 +11,7 @@ class Tree extends GameObject{
 		for (int i = 1; i < heightUnits + 1; i++) {
 			treeParts.add(new TreePart((int)pos.x, (int)pos.y, i, this));
 		}
+
 	}
 
 	void process() {
@@ -24,9 +25,18 @@ class Tree extends GameObject{
 	boolean grow() {
 		if (heightUnits < maxHeightUnits) {
 			heightUnits++;
-			treeParts.add(new TreePart((int)pos.x, (int)pos.y, heightUnits, this));
+			TreePart treePart = new TreePart((int)pos.x, (int)pos.y, heightUnits, this);
+			treePart.growAnimation();
+			treeParts.add(treePart);
 			soundManager.playSound("tree_growing");
 		}
+
+		if (heightUnits == maxHeightUnits) {
+			for (TreePart treePart : treeParts){
+				treePart.fullGrowAnimation();
+			}
+		}
+
 		return true;
 	}
 
