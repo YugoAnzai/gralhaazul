@@ -13,13 +13,13 @@ class CutsceneScene extends Scene{
 
 		globalTextBox.reset();
 		globalTextBox.addLine("Muito tempo atrás, um casal de gralhas plantou as florestas de araucárias do Sul do Brasil. Por muito tempo continuaram protegendo as florestas e se tornaram lendárias Gralhas Azuis.");
-		globalTextBox.addLine("Com as florestas recuperadas. O Casal passou a viver suas vidas normalmente e tiveram um filhote, 	que cresceu forte e feliz.");
-		globalTextBox.addLine("Porém, enquanto isso, um caçador vaidoso descobriu um forma de fazer um creme para cabelos fenomenal, a partir das pinhas de Araucária");
+		globalTextBox.addLine("Com as florestas recuperadas. O Casal passou a viver suas vidas normalmente e tiveram um filhote, que cresceu forte e feliz.");
+		globalTextBox.addLine("Porém, enquanto isso, o vaidoso Chefe dos Caçadores descobriu uma forma de fazer um creme para cabelos fenomenal, a partir das pinhas de araucária");
 		globalTextBox.addLine("Ele então ordenou que seus lenhadores cortassem todas as araucárias do Brasil.");
-		globalTextBox.addLine("Com as pinhas em mãos, ordenou também que caçadores vigiassem as florestas para que as Araucárias não fossem plantadas novamente, garantindo que ninguém mais descobrisse a fórmula.");
-		globalTextBox.addLine("O filhote é então escolhido para uma grande missão: Replantar as florestas de araucárias.");
-		globalTextBox.addLine("Ele é treinado pelos pais, e recebe uma última pinha, que estava secretamente escondida e protegida");
-		globalTextBox.addLine("Levando a última esperança das florestas, o começa então sua missão pelo Sul do Brasil");
+		globalTextBox.addLine("Com as pinhas em mãos, ordenou também que caçadores vigiassem as florestas para que as araucárias não fossem plantadas novamente, garantindo que ninguém mais descobrisse a fórmula.");
+		globalTextBox.addLine("O filhote é então escolhido para uma grande missão: replantar as florestas de araucárias.");
+		globalTextBox.addLine("Ele é treinado e recebe uma última pinha, que estava escondida e protegida pelos pais.");
+		globalTextBox.addLine("Levando a última esperança das florestas, a gralha começa então sua jornada pelo Sul do Brasil.");
 
 	}
 

@@ -8,9 +8,9 @@ class EndScene extends Scene{
 
 		globalTextBox.reset();
 		globalTextBox.addLine("Após reflorestar os três Estados do Sul, a gralha se torna uma Lendária Gralha Azul.");
-		globalTextBox.addLine("Com as florestas recuperadas, outro cientista bondoso descobre a fórmula do creme de cabelo, e cria um produto acesível a todos");
-		globalTextBox.addLine("O chefe dos caçadores então desiste de seus planos malignos.");
-		globalTextBox.addLine("Assim, após o trabalho duro, a gralha pode finalmente descansar ao lado dos seus pais.");
+		globalTextBox.addLine("Com as florestas recuperadas, outro cientista descobre a fórmula do creme de cabelo, e cria um produto acessível a todos");
+		globalTextBox.addLine("O Chefe dos Caçadores então desiste de seus planos malignos.");
+		globalTextBox.addLine("Após o trabalho duro, a gralha pode finalmente descansar ao lado dos seus pais.");
 
 	}
 
