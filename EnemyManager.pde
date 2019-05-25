@@ -5,7 +5,7 @@ class EnemyManager{
 
 	int baseSpawnTime;
 	int rampUp;
-	int maxEnemyCountRampUp = 400;
+	int maxEnemyCountRampUp = 300;
 	int treesPartMultiplier;
 	int maxTreePartRampUp = 300;
 

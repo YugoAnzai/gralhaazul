@@ -13,7 +13,7 @@ class GameScene extends Scene{
 
 	void setup() {
 
-	  player = new Player(width/2, globals.floorY, 600, 12, 3);
+	  player = new Player(width/2, globals.floorY, 600, 15, 3);
 	  world = new World(player);
 
 		soundManager.playLoop("forest");
@@ -154,8 +154,8 @@ class GameScene extends Scene{
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 0.8, 800, 0));
-		world.clouds.add(new Cloud(800, 100, 1, 600, 300));
-		world.clouds.add(new Cloud(500, 150, 1.2, 900, 200));
+		world.clouds.add(new Cloud(800, 100, 1, 900, 300));
+		world.clouds.add(new Cloud(500, 150, 1.1, 1000, 200));
 
 		// Pine
 		int pineX = 650;
@@ -177,7 +177,7 @@ class GameScene extends Scene{
 		soundManager.playLoop("level3");
 		completeTrees = 5;
 
-		enemyManager = new EnemyManager(500, 1000, 55, 30);
+		enemyManager = new EnemyManager(500, 1000, 65, 35);
 
 		// Clouds
 		world.clouds.add(new Cloud(100, 50, 1, 700, 100));
