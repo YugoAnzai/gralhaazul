@@ -23,7 +23,7 @@ class Lumberjack extends Enemy{
 	int stCuCutCount = stCuCutMaxCount;
 	Pine stCuPineBeingCut;
 
-	int stHiMaxCount = 200;
+	int stHiMaxCount = 450;
 	int stHiCount = stHiMaxCount;
 	Tree stHiTreeBeingCut;
 
