@@ -63,6 +63,7 @@ class SoundManager{
 
 	void playLoop(String loopName) {
 		int index = nameIndex(loopName, loopNames);
+		loopSounds.get(index).rewind();
 		loopSounds.get(index).loop();
 	}
 

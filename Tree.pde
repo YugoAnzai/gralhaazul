@@ -25,9 +25,9 @@ class Tree extends GameObject{
 	boolean grow() {
 		if (heightUnits < maxHeightUnits) {
 			heightUnits++;
-			TreePart treePart = new TreePart((int)pos.x, (int)pos.y, heightUnits, this);
-			treePart.growAnimation();
-			treeParts.add(treePart);
+			TreePart newTreePart = new TreePart((int)pos.x, (int)pos.y, heightUnits, this);
+			newTreePart.growAnimation();
+			treeParts.add(newTreePart);
 			soundManager.playSound("tree_growing");
 
 			if (heightUnits == maxHeightUnits) {
