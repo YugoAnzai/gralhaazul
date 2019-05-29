@@ -29,12 +29,13 @@ class Tree extends GameObject{
 			treePart.growAnimation();
 			treeParts.add(treePart);
 			soundManager.playSound("tree_growing");
-		}
 
-		if (heightUnits == maxHeightUnits) {
-			for (TreePart treePart : treeParts){
-				treePart.fullGrowAnimation();
+			if (heightUnits == maxHeightUnits) {
+				for (TreePart treePart : treeParts){
+					treePart.fullGrowAnimation();
+				}
 			}
+
 		}
 
 		return true;
