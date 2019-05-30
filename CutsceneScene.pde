@@ -1,11 +1,8 @@
 class CutsceneScene extends Scene{
 
 	int index = 1;
-	int totalIndex = 4;
-	int maxTimer = 100;
-	int timer = maxTimer;
 
-	Animator anim;
+	Animator cutscenes;
 
 	void setup() {
 
@@ -21,6 +18,17 @@ class CutsceneScene extends Scene{
 		globalTextBox.addLine("Ele é treinado e recebe uma última pinha, que estava escondida e protegida pelos pais.");
 		globalTextBox.addLine("Levando a última esperança das florestas, a gralha começa então sua jornada pelo Sul do Brasil.");
 
+		cutscenes = new Animator(0, 0, "cutscenes.png", 4, 2);
+		cutscenes.createAnimation("1", new int[]{0}, new int[]{99});
+		cutscenes.createAnimation("2", new int[]{1}, new int[]{99});
+		cutscenes.createAnimation("3", new int[]{2}, new int[]{99});
+		cutscenes.createAnimation("4", new int[]{3}, new int[]{99});
+		cutscenes.createAnimation("5", new int[]{4}, new int[]{99});
+		cutscenes.setAnimation("1");
+		cutscenes.play();
+		cutscenes.x = width/2;
+		cutscenes.y = 275;
+
 	}
 
 	void process() {
@@ -30,7 +38,12 @@ class CutsceneScene extends Scene{
 
 		if (input.keyEnter.enter || input.keyEnter.right) {
 			if (!globalTextBox.finished) {
+
+				index++;
+				changeCutscene();
+
 				globalTextBox.next();
+				
 			} else {
 				soundManager.pauseLoop("cutscene");
 				sceneManager.changeScene("GameScene");
@@ -41,7 +54,10 @@ class CutsceneScene extends Scene{
 
 	void draw(){
 		background(0);
+
 		globalTextBox.draw();
+
+		cutscenes.draw();
 
 		if (globalTextBox.finished) {
 			fill(255);
@@ -51,6 +67,23 @@ class CutsceneScene extends Scene{
 			textAlign(LEFT);
 		}
 
+	}
+
+	void changeCutscene() {
+		switch(index) {
+			case 2:
+				cutscenes.setAnimation("2");
+				break;
+			case 3:
+				cutscenes.setAnimation("3");
+				break;
+			case 4:
+				cutscenes.setAnimation("4");
+				break;
+			case 6:
+				cutscenes.setAnimation("5");
+				break;
+		}
 	}
 
 	void debugDraw() {

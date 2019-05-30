@@ -1,5 +1,9 @@
 class EndScene extends Scene{
 
+	int index = 1;
+
+	Animator cutscenes;
+
 	void setup() {
 
 		soundManager.playSound("victory");
@@ -12,6 +16,15 @@ class EndScene extends Scene{
 		globalTextBox.addLine("O Chefe dos Caçadores então desiste de seus planos malignos.");
 		globalTextBox.addLine("Após o trabalho duro, a gralha pode finalmente descansar ao lado dos seus pais.");
 
+		cutscenes = new Animator(0, 0, "cutscenes.png", 4, 2);
+		cutscenes.createAnimation("6", new int[]{5}, new int[]{99});
+		cutscenes.createAnimation("7", new int[]{6}, new int[]{99});
+		cutscenes.createAnimation("8", new int[]{7}, new int[]{99});
+		cutscenes.setAnimation("6");
+		cutscenes.play();
+		cutscenes.x = width/2;
+		cutscenes.y = 275;
+
 	}
 
 	void process() {
@@ -21,7 +34,12 @@ class EndScene extends Scene{
 
 		if (input.keyEnter.enter || input.keyEnter.right) {
 			if (!globalTextBox.finished) {
+
+				index++;
+				changeCutscene();
+
 				globalTextBox.next();
+
 			} else {
 				sceneManager.changeScene("SplashScene");
 			}
@@ -34,6 +52,8 @@ class EndScene extends Scene{
 
 		globalTextBox.draw();
 
+		cutscenes.draw();
+
 		if (globalTextBox.finished) {
 			fill(255);
 			textSize(25);
@@ -42,6 +62,17 @@ class EndScene extends Scene{
 			textAlign(LEFT);
 		}
 
+	}
+
+	void changeCutscene() {
+		switch(index) {
+			case 2:
+				cutscenes.setAnimation("7");
+				break;
+			case 4:
+				cutscenes.setAnimation("8");
+				break;
+		}
 	}
 
 	void debugDraw() {
