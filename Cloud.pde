@@ -2,8 +2,8 @@ class Cloud extends GameObject{
 
 	int rectW = 150;
 	int rectH = 50;
-	int colliderW = 150;
-	int colliderH = 70;
+	int colliderW = 120;
+	int colliderH = 100;
 
 	float speed;
 	boolean goingRight = true;
@@ -19,8 +19,8 @@ class Cloud extends GameObject{
 		waterCounter = _waterCounter;
 		rectCollider = new RectCollider(this, colliderManager.clouds, colliderW, colliderH);
 
-		anim = new Animator(0, 0, "cloud.png", 1, 1);
-		anim.createAnimation("idle", new int[]{0}, new int[]{99});
+		anim = new Animator(0, 0, "cloud.png", 1, 3);
+		anim.createAnimation("idle", new int[]{0,1,2,1}, new int[]{8,8,8,8});
 		anim.setAnimation("idle");
 
 	}

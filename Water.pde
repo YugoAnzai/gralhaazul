@@ -2,7 +2,7 @@ class Water extends GameObject{
 
 	int rectW = 100;
 	int rectH = 20;
-	int colliderW = 100;
+	int colliderW = 120;
 	int colliderH = 20;
 	RectCollider[] collided;
 
@@ -11,18 +11,13 @@ class Water extends GameObject{
 		super(x, y, "Water");
 		rectCollider = new RectCollider(this, colliderManager.waters, colliderW, colliderH);
 
-		anim = new Animator(0, 70, "water.png", 7, 1);
+		anim = new Animator(0, 0, "water.png", 1, 2);
 
     int[] animSprites = new int[]{0, 1};
-		int[] animDuration = new int[]{5, 5};
-		anim.createAnimation("raining", animSprites, animDuration);
-
-		animSprites = new int[]{1};
-		animDuration = new int[]{99};
+		int[] animDuration = new int[]{24, 24};
 		anim.createAnimation("idle", animSprites, animDuration);
 
-		anim.setAnimation("raining");
-		anim.setNextAnimation("idle");
+		anim.setAnimation("idle");
     anim.play();
 
 	}
