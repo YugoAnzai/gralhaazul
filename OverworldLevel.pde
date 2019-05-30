@@ -4,23 +4,25 @@ class OverworldLevel {
 
   boolean selected = false;
   boolean locked = false;
-  int completion = 0;
+  boolean completed = false;
   String name;
 
-  int textOffset = 50;
+  int textOffset = 60;
 
   Animator circle;
 
-  OverworldLevel(int _x, int _y, String _name, int _completion, boolean _locked) {
+  OverworldLevel(int _x, int _y, String _name, boolean _completed, boolean _locked) {
     x = _x;
     y = _y;
+    completed = _completed;
     locked = _locked;
-    completion = _completion;
     name = _name;
 
-    circle = new Animator(0, 0, "overworldLevel.png", 1, 1);
-		circle.createAnimation("idle", new int[]{0}, new int[]{99});
-		circle.setAnimation("idle");
+    circle = new Animator(0, 0, "level.png", 2, 1);
+		circle.createAnimation("completed", new int[]{0}, new int[]{99});
+		circle.createAnimation("uncompleted", new int[]{1}, new int[]{99});
+    circle.setAnimation("uncompleted");
+    circle.play();
     circle.x = x;
     circle.y = y;
 
@@ -30,9 +32,11 @@ class OverworldLevel {
   void draw() {
 
     if (!locked) {
-      if (selected) {
-        tint(200);
-      }
+
+      if (selected) tint(200);
+
+      if (completed) circle.setAnimation("completed");
+
       circle.draw();
       tint(255);
 
