@@ -5,8 +5,8 @@ class SelectibleText{
 	int x;
 	int y;
 
-	int selectionXOffset = -20;
-	int selectionYOffset = -5;
+	int selectionXOffset = -30;
+	int selectionYOffset = -8;
 
 	Animator pine;
 
@@ -21,7 +21,7 @@ class SelectibleText{
 		pine.setAnimation("idle");
 
 		pine.x = x + selectionXOffset;
-		pine.y = y + selectionXOffset;
+		pine.y = y + selectionYOffset;
 
 	}
 
