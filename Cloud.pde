@@ -20,8 +20,9 @@ class Cloud extends GameObject{
 		rectCollider = new RectCollider(this, colliderManager.clouds, colliderW, colliderH);
 
 		anim = new Animator(0, 0, "cloud.png", 1, 3);
-		anim.createAnimation("idle", new int[]{0,1,2,1}, new int[]{8,8,8,8});
+		anim.createAnimation("idle", new int[]{0,1,2,1}, new int[]{36,36,36,36});
 		anim.setAnimation("idle");
+		anim.play();
 
 	}
 
