@@ -24,11 +24,10 @@ class Player extends GameObject{
   Animator heart;
 
   // carry
-  int carriedYOffset = 35;
+  int carriedYOffset = 40;
   GameObject carried = null;
 
   float flySpeed = 5;
-  boolean facingRight = true;
 
   Player(int x, int y, int _maxStamina, int _staminaRecoverySpeed, int _maxHearts) {
     super(x, y, "Player");
@@ -42,16 +41,16 @@ class Player extends GameObject{
 
     anim = new Animator(0, 0, "crow.png", 3, 3);
 
-    int[] animSprites = new int[]{0, 1, 2, 3, 4, 5};
-		int[] animDuration = new int[]{5, 9, 9, 6, 5, 3};
+    int[] animSprites = new int[]{0, 1, 2, 3, 4, 3, 2, 1, 0};
+		int[] animDuration = new int[]{5, 9, 9, 9, 9, 4, 4, 4, 2};
 		anim.createAnimation("flying", animSprites, animDuration);
 
-		animSprites = new int[]{4};
-		animDuration = new int[]{99};
+		animSprites = new int[]{5, 6};
+		animDuration = new int[]{12, 12};
 		anim.createAnimation("idle", animSprites, animDuration);
 
-		animSprites = new int[]{0};
-		animDuration = new int[]{99};
+		animSprites = new int[]{7, 8};
+		animDuration = new int[]{8, 8};
 		anim.createAnimation("falling", animSprites, animDuration);
 
 		anim.setAnimation("idle");
@@ -192,6 +191,7 @@ class Player extends GameObject{
 
       boolean landed = checkTreeAndLand();
       if (landed) {
+        anim.setAnimation("idle");
         state = ST_LANDED;
         return;
       }
@@ -199,6 +199,7 @@ class Player extends GameObject{
       pos.y = pos.y + globals.fallSpeed;
 
       if (checkAndPutOnFloor()) {
+        anim.setAnimation("idle");
         state = ST_LANDED;
         return;
       }
@@ -208,11 +209,11 @@ class Player extends GameObject{
 
   void movePlayerWithPressed() {
     if (input.pressed.left) {
-      facingRight = false;
+      anim.flipped = false;
       pos.x -= flySpeed;
     }
     if (input.pressed.right) {
-      facingRight = true;
+      anim.flipped = true;
       pos.x += flySpeed;
     }
     if (input.pressed.up) {
