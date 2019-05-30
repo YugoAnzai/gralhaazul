@@ -10,7 +10,7 @@ class MenuScene extends Scene{
 
 		texts.get(0).selected = true;
 
-		logo = new Animator(0, 0, "logo.png", 1, 1);
+		logo = new Animator(0, 0, "gameLogo.png", 1, 1);
 		logo.createAnimation("idle", new int[]{0}, new int[]{99});
 		logo.setAnimation("idle");
 

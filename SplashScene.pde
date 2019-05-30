@@ -1,8 +1,18 @@
 class SplashScene extends Scene{
 
+	Animator logo;
+
 	void setup() {
 
 		soundManager.playLoop("cutscene");
+
+		logo = new Animator(0, 0, "logo.png", 1, 1);
+		int[] animSprites = new int[]{0};
+		int[] animDuration = new int[]{99};
+		logo.createAnimation("idle", animSprites, animDuration);
+
+		logo.x = width/2;
+		logo.y = height/2;
 
 	}
 
@@ -20,11 +30,7 @@ class SplashScene extends Scene{
 
 		background(0);
 
-		textSize(70);
-		fill(0, 200, 150);
-		textAlign(CENTER);
-		text("GGGralha Team", width/2, height/2);
-		textAlign(LEFT);
+		logo.draw();
 
 		fill(255);
 		textSize(25);

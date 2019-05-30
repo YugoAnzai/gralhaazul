@@ -5,6 +5,9 @@ class Globals {
   float fallSpeed = 3;
   int floorY = 600;
 
+  // Config
+  boolean soundOn = false;
+
   // game Globals
   World world;
   int level = -1;

@@ -57,11 +57,13 @@ class SoundManager{
 	}
 
 	void playSound(String soundName) {
+		if (!globals.soundOn) return;
 		int index = nameIndex(soundName, soundNames);
 		soundSounds.get(index).play(0);
 	}
 
 	void playLoop(String loopName) {
+		if (!globals.soundOn) return;
 		int index = nameIndex(loopName, loopNames);
 		loopSounds.get(index).rewind();
 		loopSounds.get(index).loop();
