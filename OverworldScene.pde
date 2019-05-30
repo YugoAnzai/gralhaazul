@@ -24,8 +24,10 @@ class OverworldScene extends Scene{
 
 		levels.get(globals.selectedLevel - 1).selected = true;
 
-    bird = new Animator(0, 0, "overworldBird.png", 2, 1);
-		bird.createAnimation("idle", new int[]{0,1}, new int[]{12,12});
+    bird = new Animator(0, 0, "overworldBird.png", 2, 2);
+    int[] animSprites = new int[]{0, 1, 2, 3, 2, 1};
+		int[] animDuration = new int[]{5, 8, 8, 8, 12, 12};
+		bird.createAnimation("idle", animSprites, animDuration);
 		bird.setAnimation("idle");
 		bird.play();
     bird.x = levels.get(globals.selectedLevel - 1).x;
