@@ -1,18 +1,19 @@
 class Globals {
 
   boolean debug = false;
+  boolean cheat = false;
+  boolean unlock = false;
 
   float fallSpeed = 3;
   int floorY = 600;
 
   // Config
-  boolean soundOn = false;
+  boolean soundOn = true;
 
   // game Globals
   World world;
   int level = -1;
   boolean gameEnded = false;
-  boolean sawInstructions = false;
   boolean sawCutscene = false;
 
   // Overworld

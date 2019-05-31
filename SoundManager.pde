@@ -74,6 +74,12 @@ class SoundManager{
 		loopSounds.get(index).pause();
 	}
 
+	void pauseAllLoops() {
+		for (AudioPlayer loop : loopSounds) {
+			loop.pause();
+		}
+	}
+
 	int nameIndex(String name, ArrayList<String> names) {
 		for (int i = 0; i < names.size(); i++) {
 			if (names.get(i) == name) return i;

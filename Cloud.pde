@@ -64,7 +64,11 @@ class Cloud extends GameObject{
 	void interact() {
 		if (hasWater) {
 			hasWater = false;
-			waterCounter = maxWaterCounter;
+			if (globals.cheat) {
+				waterCounter = 0;
+			} else {
+				waterCounter = maxWaterCounter;
+			}
 			globals.world.waters.add(new Water((int)pos.x, (int)pos.y));
 		}
 	}

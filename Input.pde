@@ -7,6 +7,9 @@ class Pressed {
   boolean land = false;
   boolean grab = false;
   boolean debug = false;
+  boolean cheat = false;
+  boolean unlock = false;
+  boolean mute = false;
   boolean enter = false;
 
   Pressed() {
@@ -22,6 +25,9 @@ class Pressed {
     land = pressed.land;
     grab = pressed.grab;
     debug = pressed.debug;
+    cheat = pressed.cheat;
+    unlock = pressed.unlock;
+    mute = pressed.mute;
     enter = pressed.enter;
 
   }
@@ -54,6 +60,9 @@ class Input{
     keyEnter.land = (pressed.land && !pressedLastFrame.land);
     keyEnter.grab = (pressed.grab && !pressedLastFrame.grab);
     keyEnter.debug = (pressed.debug && !pressedLastFrame.debug);
+    keyEnter.cheat = (pressed.cheat && !pressedLastFrame.cheat);
+    keyEnter.unlock = (pressed.unlock && !pressedLastFrame.unlock);
+    keyEnter.mute = (pressed.mute && !pressedLastFrame.mute);
     keyEnter.enter = (pressed.enter && !pressedLastFrame.enter);
 
     keyExit.left = (!pressed.left && pressedLastFrame.left);
@@ -63,6 +72,9 @@ class Input{
     keyExit.land = (!pressed.land && pressedLastFrame.land);
     keyExit.grab = (!pressed.grab && pressedLastFrame.grab);
     keyExit.debug = (!pressed.debug && pressedLastFrame.debug);
+    keyExit.cheat = (!pressed.cheat && pressedLastFrame.cheat);
+    keyExit.unlock = (!pressed.unlock && pressedLastFrame.unlock);
+    keyExit.mute = (!pressed.mute && pressedLastFrame.mute);
     keyExit.enter = (!pressed.enter && pressedLastFrame.enter);
 
     pressedLastFrame.copyPressed(pressed);
@@ -76,6 +88,9 @@ class Input{
     if(key == 'j') rawInputPressed.land = true;
     if(key == ' ') rawInputPressed.grab = true;
     if(key == 'p') rawInputPressed.debug = true;
+    if(key == 'o') rawInputPressed.cheat = true;
+    if(key == 'u') rawInputPressed.unlock = true;
+    if(key == 'm') rawInputPressed.mute = true;
     if(key == ENTER || key == RETURN || key == ' ') rawInputPressed.enter = true;
   }
 
@@ -87,6 +102,9 @@ class Input{
     if(key == 'j') rawInputPressed.land = false;
     if(key == ' ') rawInputPressed.grab = false;
     if(key == 'p') rawInputPressed.debug = false;
+    if(key == 'o') rawInputPressed.cheat = false;
+    if(key == 'u') rawInputPressed.unlock = false;
+    if(key == 'm') rawInputPressed.mute = false;
     if(key == ENTER || key == RETURN || key == ' ') rawInputPressed.enter = false;
   }
 
@@ -99,6 +117,9 @@ class Input{
       "land: " + pressed.land,
       "grab: " + pressed.grab,
       "debug: " + pressed.debug,
+      "cheat: " + pressed.cheat,
+      "unlock: " + pressed.unlock,
+      "mute: " + pressed.mute,
       "enter: " + pressed.enter,
     };
     debug.draw(lines, x, y);

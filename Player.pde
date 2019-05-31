@@ -167,10 +167,13 @@ class Player extends GameObject{
         return;
       }
 
-      if (carried == null) {
-        stamina -= staminaFlyingConsumeSpeed;
-      } else {
-        stamina -= staminaCarryingConsumeSpeed;
+      // stamina consumption
+      if (!globals.cheat) {
+        if (carried == null) {
+          stamina -= staminaFlyingConsumeSpeed;
+        } else {
+          stamina -= staminaCarryingConsumeSpeed;
+        }
       }
 
       if (stamina <= 0) {

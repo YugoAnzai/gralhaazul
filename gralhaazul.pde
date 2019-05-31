@@ -30,11 +30,13 @@ void setup() {
   input = new Input();
   debug = new Debug();
   soundManager = new SoundManager(this);
-  globalTextBox = new TextBox(500, 550);
+  globalTextBox = new TextBox(500, 612);
 
-  // sceneManager = new SceneManager("GameScene");
+  sceneManager = new SceneManager("GameScene");
+  // sceneManager = new SceneManager("CutsceneScene");
+  // sceneManager = new SceneManager("EndScene");
   // sceneManager = new SceneManager("OverworldScene");
-  sceneManager = new SceneManager("SplashScene");
+  // sceneManager = new SceneManager("SplashScene");
 
 }
 
@@ -52,9 +54,16 @@ void process(){
 
   if (input.keyEnter.debug) {
     globals.debug = !globals.debug;
-    if (!globals.debug) {
-      stroke(0);
-    }
+  }
+  if (input.keyEnter.cheat) {
+    globals.cheat = !globals.cheat;
+  }
+  if (input.keyEnter.unlock) {
+    globals.unlock = !globals.unlock;
+  }
+  if (input.keyEnter.mute) {
+    if (globals.soundOn) soundManager.pauseAllLoops();
+    globals.soundOn = !globals.soundOn;
   }
 
   maxMemory = Runtime.getRuntime().maxMemory();
@@ -65,6 +74,24 @@ void process(){
 
 void _draw(){
   sceneManager.draw();
+
+  if (globals.cheat) {
+    textSize(10);
+    fill(255);
+    text("cheat: stamina e nuvens", 10, 680);
+  }
+
+  if (globals.unlock) {
+    textSize(10);
+    fill(255);
+    text("cheat: tudo desbloqueado", 10, 687);
+  }
+  if (!globals.soundOn) {
+    textSize(10);
+    fill(255);
+    text("mute", 10, 694);
+  }
+
 }
 
 void debugDraw(){
