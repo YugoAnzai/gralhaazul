@@ -2,6 +2,8 @@ class VictoryScene extends Scene{
 
 	String message = "";
 
+	Animator crow;
+
 	void setup() {
 
 		soundManager.playSound("victory");
@@ -11,6 +13,13 @@ class VictoryScene extends Scene{
 		} else {
 			message = "Parabéns Aprendiz! Treinamento " + (-globals.level) + " completo";
 		}
+
+		crow = new Animator(0, 0, "crow_fly.png", 1, 1);
+		crow.createAnimation("idle", new int[]{0}, new int[]{99});
+		crow.setAnimation("idle");
+
+		crow.x = width/2;
+		crow.y = 400;
 
 	}
 
@@ -31,15 +40,17 @@ class VictoryScene extends Scene{
 	}
 
 	void draw(){
-		background(0);
+		background(#5657b3);
+
+		crow.draw();
 
 		textSize(50);
-		fill(0, 200, 150);
+		fill(0);
 		textAlign(CENTER);
-		text(message, width/2, height/2);
+		text(message, width/2, 200);
 		textAlign(LEFT);
 
-		fill(255);
+		fill(0);
 		textSize(25);
 		textAlign(CENTER);
 		text("Aperte Espaço para Avançar", width/2, 650);

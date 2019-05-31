@@ -2,6 +2,8 @@ class GameOverScene extends Scene{
 
 	ArrayList<SelectibleText> texts = new ArrayList();
 
+	Animator crow;
+
 	void setup() {
 		texts.add(new SelectibleText(100, 300, "Tentar Novamente"));
 		texts.add(new SelectibleText(100, 400, "Ir Para o Mapa"));
@@ -9,6 +11,13 @@ class GameOverScene extends Scene{
 		texts.get(0).selected = true;
 
 		soundManager.playSound("loose");
+
+		crow = new Animator(0, 0, "crow_cry.png", 1, 1);
+		crow.createAnimation("idle", new int[]{0}, new int[]{99});
+		crow.setAnimation("idle");
+
+		crow.x = 680;
+		crow.y = 480;
 
 	}
 
@@ -56,14 +65,16 @@ class GameOverScene extends Scene{
 
 	void draw(){
 
-		background(0);
+		background(#5657b3);
+
+		crow.draw();
 
 		textSize(70);
-		fill(0, 150, 255);
+		fill(0);
 		text("Poxa, não foi desta vez", 100, 150);
 
 		textSize(30);
-		fill(0, 150, 255);
+		fill(0);
 		text("Você perdeu todas as vidas ou ficou sem árvores nem pinhas.", 100, 200);
 
 		for (SelectibleText text : texts){

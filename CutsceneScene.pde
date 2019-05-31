@@ -43,7 +43,7 @@ class CutsceneScene extends Scene{
 				changeCutscene();
 
 				globalTextBox.next();
-				
+
 			} else {
 				soundManager.pauseLoop("cutscene");
 				sceneManager.changeScene("GameScene");
