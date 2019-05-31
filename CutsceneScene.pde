@@ -39,10 +39,10 @@ class CutsceneScene extends Scene{
 		if (input.keyEnter.enter || input.keyEnter.right) {
 			if (!globalTextBox.finished) {
 
-				index++;
-				changeCutscene();
-
-				globalTextBox.next();
+				if (globalTextBox.next()) {
+					index++;
+					changeCutscene();
+				}
 
 			} else {
 				soundManager.pauseLoop("cutscene");

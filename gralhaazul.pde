@@ -33,7 +33,6 @@ void setup() {
   globalTextBox = new TextBox(500, 612);
 
   // sceneManager = new SceneManager("GameScene");
-  // sceneManager = new SceneManager("CutsceneScene");
   // sceneManager = new SceneManager("GameOverScene");
   // sceneManager = new SceneManager("OverworldScene");
   sceneManager = new SceneManager("SplashScene");

@@ -35,10 +35,10 @@ class EndScene extends Scene{
 		if (input.keyEnter.enter || input.keyEnter.right) {
 			if (!globalTextBox.finished) {
 
-				index++;
-				changeCutscene();
-
-				globalTextBox.next();
+				if (globalTextBox.next()) {
+					index++;
+					changeCutscene();
+				}
 
 			} else {
 				sceneManager.changeScene("SplashScene");
@@ -56,9 +56,9 @@ class EndScene extends Scene{
 
 		if (globalTextBox.finished) {
 			fill(255);
-			textSize(25);
+			textSize(28);
 			textAlign(CENTER);
-			text("Aperte Espaço para Avançar", width/2, 650);
+			text("Fim", width/2, 650);
 			textAlign(LEFT);
 		}
 

@@ -51,7 +51,7 @@ class TextBox{
 		}
 	}
 
-	void next() {
+	boolean next() {
 		if (canSkip) {
 
 			soundManager.playSound("tick");
@@ -64,6 +64,9 @@ class TextBox{
 				alfa = initAlfa;
 				index ++;
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 
