@@ -23,10 +23,10 @@ class Globals {
 
   Globals() {
     // override debug
-    sawCutscene = true;
-    level2locked = false;
-    level3locked = false;
-    level = -3;
+    // sawCutscene = true;
+    // level2locked = false;
+    // level3locked = false;
+    // level = -3;
   }
 
 }
