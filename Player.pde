@@ -54,7 +54,7 @@ class Player extends GameObject{
 		anim.createAnimation("falling", animSprites, animDuration);
 
 		animSprites = new int[]{9};
-		animDuration = new int[]{12};
+		animDuration = new int[]{24};
 		anim.createAnimation("hit", animSprites, animDuration);
 
 		anim.setAnimation("idle");
@@ -291,6 +291,7 @@ class Player extends GameObject{
     soundManager.playSound("crow_hit");
     hearts--;
     anim.setAnimation("hit");
+		anim.setNextAnimation("flying");
     if (hearts <= 0) {
       sceneManager.changeScene("GameOverScene");
     }
