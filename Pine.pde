@@ -13,9 +13,19 @@ class Pine extends GameObject implements IWaterable{
 		fatherTreePart = treePart;
 		rectCollider = new RectCollider(this, colliderManager.pines, colliderW, colliderH);
 
-		anim = new Animator(0, 0, "pine.png", 1, 1);
-		anim.createAnimation("idle", new int[]{0}, new int[]{99});
-		anim.setAnimation("idle");
+		anim = new Animator(0, 0, "pine.png", 2, 3);
+
+		int[] animSprites = new int[]{0, 1, 2, 3, 4};
+		int[] animDuration = new int[]{6, 6, 6, 6, 6};
+		anim.createAnimation("growing", animSprites, animDuration);
+
+		animSprites = new int[]{4, 5};
+		animDuration = new int[]{24, 24};
+		anim.createAnimation("idle", animSprites, animDuration);
+
+		anim.setAnimation("growing");
+		anim.setNextAnimation("idle");
+    anim.play();
 
 	}
 

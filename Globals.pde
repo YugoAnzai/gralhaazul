@@ -21,4 +21,12 @@ class Globals {
   boolean level2locked = true;
   boolean level3locked = true;
 
+  Globals() {
+    // override debug
+    sawCutscene = true;
+    level2locked = false;
+    level3locked = false;
+    level = -3;
+  }
+
 }
