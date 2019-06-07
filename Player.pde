@@ -39,7 +39,7 @@ class Player extends GameObject{
     state = ST_LANDED;
     rectCollider = new RectCollider(this, colliderManager.player, playerColliderW, playerColliderH);
 
-    anim = new Animator(0, 0, "crow.png", 3, 3);
+    anim = new Animator(0, 0, "crow.png", 5, 2);
 
     int[] animSprites = new int[]{0, 1, 2, 3, 4, 3, 2, 1, 0};
 		int[] animDuration = new int[]{5, 9, 9, 9, 9, 4, 4, 4, 2};
@@ -52,6 +52,10 @@ class Player extends GameObject{
 		animSprites = new int[]{7, 8};
 		animDuration = new int[]{8, 8};
 		anim.createAnimation("falling", animSprites, animDuration);
+
+		animSprites = new int[]{9};
+		animDuration = new int[]{12};
+		anim.createAnimation("hit", animSprites, animDuration);
 
 		anim.setAnimation("idle");
     anim.play();
@@ -286,6 +290,7 @@ class Player extends GameObject{
   void bulletHit(){
     soundManager.playSound("crow_hit");
     hearts--;
+    anim.setAnimation("hit");
     if (hearts <= 0) {
       sceneManager.changeScene("GameOverScene");
     }
