@@ -32,10 +32,13 @@ void setup() {
   soundManager = new SoundManager(this);
   globalTextBox = new TextBox(500, 612);
 
-  // sceneManager = new SceneManager("GameScene");
-  // sceneManager = new SceneManager("GameOverScene");
-  // sceneManager = new SceneManager("OverworldScene");
-  sceneManager = new SceneManager("SplashScene");
+  if (globals.skipToGame) {
+    sceneManager = new SceneManager("GameScene");
+  } else if (globals.skipToOverworld) {
+    sceneManager = new SceneManager("OverworldScene");
+  } else {
+    sceneManager = new SceneManager("SplashScene");
+  }
 
 }
 

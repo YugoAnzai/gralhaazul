@@ -21,12 +21,20 @@ class Globals {
   boolean level2locked = true;
   boolean level3locked = true;
 
+  // debug
+  boolean skipToGame = false;
+  boolean skipToOverworld = false;
+
   Globals() {
     // override debug
+
     // sawCutscene = true;
     // level2locked = false;
     // level3locked = false;
     // level = -3;
+    // skipToGame = true;
+    // skipToOverworld = true;
+
   }
 
 }
