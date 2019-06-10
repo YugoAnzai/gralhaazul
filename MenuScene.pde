@@ -6,7 +6,7 @@ class MenuScene extends Scene{
 	void setup() {
 
 		texts.add(new SelectibleText(470, 500, "Jogar"));
-		texts.add(new SelectibleText(470, 560, "Credits"));
+		texts.add(new SelectibleText(470, 560, "Creditos"));
 
 		texts.get(0).selected = true;
 
