@@ -28,6 +28,7 @@ class Globals {
   Globals() {
     // override debug
 
+    // soundOn = false;
     // sawCutscene = true;
     // level2locked = false;
     // level3locked = false;
